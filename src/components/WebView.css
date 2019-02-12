@@ -1,0 +1,39 @@
+.WebView {
+  border: 2px solid #ccc;
+  width: 80%;
+  height: 60%;
+  overflow: auto;
+  background: white;
+}
+
+.WebView .handle {
+  background: black;
+}
+
+
+div.popup .controls {
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  background-color: #AAA;
+}
+div.popup.active .controls {
+  color: #FFF;
+  background-color: #000;
+}
+
+  div.popup .controls li {
+    display: inline-block;
+    width: 16px;
+    height: 17px;
+    margin: 0 2px;
+  }
+
+  div.popup .controls h2 {
+    text-align: center;
+  }
+
+  div.popup .content {
+    background-color: #FFF;
+    padding: 0.3rem;
+  }

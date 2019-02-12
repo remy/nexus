@@ -1,0 +1,115 @@
+/* --------------------------------------------------------------------
+               			NEXT Browser
+
+-------------------------------------------------------------------- */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, form, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i,dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+header, footer, main, nav, aside, article, section, figure, figcaption {
+  display: block;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+  font: 100%/1 Arial, Helvetica, "Helvetica Neue", sans-serif;
+  color: #000;
+  background-color: #555;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  font-smooth: never;
+}
+
+p, li, dt, dd {font-size: 0.8em;}
+
+
+/* --------------- BUTTONS -------------------- */
+
+button {
+  position: relative;
+	width: 100%;
+	background-color: #AAA;
+	padding: 0.3em 0;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+}
+
+button::after, button::before {
+  display: block;
+  position: absolute;
+  content: "";
+  background-color: #555;
+}
+button::after {
+  width: 1px;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+button::before {
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+}
+
+
+/* --------------- WINDOWS -------------------- */
+
+div.popup .controls {
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  background-color: #AAA;
+}
+div.popup.active .controls {
+  color: #FFF;
+  background-color: #000;
+}
+
+  div.popup .controls li {
+    display: inline-block;
+    width: 16px;
+    height: 17px;
+    margin: 0 2px;
+  }
+
+  div.popup .controls h2 {
+    text-align: center;
+  }
+
+  div.popup .content {
+    background-color: #FFF;
+    padding: 0.3rem;
+  }
+
+
+/* --------------- MAIN NAVIGATION -------------------- */
+
+nav.main-nav {
+  position: fixed;
+  width: 120px;
+}
+
+nav.main-nav h1 {
+  font-size: 0.9em;
+  color: #FFF;
+  background-color: #000;
+  padding: 0.3em 0.2em;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+}
