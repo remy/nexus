@@ -7,6 +7,14 @@ const App = () => {
     'http://info.cern.ch/hypertext/WWW/TheProject.html'
   );
 
+  const [webViews, setWebViews] = useState([]);
+
+  useEffect(() => {
+    console.log('adding ', renderUrl);
+    setWebViews([...webViews, renderUrl]);
+  }, [renderUrl]);
+
+  console.log(webViews.length);
   return (
     <Fragment>
       <Entry
@@ -15,8 +23,20 @@ const App = () => {
         }}
         defaultValue={renderUrl}
       />
-      <WebView onNavigate={setRenderUrl} url={renderUrl} />
-      <p>This is more text</p>
+      {webViews.map((url, i) => (
+        <WebView
+          onClose={() => {
+            const excluding = webViews.filter((_, index) => i !== index);
+            setWebViews(excluding);
+          }}
+          onNavigate={url => {
+            setWebViews([...webViews, url]);
+          }}
+          url={url}
+          key={url}
+          index={i}
+        />
+      ))}
     </Fragment>
   );
 };

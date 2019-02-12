@@ -7,7 +7,7 @@ import './WebView.scss';
 const HOST = process.env.HOST;
 const API = process.env.API;
 
-const WebView = ({ url, active = true, onNavigate }) => {
+const WebView = ({ url, active = true, index, onNavigate, onClose }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -37,15 +37,21 @@ const WebView = ({ url, active = true, onNavigate }) => {
     return <p>Not sure what's rendered…</p>;
   }
 
+  const style = {
+    left: 16 * (index + 1) + 'px',
+    top: 16 * (index + 1) + 'px',
+    position: 'absolute',
+  };
+
   return (
-    <Draggable handle=".controls h2" defaultPosition={{ x: 0, y: 0 }}>
-      <div className={classnames(['WebView', { active }])}>
-        <div className="title controls">
+    <Draggable handle=".controls h2">
+      <div className="WebView" style={style}>
+        <div className={classnames(['title controls', { active }])}>
           <button>
             <img src="/assets/img/full-window-button.png" />
           </button>
           <h2>{title}</h2>
-          <button>
+          <button onClick={onClose}>
             <img src="/assets/img/expand-window-button.png" />
           </button>
         </div>
@@ -54,6 +60,7 @@ const WebView = ({ url, active = true, onNavigate }) => {
           contentEditable={true}
           dangerouslySetInnerHTML={{ __html: body }}
           spellCheck={false}
+          onClick={e => e.preventDefault()}
           onDoubleClick={e => {
             e.preventDefault();
             if (e.target.nodeName === 'A') {
