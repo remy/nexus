@@ -1,5 +1,11 @@
 .webview {
+  font-size: 0.8em;
+
   [contenteditable] { outline: none; }
+
+  .controls h2 {
+    flex: 1;
+  }
 
   .r2l-content {
     overflow: auto;
@@ -9,10 +15,60 @@
   }
 }
 
+/* default.style 
+
+15
+Normal <P> 0 Helvetica 12.0 		1
+	90 90	14.0 3.0 	0 	0 14	0
+Address <P> 0 Helvetica-Oblique 12.0 		1
+	90 90	14.0 3.0 	1 	0 14	0
+Heading1 <H1> 0 Helvetica-Bold 18.0 	1
+	0 0	18.0 3.0 	2	0 36	0
+Heading2 <H2> 0 Helvetica-Bold 14.0 	1
+	0 0	14.0 3.0 	0	14 14	0
+Heading3 <H3> 0 Helvetica-Bold 12.0 	1
+	10 10 	14.0 3.0 	0	14 14	0
+Heading4 <H4> 0 Helvetica-Bold 12.0 	1
+	20 20 	14.0 3.0 	0	14 14	0
+Heading5 <H5> 0 Helvetica-Bold 12.0 	1
+	30 30 	14.0 3.0 	0	14 14	0
+Heading6 <H6> 0 Helvetica-Bold 12.0 	1
+	40 40 	14.0 3.0 	0	14 14	0
+
+Italic <HP1> 0 Helvetic-Oblique 12.0	0
+
+Bold <HP2> 0	Helvetica-Bold	12.0	0
+
+Bold-Italic <HP3> 0	Helvetic-Bold-Oblique 12.0	0
+
+List <LI> 0 Helvetica 12.0			1
+        100 130	14 3		0 	0 14		2
+	0 130	0 300
+	
+Glossary <DL> 0 Helvetica 12.0		1
+        20 200	14 3		0	0 14		3
+	0 200	0 300 0 400
+	
+Example <XMP> 0 Ohlfs 10.0		1
+	0 0	14 3		0	0 0		9
+	0 48	0 96	0 144	0 192	0 240	0 288	0 336	0 384	0 432
+	
+Listing <LISTING> 0 Ohlfs 9.0		1
+	0 0	14 3		0	0 0		11
+	0 43.2	0 86.4	0 129.6	0 172.8	0 216	0 259.2	0 302.4	0 345.6	0 388.8	0 432
+	0 475.2
+*/
+
 .webview .content {
+  font-family: Helvetica, "Arial Narrow", sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  -webkit-font-smoothing: none;
+  margin: 1.5em 0 0 90px;
+  /* white-space: pre-wrap; */
 
   nextid {
-    line-height: 1.2em;
+    height: 1.2em;
   }
 
   h1,
@@ -21,40 +77,53 @@
   h4,
   h5,
   h6 {
-    margin: 0;
   }
 
   h1 {
-    margin: 1.5em 0; /* 1 line of space above and below h1 only */
+    /* default: Helvetica-Bold 18pt, 0 indent, 18 line height,
+	3.0 descent line, center, 0 space before, 36 space after */
+    margin: 1.1em 0 2.8em 0;
+    font-weight: bold;
+    font-size: 18px; 
+    line-height: 18px;
     text-align: center;
-    text-transform: uppercase; /* only h1, h2 all caps */
   }
 
   h2 {
-    text-transform: uppercase; /* only h1, h2 all caps */
+    /* default: Helvetica-Bold 14pt, 0 indent, 14 line height,
+	3.0 descent line, center, 14 space before, 14 space after */
+    margin: 1.5em 0 1.5em -90px;
+    font-weight: bold;
+    font-size: 14px; 
   }
 
-  h3 {
-    margin: 0 1.1em;
-    margin: 0 2ch; /* h3 indents 2 chars */
+  h3, h4, h5, h6 {
+    /* default: Helvetica-Bold 12pt, 10 indent, 14 line height,
+	3.0 descent line, center, 14 space before, 14 space after */
+    margin: 1em 0 1em -80px;
+    font-weight: bold;
+    font-size: 12px; 
   }
 
   h4 {
-    margin: 0 2.2em;
-    margin: 0 4ch; /* h4 indents 4 chars */
+    /* default: Helvetica-Bold 12pt, 20 indent, 14 line height,
+	3.0 descent line, center, 14 space before, 14 space after */
+    margin: 1em 0 1em -70px;
   }
 
   h5 {
-    margin: 0 3.3em;
-    margin: 0 6ch; /* h5 indents 6 chars */
+    /* default: Helvetica-Bold 12pt, 30 indent, 14 line height,
+	3.0 descent line, center, 14 space before, 14 space after */
+    margin: 1em 0 1em -60px;
   }
 
   h6 {
-    margin: 0 4.4em;
-    margin: 0 8ch; /* h6 indents 8 chars */
+    /* default: Helvetica-Bold 12pt, 40 indent, 14 line height,
+	3.0 descent line, center, 14 space before, 14 space after */
+    margin: 1em 0 1em -50px;
   }
 
-  a {
+  a[href] {
     text-decoration: underline;
     color: inherit;
   }
@@ -65,10 +134,16 @@
 	   separator than a wrapper... so using margin-top instead    */
   }
 
-  ol,
-  ul,
+  li {
+    margin: 1em 0 1em 2.4em;
+    list-style-type: "\#183";
+  }
+
   dl {
-    margin: 1.5em 0; /* list style has 1 line of space above and below */
+    margin: 1em 0 1em -70px;
+  }
+  dl + h2 {
+    margin-top: 4em;
   }
 
   /* Definition lists */
@@ -84,8 +159,7 @@
   }
 
   dt {
-    width: 20ch;
-    margin-left: 7ch;
+    width: 25ch;
   }
 
   dd {
@@ -104,11 +178,11 @@
     text-align: right;
   }
 
-  hp1 {
+  hp1, i, em {
     font-style: italic;
   }
 
-  hp2 {
+  hp2, b, strong {
     font-weight: bold;
   }
 
@@ -117,3 +191,4 @@
     font-weight: bold;
   }
 }
+
