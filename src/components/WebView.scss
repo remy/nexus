@@ -16,8 +16,7 @@
 }
 
 /* default.style 
-
-15
+12
 Normal <P> 0 Helvetica 12.0 		1
 	90 90	14.0 3.0 	0 	0 14	0
 Address <P> 0 Helvetica-Oblique 12.0 		1
@@ -26,20 +25,14 @@ Heading1 <H1> 0 Helvetica-Bold 18.0 	1
 	0 0	18.0 3.0 	2	0 36	0
 Heading2 <H2> 0 Helvetica-Bold 14.0 	1
 	0 0	14.0 3.0 	0	14 14	0
-Heading3 <H3> 0 Helvetica-Bold 12.0 	1
+Heading3 <H3> 0 Helvetica-Oblique 	14.0 	1
 	10 10 	14.0 3.0 	0	14 14	0
 Heading4 <H4> 0 Helvetica-Bold 12.0 	1
 	20 20 	14.0 3.0 	0	14 14	0
-Heading5 <H5> 0 Helvetica-Bold 12.0 	1
+Heading5 <H5> 0 Helvetica-Bold-Oblique 12.0 	1
 	30 30 	14.0 3.0 	0	14 14	0
 Heading6 <H6> 0 Helvetica-Bold 12.0 	1
 	40 40 	14.0 3.0 	0	14 14	0
-
-Italic <HP1> 0 Helvetic-Oblique 12.0	0
-
-Bold <HP2> 0	Helvetica-Bold	12.0	0
-
-Bold-Italic <HP3> 0	Helvetic-Bold-Oblique 12.0	0
 
 List <LI> 0 Helvetica 12.0			1
         100 130	14 3		0 	0 14		2
@@ -91,36 +84,39 @@ Listing <LISTING> 0 Ohlfs 9.0		1
 
   h2 {
     /* default: Helvetica-Bold 14pt, 0 indent, 14 line height,
-	3.0 descent line, center, 14 space before, 14 space after */
+	3.0 descent line, 14 space before, 14 space after */
     margin: 1.5em 0 1.5em -90px;
     font-weight: bold;
     font-size: 14px; 
   }
 
-  h3, h4, h5, h6 {
-    /* default: Helvetica-Bold 12pt, 10 indent, 14 line height,
-	3.0 descent line, center, 14 space before, 14 space after */
+  h3 {
+    /* default: Helvetica-Oblique 14pt, 10 indent, 14 line height,
+	3.0 descent line, 14 space before, 14 space after */
     margin: 1em 0 1em -80px;
-    font-weight: bold;
-    font-size: 12px; 
+    font-style: italic;
+    font-size: 14px; 
   }
 
   h4 {
     /* default: Helvetica-Bold 12pt, 20 indent, 14 line height,
-	3.0 descent line, center, 14 space before, 14 space after */
+	3.0 descent line, 14 space before, 14 space after */
     margin: 1em 0 1em -70px;
+    font-weight: bold;
   }
 
   h5 {
     /* default: Helvetica-Bold 12pt, 30 indent, 14 line height,
-	3.0 descent line, center, 14 space before, 14 space after */
+	3.0 descent line, 14 space before, 14 space after */
     margin: 1em 0 1em -60px;
+    font-weight: bold;
   }
 
   h6 {
     /* default: Helvetica-Bold 12pt, 40 indent, 14 line height,
-	3.0 descent line, center, 14 space before, 14 space after */
+	3.0 descent line, 14 space before, 14 space after */
     margin: 1em 0 1em -50px;
+    font-weight: bold;
   }
 
   a[href] {
