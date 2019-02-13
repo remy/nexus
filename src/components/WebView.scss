@@ -1,49 +1,29 @@
-.WebView {
-  border: 2px solid #ccc;
-  width: 600px;
+.webview {
+  font-size: 0.8em;
 
-  .controls {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    color: #000;
-    background-color: #aaa;
-
-    button {
-      flex: none;
-      display: inline-block;
-      width: 10%;
-      all: unset;
-    }
-  }
-
-  &.active .controls {
-    color: #fff;
-    background-color: #000;
-  }
-
-  .controls li {
-    display: inline-block;
-    width: 16px;
-    height: 17px;
-    margin: 0 2px;
-  }
+  [contenteditable] { outline: none; }
 
   .controls h2 {
-    text-align: center;
     flex: 1;
   }
 
-  .content {
-    outline: none;
-    background-color: #fff;
-    padding: 0.3rem;
+  .r2l-content {
+    overflow: auto;
+    height: 60%;
+    max-height: 90vh;
+    width: 600px;
+  }
+
+  .l2r-content {
+    margin-left: 16px;
   }
 }
 
-.WebView .content {
-  overflow: auto;
-  height: 60%;
+.webview .content {
+
+  nextid {
+    line-height: 1.2em;
+  }
 
   h1,
   h2,
