@@ -58,24 +58,15 @@ Listing <LISTING> 0 Ohlfs 9.0		1
   line-height: 14px;
   -webkit-font-smoothing: none;
   margin: 1.5em 0 0 90px;
-  /* white-space: pre-wrap; */
 
   nextid {
     height: 1.2em;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-  }
-
   h1 {
     /* default: Helvetica-Bold 18pt, 0 indent, 18 line height,
 	3.0 descent line, center, 0 space before, 36 space after */
-    margin: 1.1em 0 2.8em 0;
+    margin: 1.1em 0 2.8em -90px;
     font-weight: bold;
     font-size: 18px; 
     line-height: 18px;
@@ -122,6 +113,9 @@ Listing <LISTING> 0 Ohlfs 9.0		1
   a[href] {
     text-decoration: underline;
     color: inherit;
+  }
+  a[href]:active {
+    background-color:#ccc;
   }
 
   p {
@@ -173,6 +167,8 @@ Listing <LISTING> 0 Ohlfs 9.0		1
     font-style: italic;
     text-align: right;
   }
+
+  /* Even though the code for styling highlighted phrases isn't complete, we've styled those tags anyway */
 
   hp1, i, em {
     font-style: italic;
