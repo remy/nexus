@@ -51,11 +51,11 @@ const WebView = ({ url, active = true, index, onNavigate, onClose }) => {
       <div className="webview" style={style}>
         <div className={classnames(['controls', { active }])}>
           <button className="icon-buttons">
-            <img src="/assets/img/full-window-button.png" alt="Full Window" />
+            <img src="/img/full-window-button.png" alt="Full Window" />
           </button>
           <h2>{title}</h2>
           <button className="icon-buttons" onClick={onClose}>
-            <img src="/assets/img/close-window-button.png" alt="Expand" />
+            <img src="/img/close-window-button.png" alt="Expand" />
           </button>
         </div>
         <div className="r2l-content">
