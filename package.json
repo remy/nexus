@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "client": "parcel --out-dir app/ ./src/index.html"
+    "client": "parcel --out-dir app/ ./src/index.html",
+    "test": "node __tests__/*.test.js"
   },
   "browserslist": [
     "last 2 Chrome versions"
@@ -26,7 +27,8 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-draggable": "^3.1.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "tape": "^4.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

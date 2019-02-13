@@ -1,21 +1,11 @@
 .webview {
-  font-size: 0.8em;
-
   [contenteditable] { outline: none; }
-
-  .controls h2 {
-    flex: 1;
-  }
 
   .r2l-content {
     overflow: auto;
     height: 60%;
     max-height: 90vh;
     width: 600px;
-  }
-
-  .l2r-content {
-    margin-left: 16px;
   }
 }
 

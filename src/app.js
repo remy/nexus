@@ -8,13 +8,16 @@ const App = () => {
   );
 
   const [webViews, setWebViews] = useState([]);
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
-    console.log('adding ', renderUrl);
     setWebViews([...webViews, renderUrl]);
   }, [renderUrl]);
 
-  console.log(webViews.length);
+  useEffect(() => {
+    setActive(webViews.length - 1);
+  }, [webViews]);
+
   return (
     <Fragment>
       <Entry
@@ -25,6 +28,9 @@ const App = () => {
       />
       {webViews.map((url, i) => (
         <WebView
+          onFocus={() => {
+            setActive(i);
+          }}
           onClose={() => {
             const excluding = webViews.filter((_, index) => i !== index);
             setWebViews(excluding);
@@ -32,6 +38,7 @@ const App = () => {
           onNavigate={url => {
             setWebViews([...webViews, url]);
           }}
+          active={i === active}
           url={url}
           key={url}
           index={i}
