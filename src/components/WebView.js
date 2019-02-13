@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import Panel from './Panel';
 
 import './WebView.scss';
@@ -29,11 +29,26 @@ const WebView = ({ index, url, active, onClose, onNavigate, onFocus }) => {
     }
   };
 
+  const contentRef = createRef();
+
   useEffect(() => {
     if (url) {
       load(url);
     }
   }, [url]);
+
+  useEffect(() => {
+    const parent = contentRef.current;
+    // insert <br> elements in root level text nodes
+    Array.from(parent.childNodes)
+      .filter(_ => _.nodeName === '#text')
+      .forEach(node => {
+        const span = document.createElement('span');
+        span.className = 'hash-text';
+        parent.replaceChild(span, node);
+        span.innerHTML = node.nodeValue.replace(/\n\n/g, '<br><br>');
+      });
+  }, [body]);
 
   if (!url) {
     return (
@@ -57,6 +72,7 @@ const WebView = ({ index, url, active, onClose, onNavigate, onFocus }) => {
       <div className="webview">
         <div className="r2l-content">
           <div
+            ref={contentRef}
             className="l2r-content content"
             contentEditable={true}
             dangerouslySetInnerHTML={{ __html: body }}
