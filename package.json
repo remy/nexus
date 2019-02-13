@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "client": "parcel --out-dir app/ ./src/index.html"
   },
   "browserslist": [
     "last 2 Chrome versions"
