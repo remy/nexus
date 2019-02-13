@@ -69,6 +69,7 @@ const WebView = ({ index, url, active, onClose, onNavigate, onFocus }) => {
                 let navigateTo = e.target.href;
 
                 // if we're a relative url, then rebase since we're hosting the html
+                console.log(navigateTo, e.target.origin, HOST);
                 if (e.target.origin === HOST) {
                   navigateTo = new URL(
                     e.target.getAttribute('href'),
