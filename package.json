@@ -7,9 +7,9 @@
     "start": "node .",
     "client": "parcel --out-dir app/ ./src/index.html",
     "test": "node __tests__/*.test.js",
-    "build": "parcel build --out-dir app/ ./src/index.html",
-    "heroku:build": "npm run build"
+    "build": "parcel build --out-dir app/ ./src/index.html"
   },
+  "heroku-run-build-script": true,
   "browserslist": [
     "last 2 Chrome versions"
   ],
