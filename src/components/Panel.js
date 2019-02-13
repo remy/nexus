@@ -9,10 +9,12 @@ const Window = ({
   onClose,
   onFocus,
   children,
+  x,
+  y,
 }) => {
   const style = {
-    left: 16 * (index + 1) + 'px',
-    top: 16 * (index + 1) + 'px',
+    left: (x || 16 * (index + 1)) + 'px',
+    top: (y || 16 * (index + 1)) + 'px',
     position: 'absolute',
     zIndex: active ? 100 : 1,
   };

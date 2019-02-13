@@ -6,7 +6,7 @@ import './WebView.scss';
 const HOST = process.env.HOST;
 const API = process.env.API;
 
-const WebView = ({ index, url, active, onClose, onNavigate, onFocus }) => {
+const WebView = ({ url, onNavigate, onFocus, ...props }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
@@ -51,24 +51,11 @@ const WebView = ({ index, url, active, onClose, onNavigate, onFocus }) => {
   }, [body]);
 
   if (!url) {
-    return (
-      <Panel
-        title={title}
-        active={active}
-        onClose={onClose}
-        onFocus={onFocus}
-      />
-    );
+    return <Panel title={title} {...props} />;
   }
 
   return (
-    <Panel
-      title={title}
-      index={index}
-      active={active}
-      onClose={onClose}
-      onFocus={onFocus}
-    >
+    <Panel title={title} onFocus={onFocus} {...props}>
       <div className="webview">
         <div className="r2l-content">
           <div

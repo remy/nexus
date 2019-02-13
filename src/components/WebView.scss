@@ -11,11 +11,11 @@
     overflow: auto;
     height: 60%;
     max-height: 90vh;
-    width: 600px;
+    width: 500px;
   }
 }
 
-/* default.style 
+/* default.style
 
 15
 Normal <P> 0 Helvetica 12.0 		1
@@ -44,15 +44,15 @@ Bold-Italic <HP3> 0	Helvetic-Bold-Oblique 12.0	0
 List <LI> 0 Helvetica 12.0			1
         100 130	14 3		0 	0 14		2
 	0 130	0 300
-	
+
 Glossary <DL> 0 Helvetica 12.0		1
         20 200	14 3		0	0 14		3
 	0 200	0 300 0 400
-	
+
 Example <XMP> 0 Ohlfs 10.0		1
 	0 0	14 3		0	0 0		9
 	0 48	0 96	0 144	0 192	0 240	0 288	0 336	0 384	0 432
-	
+
 Listing <LISTING> 0 Ohlfs 9.0		1
 	0 0	14 3		0	0 0		11
 	0 43.2	0 86.4	0 129.6	0 172.8	0 216	0 259.2	0 302.4	0 345.6	0 388.8	0 432
@@ -82,9 +82,9 @@ Listing <LISTING> 0 Ohlfs 9.0		1
   h1 {
     /* default: Helvetica-Bold 18pt, 0 indent, 18 line height,
 	3.0 descent line, center, 0 space before, 36 space after */
-    margin: 1.1em 0 2.8em 0;
+    margin: 1.1em 0 2.8em -90px;
     font-weight: bold;
-    font-size: 18px; 
+    font-size: 18px;
     line-height: 18px;
     text-align: center;
   }
@@ -94,7 +94,7 @@ Listing <LISTING> 0 Ohlfs 9.0		1
 	3.0 descent line, center, 14 space before, 14 space after */
     margin: 1.5em 0 1.5em -90px;
     font-weight: bold;
-    font-size: 14px; 
+    font-size: 14px;
   }
 
   h3, h4, h5, h6 {
@@ -102,7 +102,7 @@ Listing <LISTING> 0 Ohlfs 9.0		1
 	3.0 descent line, center, 14 space before, 14 space after */
     margin: 1em 0 1em -80px;
     font-weight: bold;
-    font-size: 12px; 
+    font-size: 12px;
   }
 
   h4 {
