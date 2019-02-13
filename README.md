@@ -12,5 +12,5 @@ npm start
 To test:
 
 ```
-curl -X POST http://localhost:3000/api -d"url=http://example.com"
+curl -X POST http://localhost:3000/api -d'{"url":"http://example.com"}' -H'content-type:application/json'
 ```

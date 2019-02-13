@@ -20,13 +20,13 @@ const WebView = ({ url, active = true, index, onNavigate, onClose }) => {
       },
       body: JSON.stringify({ url }),
     });
+    console.log(res.status);
     const json = await res.json();
     if (json.title) {
       setTitle(json.title);
       setBody(json.body);
     } else {
       // it went wrong…
-      console.log(json, res.status);
     }
   };
 
