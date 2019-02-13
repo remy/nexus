@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node .",
     "client": "parcel --out-dir app/ ./src/index.html",
-    "test": "node __tests__/*.test.js"
+    "test": "node __tests__/*.test.js",
+    "build": "parcel build --out-dir app/ ./src/index.html"
   },
   "browserslist": [
     "last 2 Chrome versions"
