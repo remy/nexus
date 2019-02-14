@@ -6,6 +6,7 @@ export const top = {
     { title: 'Navigate', id: 'navigate' },
     { title: 'Document', id: 'document' },
     { title: 'Edit', id: 'edit' },
+	// Not available until later
     // { title: 'Find', id: 'find' },
     { title: 'Links', id: 'links' },
     { title: 'Style', id: 'style' },
@@ -19,7 +20,21 @@ export const top = {
 };
 
 export const edit = {
+  id: 'edit',
   title: 'Edit',
+  menu: [
+    { title: 'Cut', id: 'cut', accelerator: 'x' },
+    { title: 'Copy', id: 'copy', accelerator: 'c' },
+    { title: 'Paste', id: 'paste', accelerator: 'v' },
+// These features weren't functional in 0.13
+//    { title: 'Paste As', id: 'paste-as', accelerator: 'x' },
+    { title: 'Delete', id: 'delete', accelerator: 'x' },
+//    { title: 'Undo', id: 'undo', accelerator: 'z' },
+//    { title: 'Find', id: 'find', accelerator: 'x' },
+    { title: 'Spelling...', id: 'spelling', accelerator: 'x' },
+    { title: 'Check Spelling', id: 'check-spelling', accelerator: ';' },
+    { title: 'Select All', id: 'select-all', accelerator: 'a' },
+  ],
 };
 
 export const info = {
@@ -66,6 +81,20 @@ export const document = {
   ],
 };
 
+export const diagnostics = {
+  id: 'diagnostics',
+  title: '(Diagnostics)',
+  menu: [
+    { title: 'Panel', id: 'panel' }, //does nothing
+    { title: 'Open HTML file showing SGML source', id: 'open-sgml' },
+    { title: 'Open HTML file showing RTF', id: 'open-rtf' },
+    { title: 'Dump text format to standard out', accelerator: '?', id: 'dump-stdout' },//does nothing
+    { title: 'Turn console trace on', accelerator: '+', id: 'console-on' },//does nothing
+    { title: 'Turn console trace off', accelerator: '-', id: 'console-off' },//does nothing
+    { title: 'Item', id: 'info-panel' },//opens info panel
+  ],
+};
+
 export const navigate = {
   id: 'navigate',
   title: 'Navigate',
@@ -83,12 +112,12 @@ export const links = {
   id: 'links',
   title: 'Links',
   menu: [
-    { title: 'Mark All', accelerator: 'A', id: 'mark-all' },
-    { title: 'Mark Selection', accelerator: 'M', id: 'mark-selection' },
-    { title: 'Link to Marked', accelerator: 'L', id: 'link-to-marked' },
+    { title: 'Mark all', accelerator: 'A', id: 'mark-all' },
+    { title: 'Mark selection', accelerator: 'M', id: 'mark-selection' },
+    { title: 'Link to marked', accelerator: 'L', id: 'link-to-marked' },
     { title: 'Link to file…', id: 'link-to-file' },
     { title: 'Link to New', accelerator: 'N', id: 'link-to-new' },
-    { title: 'Follow Link', id: 'follow-link' },
+    { title: 'Follow link', id: 'follow-link' },
     { title: 'Unlink', accelerator: 'Z', id: 'unlink' },
     { title: 'Help', id: 'help' },
   ],
@@ -100,15 +129,16 @@ export const style = {
   menu: [
     { title: 'Copy style', accelerator: '1', id: 'copy-style' },
     { title: 'Apply style', accelerator: '2', id: 'apply-style' },
-    { title: 'Glossary', accelerator: 'G', id: 'glossary' },
-    { title: 'List', accelerator: '7', id: 'list' },
-    { title: 'Example', accelerator: 'X', id: 'example' },
-    { title: 'Address', accelerator: '9', id: 'address' },
-    { title: 'Normal', accelerator: '0', id: 'normal' },
-    { title: 'Heading 1', accelerator: '!', id: 'heading-1' },
-    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
-    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
-    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
+// Not available in 0.13
+//    { title: 'Glossary', accelerator: 'G', id: 'glossary' },
+//    { title: 'List', accelerator: '7', id: 'list' },
+//    { title: 'Example', accelerator: 'X', id: 'example' },
+//    { title: 'Address', accelerator: '9', id: 'address' },
+//    { title: 'Normal', accelerator: '0', id: 'normal' },
+//    { title: 'Heading 1', accelerator: '!', id: 'heading-1' },
+//    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
+//    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
+//    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
     { title: 'Panel…', id: 'style-panel' },
   ],
 };
