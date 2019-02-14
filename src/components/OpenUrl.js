@@ -9,7 +9,7 @@ const OpenURL = ({ onAction, onClose, ...props }) => {
     // onClose(props.id);
   };
   return (
-    <Window {...props} onClose={onClose}>
+    <Window {...props} title="Open using hypertext reference" onClose={onClose}>
       <div id="open-url">
         <div className="first-block">
           <p>

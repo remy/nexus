@@ -134,7 +134,6 @@ const App = () => {
               id={id}
               onAction={url => add({ type: 'url', id: url })}
               onFocus={() => setActive({ type: 'panel', id, ref })}
-              title={allMenus.document.menu.find(_ => _.id === id).title}
               onClose={close('panel')}
             />
           );

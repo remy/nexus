@@ -3,11 +3,14 @@
 
 -------------------------------------------------------------------- */
 * {
+	font-smooth: none;
+	font-smooth: never;
+	font-weight: normal;
+	font-style: all;
 	margin: 0;
 	padding: 0;
 	border: 0;
-  cursor: default;
-  -webkit-font-smoothing: none;
+	cursor: default;
 }
 
 header, footer, main, nav, aside, article, section, figure, figcaption {
@@ -265,7 +268,7 @@ div.title-bar::before {
 }
   div.title-bar h2 {
   	flex: 1;
-    font-size: 13px;
+    font: 13px "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
   }
 
@@ -308,12 +311,15 @@ div.panel {border: 1px solid #000;}
   left: 0;
   min-width: 130px;
 }
-
+	.panel.menu .title-bar {
+	  color: #FFF;
+	  background-color: #000;
+	}
   .panel.menu div.title-bar h2 {text-align: left;}
   .panel.menu ul {list-style-type: none;}
 
   .panel.menu nav button {
-    /* font-weight: bold; */
+  	font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
     text-align: left;
     padding: 0.3em 0.25em;
   }
@@ -371,23 +377,22 @@ div.first-block {
 #browser-info header {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
 	padding: 10px 10px 0;
 }
 	#browser-info .webview {margin-bottom: 10px;}
+	#browser-info .hgroup {flex: 1;}
 
 	#browser-info header p {
 		flex-basis: 100px;
 		text-align: center;
 	}
 	#browser-info header h3 {
-		font-size: 22px;
+		font: 20px "NeXT Big_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
 		margin-bottom: 0.5em;
 	}
 	#browser-info header p.baseline {
 		width: 10em;
-		font-size: 18px;
-		font-style: normal;
+		font: 18px "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
 		margin: 0;
 	}
 	#browser-info header p.release {
@@ -469,8 +474,9 @@ div.first-block {
 	#open-url .second-block fieldset button {
 		margin-top: 10px;
 	}
+
 	#open-url .second-block button.enter-button {
-		font-size: 14px;
+		font: 14px "NeXT Big_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;;
 		width: 100px;
 		margin-right: 15px;
 	}

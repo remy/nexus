@@ -6,15 +6,28 @@ export const top = {
     { title: 'Navigate', id: 'navigate' },
     { title: 'Document', id: 'document' },
     { title: 'Edit', id: 'edit' },
-    { title: 'Find', id: 'find' },
+    // { title: 'Find', id: 'find' },
     { title: 'Links', id: 'links' },
     { title: 'Style', id: 'style' },
     { title: 'Print', accelerator: 'P', id: 'print' },
     { title: 'Page Layout', id: 'page-layout' },
     { title: 'Windows', id: 'windows' },
     { title: 'Services', id: 'services' },
-    { title: 'Hide', id: 'hide' },
+    { title: 'Hide', id: 'hide', accelerator: 'h' },
     { title: 'Quit', accelerator: 'q', id: 'quit' },
+  ],
+};
+
+export const edit = {
+  title: 'Edit',
+};
+
+export const info = {
+  id: 'info',
+  title: 'Info',
+  menu: [
+    { title: 'Panel…', id: 'info-panel' },
+    { title: 'Help…', id: 'info-help' },
   ],
 };
 
@@ -24,7 +37,7 @@ export const document = {
   menu: [
     { title: 'Open file…', accelerator: 'o', id: 'open-file' },
     {
-      title: 'Open given document address',
+      title: 'Open from full document reference',
       accelerator: 'O',
       id: 'open-url',
     },
@@ -36,7 +49,8 @@ export const document = {
       id: 'save-all-edited-windows',
     },
     { title: 'Save a copy in', id: 'save-a-copy-in' },
-    { title: 'Inspect…', accelerator: '3', id: 'inspect' },
+    { title: 'Document details…', id: 'document.details' },
+    // { title: 'Inspect…', accelerator: '3', id: 'inspect' },
     { title: '(Diagnostics)', id: 'diagnostics' },
     { title: 'Miniaturize', id: 'miniaturize' },
     {
@@ -48,7 +62,7 @@ export const document = {
       accelerator: 'W',
       id: 'close-all-other-windows',
     },
-    { title: 'Close', accelerator: 'W', id: 'close' },
+    { title: 'Close', accelerator: 'w', id: 'close' },
   ],
 };
 
@@ -60,7 +74,7 @@ export const navigate = {
     { title: 'Next', accelerator: '>', id: 'next' },
     { title: 'Previous', accelerator: '<', id: 'previous' },
     { title: 'Home', accelerator: 'H', id: 'home' },
-    { title: 'Inspect…', accelerator: '3', id: 'inspect' },
+    // { title: 'Inspect…', accelerator: '3', id: 'inspect' },
     { title: 'Panel', id: 'navigate-panel' },
   ],
 };
