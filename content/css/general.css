@@ -198,7 +198,7 @@ pre::-webkit-scrollbar { /* WebKit */
 			}
 			ul.palette li:nth-child(2)::before {background-color: #555;}
 			ul.palette li:nth-child(3)::before {background-color: #AAA;}
-			ul.palette li:nth-child(4)::before {background-color: #FFF;}
+			ul.palette a::before {background-color: #FFF;}
 
 
 
