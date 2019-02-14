@@ -4,7 +4,8 @@
 -------------------------------------------------------------------- */
 * {
 	font-smooth: none;
-	font-smooth: never;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
 	font-weight: normal;
 	font-style: all;
 	margin: 0;
@@ -319,7 +320,7 @@ div.panel {border: 1px solid #000;}
   .panel.menu ul {list-style-type: none;}
 
   .panel.menu nav button {
-  	font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+  	/* font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif; */
     text-align: left;
     padding: 0.3em 0.25em;
   }
