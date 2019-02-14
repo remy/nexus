@@ -41,8 +41,13 @@ export const info = {
   id: 'info',
   title: 'Info',
   menu: [
-    { title: 'Panel…', id: 'info-panel' },
-    { title: 'Help…', id: 'info-help' },
+    { title: 'Panel…', id: 'info-panel', action: 'panel' },
+    {
+      title: 'Help…',
+      id: 'info-help',
+      action: 'url',
+      props: { url: '/help.html' },
+    },
   ],
 };
 
@@ -50,11 +55,12 @@ export const document = {
   id: 'document',
   title: 'Document',
   menu: [
-    { title: 'Open file…', accelerator: 'o', id: 'open-file' },
+    { title: 'Open file…', accelerator: 'o', id: 'open-file', action: 'panel' },
     {
       title: 'Open from full document reference',
       accelerator: 'O',
       id: 'open-url',
+      action: 'panel',
     },
     { title: 'New file…', accelerator: 'n', id: 'new-file' },
     { title: 'Save', accelerator: 's', id: 'save' },
@@ -76,8 +82,10 @@ export const document = {
       title: 'Close all other windows',
       accelerator: 'W',
       id: 'close-all-other-windows',
+      action: 'close',
+      props: { all: true },
     },
-    { title: 'Close', accelerator: 'w', id: 'close' },
+    { title: 'Close', accelerator: 'w', id: 'close', action: 'close' },
   ],
 };
 
@@ -95,7 +103,7 @@ export const diagnostics = {
     }, //does nothing
     { title: 'Turn console trace on', accelerator: '+', id: 'console-on' }, //does nothing
     { title: 'Turn console trace off', accelerator: '-', id: 'console-off' }, //does nothing
-    { title: 'Item', id: 'info-panel' }, //opens info panel
+    { title: 'Item', id: 'info-panel', action: 'panel' }, //opens info panel
   ],
 };
 
@@ -143,6 +151,6 @@ export const style = {
     //    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
     //    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
     //    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
-    { title: 'Panel…', id: 'style-panel' },
+    { title: 'Panel…', id: 'style-panel', action: 'open' },
   ],
 };

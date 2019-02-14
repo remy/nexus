@@ -42,7 +42,23 @@ const App = () => {
   }, [windows]);
 
   const menuHandler = id => {
-    console.log('handle %s', id);
+    const info = Object.keys(allMenus).reduce((acc, curr) => {
+      const find = allMenus[curr].menu.find(_ => _.id === id);
+      if (find) {
+        return find;
+      }
+      return acc;
+    }, null);
+
+    if (!info) {
+      // play sound
+      console.log('ne');
+      return;
+    }
+
+    const { action } = info;
+    if (action === 'open') {
+    }
   };
 
   const handlers = Object.keys(keyMap).reduce(

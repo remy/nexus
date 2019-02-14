@@ -23,15 +23,7 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
   const [dirty, setDirty] = useState(false);
 
   const load = async url => {
-    const res = await fetch(API, {
-      mode: 'cors',
-      method: 'post',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ url }),
-    });
-
+    const res = await fetch(`${API}?url=${encodeURIComponent(url)}`);
     const json = await res.json();
     if (json.title) {
       setTitle(json.title);
