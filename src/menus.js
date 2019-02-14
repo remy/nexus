@@ -6,7 +6,7 @@ export const top = {
     { title: 'Navigate', id: 'navigate' },
     { title: 'Document', id: 'document' },
     { title: 'Edit', id: 'edit' },
-	// Not available until later
+    // Not available until later
     // { title: 'Find', id: 'find' },
     { title: 'Links', id: 'links' },
     { title: 'Style', id: 'style' },
@@ -26,11 +26,11 @@ export const edit = {
     { title: 'Cut', id: 'cut', accelerator: 'x' },
     { title: 'Copy', id: 'copy', accelerator: 'c' },
     { title: 'Paste', id: 'paste', accelerator: 'v' },
-// These features weren't functional in 0.13
-//    { title: 'Paste As', id: 'paste-as', accelerator: 'x' },
+    // These features weren't functional in 0.13
+    //    { title: 'Paste As', id: 'paste-as', accelerator: 'x' },
     { title: 'Delete', id: 'delete', accelerator: 'x' },
-//    { title: 'Undo', id: 'undo', accelerator: 'z' },
-//    { title: 'Find', id: 'find', accelerator: 'x' },
+    //    { title: 'Undo', id: 'undo', accelerator: 'z' },
+    //    { title: 'Find', id: 'find', accelerator: 'x' },
     { title: 'Spelling...', id: 'spelling', accelerator: 'x' },
     { title: 'Check Spelling', id: 'check-spelling', accelerator: ';' },
     { title: 'Select All', id: 'select-all', accelerator: 'a' },
@@ -88,10 +88,14 @@ export const diagnostics = {
     { title: 'Panel', id: 'panel' }, //does nothing
     { title: 'Open HTML file showing SGML source', id: 'open-sgml' },
     { title: 'Open HTML file showing RTF', id: 'open-rtf' },
-    { title: 'Dump text format to standard out', accelerator: '?', id: 'dump-stdout' },//does nothing
-    { title: 'Turn console trace on', accelerator: '+', id: 'console-on' },//does nothing
-    { title: 'Turn console trace off', accelerator: '-', id: 'console-off' },//does nothing
-    { title: 'Item', id: 'info-panel' },//opens info panel
+    {
+      title: 'Dump text format to standard out',
+      accelerator: '?',
+      id: 'dump-stdout',
+    }, //does nothing
+    { title: 'Turn console trace on', accelerator: '+', id: 'console-on' }, //does nothing
+    { title: 'Turn console trace off', accelerator: '-', id: 'console-off' }, //does nothing
+    { title: 'Item', id: 'info-panel' }, //opens info panel
   ],
 };
 
@@ -129,16 +133,16 @@ export const style = {
   menu: [
     { title: 'Copy style', accelerator: '1', id: 'copy-style' },
     { title: 'Apply style', accelerator: '2', id: 'apply-style' },
-// Not available in 0.13
-//    { title: 'Glossary', accelerator: 'G', id: 'glossary' },
-//    { title: 'List', accelerator: '7', id: 'list' },
-//    { title: 'Example', accelerator: 'X', id: 'example' },
-//    { title: 'Address', accelerator: '9', id: 'address' },
-//    { title: 'Normal', accelerator: '0', id: 'normal' },
-//    { title: 'Heading 1', accelerator: '!', id: 'heading-1' },
-//    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
-//    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
-//    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
+    // Not available in 0.13
+    //    { title: 'Glossary', accelerator: 'G', id: 'glossary' },
+    //    { title: 'List', accelerator: '7', id: 'list' },
+    //    { title: 'Example', accelerator: 'X', id: 'example' },
+    //    { title: 'Address', accelerator: '9', id: 'address' },
+    //    { title: 'Normal', accelerator: '0', id: 'normal' },
+    //    { title: 'Heading 1', accelerator: '!', id: 'heading-1' },
+    //    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
+    //    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
+    //    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
     { title: 'Panel…', id: 'style-panel' },
   ],
 };
