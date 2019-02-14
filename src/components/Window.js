@@ -10,6 +10,7 @@ const Window = ({
   onClose,
   onFocus,
   menu = undefined,
+  dirty = false,
   children,
   x,
   y,
@@ -35,7 +36,14 @@ const Window = ({
           <h2>{title}</h2>
           {onClose && (
             <button className="icon-buttons" onClick={() => onClose(id)}>
-              <img src="/img/close-window-button.png" alt="Close Window" />
+              {dirty ? (
+                <img
+                  src="/img/expand-window-button.png"
+                  alt="Save & Close Window"
+                />
+              ) : (
+                <img src="/img/close-window-button.png" alt="Close Window" />
+              )}
             </button>
           )}
         </div>

@@ -3,7 +3,7 @@ import WebView from './components/WebView';
 import Menu from './components/Menu';
 import * as allMenus from './menus';
 import OpenURL from './components/OpenUrl.js';
-const debug = require('debug')('app');
+import { HOST } from './env';
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -26,17 +26,13 @@ const App = () => {
   const [active, setActive] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'document' },
-    { type: 'url', id: `${process.env.HOST}/default.html` },
+    { type: 'url', id: `${HOST}/default.html` },
   ]);
 
-  const close = type => id => {
-    debug('before', windows.length);
-    dispatch({ type: 'remove', data: { type, id } });
-  };
+  const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
-  const add = ({ id, type, ...props }) => {
+  const add = ({ id, type, ...props }) =>
     dispatch({ type: 'add', data: { type, id, props } });
-  };
 
   useEffect(() => {
     setActive(windows[windows.length - 1]);
@@ -92,10 +88,7 @@ const App = () => {
             <Component
               key={id}
               id={id}
-              onAction={url => {
-                debug('adding', url);
-                add({ type: 'url', id: url });
-              }}
+              onAction={url => add({ type: 'url', id: url })}
               onFocus={() => setActive({ type: 'panel', id })}
               title={allMenus.document.menu.find(_ => _.id === id).title}
               onClose={close('panel')}

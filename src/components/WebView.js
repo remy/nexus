@@ -1,14 +1,12 @@
 import React, { createRef, useEffect, useState } from 'react';
 import Window from './Window';
-
+import { HOST, API } from '../env';
 import './WebView.scss';
-
-const HOST = process.env.HOST;
-const API = process.env.API;
 
 const WebView = ({ url, onNavigate, onFocus, ...props }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [dirty, setDirty] = useState(false);
 
   const load = async url => {
     const res = await fetch(API, {
@@ -56,10 +54,11 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
   }
 
   return (
-    <Window title={title} onFocus={onFocus} {...props}>
+    <Window title={title} onFocus={onFocus} dirty={dirty} {...props}>
       <div className="webview">
         <div className="r2l-content">
           <div
+            onInput={() => !dirty && setDirty(true)}
             ref={contentRef}
             className="l2r-content content"
             contentEditable={true}
