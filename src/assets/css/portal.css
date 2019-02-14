@@ -95,6 +95,8 @@ div.demo {
 
 div.panel + div.panel {margin-top: 2rem;}
 
+div.webview div.r2l-content {height: 200px;}
+
 ul.thumbs {
 	display: flex;
 	list-style-type: none;

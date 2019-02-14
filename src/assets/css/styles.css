@@ -15,8 +15,15 @@ header, footer, main, nav, aside, article, section, figure, figcaption {
 	padding: 0;
 	border: 0;
 }
-html, body {
-  height: 100%;
+html, body {height: 100%;}
+
+@font-face {
+    font-family: 'NeXT Big_Bold';
+    src:    url('NeXT_Big-Bold.woff') format('woff'),
+            url('NeXT_Big-Bold.woff2') format('woff2'),
+            url('NeXT_Big-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
@@ -29,6 +36,10 @@ body {
 
 p, li, dt, dd {font-size: 12px;}
 
+h1, h2, h3, strong {
+	/*font-family: 'NeXT Big_Bold', Arial, Helvetica, "Helvetica Neue", sans-serif;*/
+}
+
 hr {
   height: 1px;
   background-color: #FFF;
@@ -36,6 +47,7 @@ hr {
   border-top: 1px solid #555;
 }
 
+img {max-width: 100%;}
 
 /* --------------- FORMS -------------------- */
 
@@ -56,7 +68,7 @@ fieldset {
 	border-left: 1px solid #555;
 }
 
-fieldset .content {position: relative; z-index: 10;}
+fieldset .content {position: relative; margin-top: 5px; z-index: 10;}
 
 fieldset::before, fieldset::after {
   display: block;
@@ -141,6 +153,9 @@ button.enter-button {
 	background: #AAA url(../img/enter-button.png) right no-repeat;
 	padding: 10px;
 }
+button.enter-button.active, button.enter-button:active {
+	background-color: #FFF;
+}
 
 /* Buttons/actions blocks */
 
@@ -224,49 +239,127 @@ div.panel {border: 1px solid #000;}
     background-color: #AAA;
   }
 
+	div.panel .webview {
+		margin: 0 auto;
+	}
+
 /* --------------- MAIN NAVIGATION -------------------- */
 
-nav.floating-menu {
-  position: fixed;
+.panel.menu {
   top: 0;
   left: 0;
-  width: 130px;
-  outline: 1px solid #000;
+  min-width: 130px;
 }
 
-  nav.floating-menu h1 {
-    font-size: 14px;
-    color: #FFF;
-    background-color: #000;
-    padding: 0.1em 0.25em;
-  	border-top: 1px solid #FFF;
-  	border-left: 1px solid #FFF;
-  	border-bottom: 1px solid #000;
-  	border-right: 1px solid #000;
-  }
+  .panel.menu div.title-bar h2 {text-align: left;}
+  .panel.menu ul {list-style-type: none;}
 
-  nav.floating-menu ul {list-style-type: none;}
-
-  nav.floating-menu button {
+  .panel.menu nav button {
     font-weight: bold;
     text-align: left;
     padding: 0.3em 0.25em;
   }
 
-  nav.floating-menu button.next {
+  .panel.menu nav button.next {
     background-image: url(../img/arrow-right.png);
     background-position: right;
     background-repeat: no-repeat;
   }
 
-  nav.floating-menu button span {
+  .panel.menu nav button span {
     float: right;
     padding-right: 0.3em;
   }
 
 
 
-	/* ------------------------ SPECIFICS -------------------------- */
+/* ------------------------ SPECIFICS -------------------------- */
+
+div.first-block {
+	text-align: center;
+	padding-bottom: 7px;
+}
+	div.first-block p {
+		padding: 5px 0 10px;
+	}
+	ul.buttons-bar.limited {
+		justify-content: center;
+	}
+	ul.buttons-bar.limited li {
+		flex: inherit;
+		margin: 0 5px;
+	}
+	ul.buttons-bar.limited button {
+		width: auto;
+		padding: 0.3em 1em;
+	}
+
+.second-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+	.second-block > ul.buttons-bar:first-of-type {
+		width: 177px;
+	}
+	.second-block fieldset ul.buttons-bar {
+		width: 100px;
+		padding: 5px 10px;
+	}
+
+	.second-block fieldset {padding: 5px 2px 0 2px;}
+
+
+/* BROWSER INFO */
+
+#browser-info header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 10px 10px 0;
+}
+	#browser-info .webview {margin-bottom: 10px;}
+
+	#browser-info header p {
+		flex-basis: 100px;
+		text-align: center;
+	}
+	#browser-info header h3 {
+		font-size: 22px;
+		margin-bottom: 0.5em;
+	}
+	#browser-info header p.baseline {
+		width: 10em;
+		font-size: 18px;
+		font-style: normal;
+		margin: 0;
+	}
+	#browser-info header p.release {
+		text-align: left;
+		color: #555;
+	}
+	#browser-info header address {
+		flex-basis: 100%;
+		font-size: 18px;
+		font-style: normal;
+		text-align: right;
+	}
+
+	#browser-info p.copyright {
+		text-align: left;
+		color: #555;
+	}
+
+	#browser-info .first-block {
+		padding: 0 10px 20px;
+	}
+	#browser-info dl div {display: flex;}
+	#browser-info dt, #browser-info dd {
+		display: inline;
+		font-size: 18px;
+		text-align: left;
+	}
+
 
 /* BROWSER NAVIGATION */
 
@@ -283,45 +376,26 @@ nav.floating-menu {
 	#browser-nav .second-block {padding: 7px; margin: 0;}
 
 /* BROWSER INFO */
-#browser-info {width: 600px;}
+#browser-info {width: 620px;}
 
 /* STYLE EDITOR */
 #style-editor {width: 420px;}
-
-	div.first-block {
-		text-align: center;
-		padding-bottom: 7px;
-	}
-	div.first-block p {
-		padding: 5px 0 10px;
-	}
-	ul.buttons-bar.limited {
-		justify-content: center;
-	}
-	ul.buttons-bar.limited li {
-		flex: inherit;
-		margin: 0 5px;
-	}
-	ul.buttons-bar.limited button {
-		width: auto;
-		padding: 0.3em 1em;
+	#style-editor .second-block {
+		margin: 0 10px 15px 4px;
 	}
 
-	.second-block {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin: 0 10px 0 2px;
-	}
-	.second-block > ul.buttons-bar:first-of-type {
-		width: 177px;
-	}
-	.second-block fieldset ul.buttons-bar {
-		width: 100px;
-		padding: 5px 10px;
+	#style-editor .third-block {padding: 0 10px 10px;}
+		#style-editor .third-block p:last-of-type {margin: 15px 0 10px;}
+
+	#style-editor button.enter-button {
+		position: absolute;
+		width: 7em;
+		right: 0;
+		top: 0;
+		padding: 5px;
 	}
 
-	.second-block fieldset {padding: 5px 2px 0 2px;}
+#tag-tabs {width: 340px; height: 3em;}
 
 /* OPEN URL */
 #open-url {width: 600px;}
