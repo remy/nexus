@@ -6,6 +6,7 @@
 	font-smooth: none;
   font-smooth: never;
   -webkit-font-smoothing: none;
+  -moz-font-smoothing: none;
 	font-weight: normal;
 	font-style: all;
 	margin: 0;
