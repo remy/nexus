@@ -1,3 +1,5 @@
+import { PATH } from './env';
+
 export const top = {
   id: 'top',
   title: 'WorldWideWeb',
@@ -46,7 +48,7 @@ export const info = {
       title: 'Help…',
       id: 'info-help',
       action: 'url',
-      props: { url: '/help.html' },
+      props: { url: `${PATH}/help.html` },
     },
   ],
 };
@@ -62,7 +64,13 @@ export const document = {
       id: 'open-url',
       action: 'panel',
     },
-    { title: 'New file…', accelerator: 'n', id: 'new-file' },
+    {
+      title: 'New file…',
+      accelerator: 'n',
+      id: 'new-file',
+      action: 'url',
+      props: { url: PATH + '/blank.html' },
+    },
     { title: 'Save', accelerator: 's', id: 'save' },
     {
       title: 'Save all edited windows',
@@ -124,8 +132,13 @@ export const links = {
   id: 'links',
   title: 'Links',
   menu: [
-    { title: 'Mark all', accelerator: 'A', id: 'mark-all' },
-    { title: 'Mark selection', accelerator: 'M', id: 'mark-selection' },
+    { title: 'Mark all', accelerator: 'A', id: 'mark-all', action: 'method' },
+    {
+      title: 'Mark selection',
+      accelerator: 'M',
+      id: 'mark-selection',
+      action: 'method',
+    },
     { title: 'Link to marked', accelerator: 'L', id: 'link-to-marked' },
     { title: 'Link to file…', id: 'link-to-file' },
     { title: 'Link to New', accelerator: 'N', id: 'link-to-new' },
@@ -151,6 +164,6 @@ export const style = {
     //    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
     //    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
     //    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
-    { title: 'Panel…', id: 'style-panel', action: 'panel' },
+    { title: 'Panel…', id: 'style-editor', action: 'panel' },
   ],
 };

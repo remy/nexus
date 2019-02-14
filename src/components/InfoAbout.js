@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const InfoAbout = () => (
   <Fragment>
     <header>
       <p>
-        <img src="/img/wwwicon.png" alt="" />
+        <img src="img/wwwicon.png" alt="" />
       </p>
       <div class="hgroup">
         <h3>HyperMedia Browser/Editor</h3>

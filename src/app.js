@@ -1,15 +1,23 @@
 import React, { useState, useEffect, useReducer, createRef } from 'react';
 import { HotKeys } from 'react-hotkeys';
-import Loadable from 'react-loadable';
 import WebView from './components/WebView';
 import Menu from './components/Menu';
 import * as allMenus from './menus';
 import keyMap from './keyMap';
-import OpenURL from './components/OpenUrl.js';
-import { HOST } from './env';
+import * as panels from './panels';
+import * as actions from './actions';
+import { PATH } from './env';
 
 function camelCase(s = '') {
-  return s.replace(/\b./g, m => {
+  return s.replace(/\b./g, (m, i) => {
+    if (i === 0) return m;
+    if (m === '-') return '';
+    return m.toUpperCase();
+  });
+}
+
+function titleCase(s = '') {
+  return s.replace(/\b./g, (m, i) => {
     if (m === '-') return '';
     return m.toUpperCase();
   });
@@ -36,14 +44,19 @@ function reducer(state, action) {
 const App = () => {
   const [active, setActive] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'top' },
-    { type: 'url', id: `${HOST}/browser/default.html` },
+    { type: 'menu', id: 'links' },
+    { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
-  const add = ({ id, type, ...props }) =>
+  const add = ({ id, type, ...props }) => {
+    if (type === 'url') {
+      const ref = createRef();
+      props.ref = ref;
+    }
     dispatch({ type: 'add', data: { type, id, props } });
+  };
 
   useEffect(() => {
     setActive(windows[windows.length - 1]);
@@ -65,30 +78,24 @@ const App = () => {
     }
 
     const { action, props = {} } = info;
+    const idTitleCase = titleCase(id);
+    const idCamelCase = camelCase(id);
 
     switch (action) {
       case 'panel':
-        console.log('./components/' + camelCase(id));
-
-        add({
-          type: 'panel',
-          id,
-          Component: Loadable({
-            loader: () =>
-              import('./components/' + camelCase(id)).then(() => {
-                console.log('IMPORTED!');
-              }),
-            render(loaded, props) {
-              console.log('loaded');
-
-              let Component = loaded.namedExport;
-              return <Component {...props} />;
-            },
-            loading() {
-              return <div>Loading...</div>;
-            },
-          }),
-        });
+        console.log(panels[idTitleCase]);
+        if (panels[idTitleCase]) {
+          add({
+            type: 'panel',
+            id,
+            Component: panels[idTitleCase],
+          });
+        }
+        break;
+      case 'method':
+        if (actions[idCamelCase]) {
+          actions[idCamelCase]({ active });
+        }
         break;
       case 'url':
         add({ type: 'url', id: props.url });
@@ -101,7 +108,6 @@ const App = () => {
             .map(({ id }) => close('url')(id));
           break;
         }
-        console.log('close active', active);
 
         close('url')(active.id);
         break;
@@ -116,8 +122,6 @@ const App = () => {
     {}
   );
 
-  console.log(windows);
-
   return (
     <HotKeys keyMap={keyMap} handlers={handlers}>
       {windows
@@ -127,7 +131,7 @@ const App = () => {
           return (
             <Menu
               index={i}
-              _onFocus={() => setActive({ type: 'menu', id, ref })}
+              _onFocus={() => setActive({ type: 'menu', id })}
               key={`menu:${id}`}
               {...menu}
               onClose={close('menu')}
@@ -143,10 +147,10 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'url')
-        .map(({ id }, i) => {
-          const ref = createRef();
+        .map(({ id, props: { ref } }, i) => {
           return (
             <WebView
+              ref={ref}
               onFocus={() => setActive({ type: 'url', id, ref })}
               onClose={close('url')}
               onNavigate={id => {
@@ -164,13 +168,13 @@ const App = () => {
         .filter(({ type }) => type === 'panel')
         .map(({ props: { Component }, id }) => {
           console.log('adding panel', id);
-          const ref = createRef();
           return (
             <Component
               key={`panel:${id}`}
               id={id}
+              active={active.id == id}
               onAction={url => add({ type: 'url', id: url })}
-              onFocus={() => setActive({ type: 'panel', id, ref })}
+              onFocus={() => setActive({ type: 'panel', id })}
               onClose={close('panel')}
             />
           );
