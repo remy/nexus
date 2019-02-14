@@ -114,7 +114,7 @@ Listing <LISTING> 0 Ohlfs 9.0		1
     text-decoration: underline;
     color: inherit;
   }
-  a[href]:active {
+  a:active[href] {
     background-color:#ccc;
   }
 
