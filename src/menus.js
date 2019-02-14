@@ -81,6 +81,20 @@ export const document = {
   ],
 };
 
+export const diagnostics = {
+  id: 'diagnostics',
+  title: '(Diagnostics)',
+  menu: [
+    { title: 'Panel', id: 'panel' }, //does nothing
+    { title: 'Open HTML file showing SGML source', id: 'open-sgml' },
+    { title: 'Open HTML file showing RTF', id: 'open-rtf' },
+    { title: 'Dump text format to standard out', accelerator: '?', id: 'dump-stdout' },//does nothing
+    { title: 'Turn console trace on', accelerator: '+', id: 'console-on' },//does nothing
+    { title: 'Turn console trace off', accelerator: '-', id: 'console-off' },//does nothing
+    { title: 'Item', id: 'info-panel' },//opens info panel
+  ],
+};
+
 export const navigate = {
   id: 'navigate',
   title: 'Navigate',
