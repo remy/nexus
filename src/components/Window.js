@@ -18,7 +18,7 @@ const Window = ({
   title,
   active = true,
   onClose,
-  onFocus,
+  onFocus = () => {},
   menu = undefined,
   dirty = false,
   children,

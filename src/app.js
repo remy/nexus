@@ -1,11 +1,19 @@
 import React, { useState, useEffect, useReducer, createRef } from 'react';
 import { HotKeys } from 'react-hotkeys';
+import Loadable from 'react-loadable';
 import WebView from './components/WebView';
 import Menu from './components/Menu';
 import * as allMenus from './menus';
 import keyMap from './keyMap';
 import OpenURL from './components/OpenUrl.js';
 import { HOST } from './env';
+
+function camelCase(s = '') {
+  return s.replace(/\b./g, m => {
+    if (m === '-') return '';
+    return m.toUpperCase();
+  });
+}
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -41,7 +49,7 @@ const App = () => {
     setActive(windows[windows.length - 1]);
   }, [windows]);
 
-  const menuHandler = id => {
+  const actionHandler = id => {
     const info = Object.keys(allMenus).reduce((acc, curr) => {
       const find = allMenus[curr].menu.find(_ => _.id === id);
       if (find) {
@@ -56,18 +64,59 @@ const App = () => {
       return;
     }
 
-    const { action } = info;
-    if (action === 'open') {
+    const { action, props = {} } = info;
+
+    switch (action) {
+      case 'panel':
+        console.log('./components/' + camelCase(id));
+
+        add({
+          type: 'panel',
+          id,
+          Component: Loadable({
+            loader: () =>
+              import('./components/' + camelCase(id)).then(() => {
+                console.log('IMPORTED!');
+              }),
+            render(loaded, props) {
+              console.log('loaded');
+
+              let Component = loaded.namedExport;
+              return <Component {...props} />;
+            },
+            loading() {
+              return <div>Loading...</div>;
+            },
+          }),
+        });
+        break;
+      case 'url':
+        add({ type: 'url', id: props.url });
+        break;
+      case 'close':
+        if (props.all) {
+          windows
+            .filter(_ => _.type === 'url')
+            .filter(_ => _.id !== active.id)
+            .map(({ id }) => close('url')(id));
+          break;
+        }
+        console.log('close active', active);
+
+        close('url')(active.id);
+        break;
     }
   };
 
   const handlers = Object.keys(keyMap).reduce(
     (acc, curr) => ({
       ...acc,
-      [curr]: () => menuHandler(curr),
+      [curr]: () => actionHandler(curr),
     }),
     {}
   );
+
+  console.log(windows);
 
   return (
     <HotKeys keyMap={keyMap} handlers={handlers}>
@@ -75,13 +124,10 @@ const App = () => {
         .filter(({ type }) => type === 'menu')
         .map(({ id }, i) => {
           const menu = allMenus[id];
-
-          const ref = createRef();
-
           return (
             <Menu
               index={i}
-              onFocus={() => setActive({ type: 'menu', id, ref })}
+              _onFocus={() => setActive({ type: 'menu', id, ref })}
               key={`menu:${id}`}
               {...menu}
               onClose={close('menu')}
@@ -89,10 +135,7 @@ const App = () => {
                 if (allMenus[id]) {
                   add({ type: 'menu', id });
                 } else {
-                  if (id === 'open-url') {
-                    // FIXME lazy import please
-                    add({ type: 'panel', id, Component: OpenURL });
-                  }
+                  actionHandler(id);
                 }
               }}
             />
@@ -120,6 +163,7 @@ const App = () => {
       {windows
         .filter(({ type }) => type === 'panel')
         .map(({ props: { Component }, id }) => {
+          console.log('adding panel', id);
           const ref = createRef();
           return (
             <Component

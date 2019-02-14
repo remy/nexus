@@ -151,6 +151,6 @@ export const style = {
     //    { title: 'Heading 2', accelerator: '@', id: 'heading-2' },
     //    { title: 'Heading 3', accelerator: '#', id: 'heading-3' },
     //    { title: 'Heading 4', accelerator: '$', id: 'heading-4' },
-    { title: 'Panel…', id: 'style-panel', action: 'open' },
+    { title: 'Panel…', id: 'style-panel', action: 'panel' },
   ],
 };
