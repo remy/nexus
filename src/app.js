@@ -76,8 +76,6 @@ const App = () => {
     {}
   );
 
-  console.log(handlers, keyMap);
-
   return (
     <HotKeys keyMap={keyMap} handlers={handlers}>
       {windows
@@ -115,7 +113,9 @@ const App = () => {
             <WebView
               onFocus={() => setActive({ type: 'url', id, ref })}
               onClose={close('url')}
-              onNavigate={id => add({ type: 'url', id })}
+              onNavigate={id => {
+                add({ type: 'url', id });
+              }}
               active={id === active.id}
               url={id}
               key={`url:${id}`}
