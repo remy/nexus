@@ -3,32 +3,9 @@ import { HotKeys } from 'react-hotkeys';
 import WebView from './components/WebView';
 import Menu from './components/Menu';
 import * as allMenus from './menus';
+import keyMap from './keyMap';
 import OpenURL from './components/OpenUrl.js';
 import { HOST } from './env';
-
-const keyMap = {};
-
-function isUpper(letter) {
-  return /[A-Z]/.test(letter);
-}
-
-function addKeyMap(menu) {
-  Object.entries(menu).map(([, { menu, accelerator, id: menuId }]) => {
-    if (accelerator) {
-      if (isUpper(accelerator)) {
-        keyMap[menuId] = `ctrl+alt+shift+${accelerator.toLowerCase()}`;
-      } else {
-        keyMap[menuId] = `ctrl+alt+${accelerator}`;
-      }
-    }
-
-    if (menu) {
-      addKeyMap(menu);
-    }
-  });
-}
-
-addKeyMap(allMenus);
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -53,6 +30,7 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${HOST}/default.html` },
+    { type: 'url', id: `https://suda.co.uk` },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });

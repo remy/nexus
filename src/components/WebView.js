@@ -67,8 +67,9 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
             onMouseDown={() => onFocus()}
             onClick={e => e.preventDefault()}
             onDoubleClick={e => {
-              e.preventDefault();
-              if (e.target.nodeName === 'A' && e.target.href) {
+              console.log(e.target);
+              if (e.target.href) {
+                e.preventDefault();
                 let navigateTo = e.target.href;
 
                 // if we're a relative url, then rebase since we're hosting the html
