@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useState } from 'react';
-import Panel from './Panel';
+import Window from './Window';
 
 import './WebView.scss';
 
@@ -40,22 +40,23 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
   useEffect(() => {
     const parent = contentRef.current;
     // insert <br> elements in root level text nodes
-    Array.from(parent.childNodes)
-      .filter(_ => _.nodeName === '#text')
-      .forEach(node => {
-        const span = document.createElement('span');
-        span.className = 'hash-text';
-        parent.replaceChild(span, node);
-        span.innerHTML = node.nodeValue.replace(/\n\n/g, '<br><br>');
-      });
+    if (parent)
+      Array.from(parent.childNodes)
+        .filter(_ => _.nodeName === '#text')
+        .forEach(node => {
+          const span = document.createElement('span');
+          span.className = 'hash-text';
+          parent.replaceChild(span, node);
+          span.innerHTML = node.nodeValue.replace(/\n\n/g, '<br><br>');
+        });
   }, [body]);
 
   if (!url) {
-    return <Panel title={title} {...props} />;
+    return <Window title={title} {...props} />;
   }
 
   return (
-    <Panel title={title} onFocus={onFocus} {...props}>
+    <Window title={title} onFocus={onFocus} {...props}>
       <div className="webview">
         <div className="r2l-content">
           <div
@@ -85,7 +86,7 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
           />
         </div>
       </div>
-    </Panel>
+    </Window>
   );
 };
 

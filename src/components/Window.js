@@ -3,11 +3,13 @@ import Draggable from 'react-draggable';
 import classnames from 'classnames';
 
 const Window = ({
+  id,
   index,
   title,
   active = true,
   onClose,
   onFocus,
+  menu = undefined,
   children,
   x,
   y,
@@ -20,18 +22,22 @@ const Window = ({
   };
   return (
     <Draggable handle=".title-bar">
-      <div className="panel" style={style}>
+      <div className={classnames(['panel', { menu }])} style={style}>
         <div
           className={classnames(['title-bar', { active }])}
           onMouseDown={() => onFocus()}
         >
-          <button className="icon-buttons">
-            <img src="/img/full-window-button.png" alt="Full Window" />
-          </button>
+          {!menu && (
+            <button className="icon-buttons">
+              <img src="/img/full-window-button.png" alt="Full Window" />
+            </button>
+          )}
           <h2>{title}</h2>
-          <button className="icon-buttons" onClick={onClose}>
-            <img src="/img/close-window-button.png" alt="Close Window" />
-          </button>
+          {onClose && (
+            <button className="icon-buttons" onClick={() => onClose(id)}>
+              <img src="/img/close-window-button.png" alt="Close Window" />
+            </button>
+          )}
         </div>
         <div className="content">{children}</div>
       </div>
