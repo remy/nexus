@@ -3,6 +3,20 @@ import Window from './Window';
 import { HOST, API } from '../env';
 import './WebView.scss';
 
+function getLink(element, root) {
+  console.log(element, root);
+
+  if (element === root) {
+    return false;
+  }
+
+  if (element.nodeName === 'A') {
+    return element;
+  }
+
+  return getLink(element.parentNode, root);
+}
+
 const WebView = ({ url, onNavigate, onFocus, ...props }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -67,15 +81,15 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
             onMouseDown={() => onFocus()}
             onClick={e => e.preventDefault()}
             onDoubleClick={e => {
-              console.log(e.target);
-              if (e.target.href) {
+              const link = getLink(e.target, contentRef.current);
+              if (link) {
                 e.preventDefault();
-                let navigateTo = e.target.href;
+                let navigateTo = link.href;
 
                 // if we're a relative url, then rebase since we're hosting the html
-                if (e.target.origin === HOST) {
+                if (link.origin === HOST) {
                   navigateTo = new URL(
-                    e.target.getAttribute('href'),
+                    link.getAttribute('href'),
                     url
                   ).toString();
                 }
