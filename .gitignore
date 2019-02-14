@@ -3,4 +3,4 @@ node_modules
 yarn-error.log
 app
 package-lock.json
-./build
+build

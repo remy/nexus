@@ -3,7 +3,6 @@ layout: baselayout
 title: Related Links — WorldWideWeb NeXT Application
 subhede: 
 ---
-
 <section>
 
 ### Links

@@ -9,6 +9,7 @@
 	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
 	<meta name="author" content="CERN" />
 	<link rel="stylesheet" type="text/css" href="/css/general.css" />
+	{% if extrastyle %}<link rel="stylesheet" type="text/css" href="/css/{{extrastyle}}" />{% endif %}
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
@@ -23,6 +24,8 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+
+	{% block extrahead %}  {% endblock %}
 </head>
 
 <body>
