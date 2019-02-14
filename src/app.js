@@ -7,6 +7,8 @@ import { HOST } from './env';
 
 function reducer(state, action) {
   const { data, type } = action;
+  console.log(action);
+
   switch (type) {
     case 'remove':
       return state.filter(_ => {
@@ -18,14 +20,14 @@ function reducer(state, action) {
     case 'add':
       return [...state, data];
     default:
-      throw new Error('no reducer action');
+      throw new Error('unknown action');
   }
 }
 
 const App = () => {
   const [active, setActive] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'document' },
+    { type: 'menu', id: 'top' },
     { type: 'url', id: `${HOST}/default.html` },
   ]);
 
@@ -42,11 +44,12 @@ const App = () => {
     <Fragment>
       {windows
         .filter(({ type }) => type === 'menu')
-        .map(({ id }) => {
+        .map(({ id }, i) => {
           const menu = allMenus[id];
 
           return (
             <Menu
+              index={i}
               onFocus={() => setActive({ type: 'menu', id })}
               key={id}
               {...menu}
@@ -77,7 +80,6 @@ const App = () => {
               key={id}
               id={id}
               index={i}
-              x={i * 64 + 255}
             />
           );
         })}

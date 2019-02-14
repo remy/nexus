@@ -19,6 +19,7 @@ export const top = {
 };
 
 export const document = {
+  id: 'document',
   title: 'Document',
   menu: [
     { title: 'Open file…', accelerator: 'o', id: 'open-file' },
@@ -52,6 +53,7 @@ export const document = {
 };
 
 export const navigate = {
+  id: 'navigate',
   title: 'Navigate',
   menu: [
     { title: 'Back', accelerator: '^', id: 'back' },

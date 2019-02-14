@@ -2,6 +2,16 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import classnames from 'classnames';
 
+const CloseButton = ({ onClick, dirty }) => (
+  <button className="icon-buttons" onClick={onClick}>
+    {dirty ? (
+      <img src="/img/expand-window-button.png" alt="Save & Close Window" />
+    ) : (
+      <img src="/img/close-window-button.png" alt="Close Window" />
+    )}
+  </button>
+);
+
 const Window = ({
   id,
   index,
@@ -12,15 +22,27 @@ const Window = ({
   menu = undefined,
   dirty = false,
   children,
-  x,
-  y,
 }) => {
+  const x = menu ? 130 * index : index * 64 + 255;
+  const y = menu ? 0 : 16 * (index + 1);
+
   const style = {
-    left: (x || 16 * (index + 1)) + 'px',
-    top: (y || 16 * (index + 1)) + 'px',
+    left: x + 'px',
+    top: y + 'px',
     position: 'absolute',
     zIndex: active ? 100 : 1,
   };
+
+  let showClose = false;
+
+  if (!menu && onClose) {
+    showClose = true;
+  }
+
+  if (menu && id !== 'top') {
+    showClose = true;
+  }
+
   return (
     <Draggable handle=".title-bar">
       <div className={classnames(['panel', { menu }])} style={style}>
@@ -34,17 +56,8 @@ const Window = ({
             </button>
           )}
           <h2>{title}</h2>
-          {onClose && (
-            <button className="icon-buttons" onClick={() => onClose(id)}>
-              {dirty ? (
-                <img
-                  src="/img/expand-window-button.png"
-                  alt="Save & Close Window"
-                />
-              ) : (
-                <img src="/img/close-window-button.png" alt="Close Window" />
-              )}
-            </button>
+          {showClose && (
+            <CloseButton onClick={() => onClose(id)} dirty={dirty} />
           )}
         </div>
         <div className="content">{children}</div>

@@ -3,9 +3,9 @@ import cs from 'classnames';
 import Window from './Window';
 import * as allMenus from '../menus';
 
-const Menu = ({ title, menu = [], onOpen, onFocus }) => {
+const Menu = ({ menu = [], onOpen, ...props }) => {
   return (
-    <Window active={true} title={title} menu={true} onFocus={onFocus}>
+    <Window active={true} menu={true} {...props}>
       <nav className="floating-menu">
         <ul>
           {menu.map(menu => {
