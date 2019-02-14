@@ -1,13 +1,37 @@
-import React, { useState, useEffect, useReducer, Fragment } from 'react';
+import React, { useState, useEffect, useReducer, createRef } from 'react';
+import { HotKeys } from 'react-hotkeys';
 import WebView from './components/WebView';
 import Menu from './components/Menu';
 import * as allMenus from './menus';
 import OpenURL from './components/OpenUrl.js';
 import { HOST } from './env';
 
+const keyMap = {};
+
+function isUpper(letter) {
+  return /[A-Z]/.test(letter);
+}
+
+function addKeyMap(menu) {
+  Object.entries(menu).map(([, { menu, accelerator, id: menuId }]) => {
+    if (accelerator) {
+      if (isUpper(accelerator)) {
+        keyMap[menuId] = `ctrl+alt+shift+${accelerator.toLowerCase()}`;
+      } else {
+        keyMap[menuId] = `ctrl+alt+${accelerator}`;
+      }
+    }
+
+    if (menu) {
+      addKeyMap(menu);
+    }
+  });
+}
+
+addKeyMap(allMenus);
+
 function reducer(state, action) {
   const { data, type } = action;
-  console.log(action);
 
   switch (type) {
     case 'remove':
@@ -40,18 +64,34 @@ const App = () => {
     setActive(windows[windows.length - 1]);
   }, [windows]);
 
+  const menuHandler = id => {
+    console.log('handle %s', id);
+  };
+
+  const handlers = Object.keys(keyMap).reduce(
+    (acc, curr) => ({
+      ...acc,
+      [curr]: () => menuHandler(curr),
+    }),
+    {}
+  );
+
+  console.log(handlers, keyMap);
+
   return (
-    <Fragment>
+    <HotKeys keyMap={keyMap} handlers={handlers}>
       {windows
         .filter(({ type }) => type === 'menu')
         .map(({ id }, i) => {
           const menu = allMenus[id];
 
+          const ref = createRef();
+
           return (
             <Menu
               index={i}
-              onFocus={() => setActive({ type: 'menu', id })}
-              key={id}
+              onFocus={() => setActive({ type: 'menu', id, ref })}
+              key={`menu:${id}`}
               {...menu}
               onClose={close('menu')}
               onOpen={id => {
@@ -70,14 +110,15 @@ const App = () => {
       {windows
         .filter(({ type }) => type === 'url')
         .map(({ id }, i) => {
+          const ref = createRef();
           return (
             <WebView
-              onFocus={() => setActive({ type: 'url', id })}
+              onFocus={() => setActive({ type: 'url', id, ref })}
               onClose={close('url')}
               onNavigate={id => add({ type: 'url', id })}
               active={id === active.id}
               url={id}
-              key={id}
+              key={`url:${id}`}
               id={id}
               index={i}
             />
@@ -86,18 +127,19 @@ const App = () => {
       {windows
         .filter(({ type }) => type === 'panel')
         .map(({ props: { Component }, id }) => {
+          const ref = createRef();
           return (
             <Component
-              key={id}
+              key={`panel:${id}`}
               id={id}
               onAction={url => add({ type: 'url', id: url })}
-              onFocus={() => setActive({ type: 'panel', id })}
+              onFocus={() => setActive({ type: 'panel', id, ref })}
               title={allMenus.document.menu.find(_ => _.id === id).title}
               onClose={close('panel')}
             />
           );
         })}
-    </Fragment>
+    </HotKeys>
   );
 };
 

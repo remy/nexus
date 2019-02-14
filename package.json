@@ -25,6 +25,7 @@
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.16.4",
+    "http-errors": "^1.7.1",
     "ip-range-check": "0.0.2",
     "parcel-bundler": "^1.11.0",
     "react": "^16.8.1",

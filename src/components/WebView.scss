@@ -53,7 +53,7 @@ Listing <LISTING> 0 Ohlfs 9.0		1
 */
 
 .webview .content {
-  font-family: Helvetica, "Arial Narrow", sans-serif;
+  // font-family: Helvetica, "Arial Narrow", sans-serif;
   font-size: 12px;
   line-height: 14px;
   -webkit-font-smoothing: none;
@@ -204,21 +204,21 @@ Heading3 <H3> 0 Helvetica-Oblique 18.0 	1
 
   h1 {
     margin: 1.1em 0 2.8em -30px;
-    font-size: 36px; 
+    font-size: 36px;
   }
 
   h2 {
     margin: 1.5em 0 1.5em -30px;
-    font-size: 24px; 
+    font-size: 24px;
   }
 
   h3 {
     margin: 1em 0 1em -20px;
-    font-size: 18px; 
+    font-size: 18px;
   }
 }
 
-/* paper.style 
+/* paper.style
 15
 Normal <P> 0 Times-Roman 10.0 		1
 	90 90	12.0 3.0 	0 	0 12	0
@@ -246,15 +246,15 @@ Bold-Italic <HP3> 0	Helvetica-Bold-Oblique 12.0	0
 List <LI> 0 Times-Roman 10.0			1
         100 115	14 3		0 	0 10		2
 	0 115	0 300
-	
+
 Glossary <DL> 0 Times-Roman 10.0		1
         50 200	14 3		0	0 14		3
 	0 200	0 300 0 400
-	
+
 Example <XMP> 0 Courier 10.0		1
 	0 0	14 3		0	0 0		9
 	0 48	0 96	0 144	0 192	0 240	0 288	0 336	0 384	0 432
-	
+
 Listing <LISTING> 0 Courier 9.0		1
 	0 0	14 3		0	0 0		11
 	0 43.2	0 86.4	0 129.6	0 172.8	0 216	0 259.2	0 302.4	0 345.6	0 388.8	0 432
@@ -277,7 +277,7 @@ Listing <LISTING> 0 Courier 9.0		1
 	  }
 
 	  xmp {
-	    font-family: Courier, "Courier New", monospace; 
+	    font-family: Courier, "Courier New", monospace;
 	    white-space: pre;
 	  }
 	}

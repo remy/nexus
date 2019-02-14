@@ -20,8 +20,7 @@
 #wrapper {margin-bottom: 2rem;}
 
 p.baseline {
-	font-size: 0.95em;
-	font-style: italic;
+	font: normal 13px/1.4 "NeXT Oblique", Arial, Helvetica, "Helvetica Neue", Arial, sans-serif;
 	margin-bottom: 2em;
 }
 
@@ -47,6 +46,7 @@ section {
 		margin: 1rem 0;
 	}
 	section > h2 {
+		font: 20px "NeXT Big_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
 		margin-bottom: 1rem;
 	}
 

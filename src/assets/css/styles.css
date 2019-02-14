@@ -6,7 +6,8 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	cursor: default;
+  cursor: default;
+  -webkit-font-smoothing: none;
 }
 
 header, footer, main, nav, aside, article, section, figure, figcaption {
@@ -17,6 +18,25 @@ header, footer, main, nav, aside, article, section, figure, figcaption {
 }
 html, body {height: 100%;}
 
+/* @FONT DECLARATIONS */
+@font-face {
+    font-family: 'NeXT_Bold';
+    src:    url('NeXT-Bold.woff') format('woff'),
+            url('NeXT-Bold.woff2') format('woff2'),
+            url('NeXT-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeXT_Roman';
+    src:    url('NeXT-Roman.woff') format('woff'),
+            url('NeXT-Roman.woff2') format('woff2'),
+            url('NeXT-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'NeXT Big_Bold';
     src:    url('NeXT_Big-Bold.woff') format('woff'),
@@ -26,19 +46,39 @@ html, body {height: 100%;}
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'NeXT Mono_Regular';
+    src:    url('NeXT_Mono-Regular.woff') format('woff'),
+            url('NeXT_Mono-Regular.woff2') format('woff2'),
+            url('NeXT_Mono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeXT Oblique';
+    src:    url('NeXT-Oblique.woff') format('woff'),
+            url('NeXT-Oblique.woff2') format('woff2'),
+            url('NeXT-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* DEFAULTS */
 body {
-  font: 12px/1.45 Arial, Helvetica, "Helvetica Neue", sans-serif;
+  font: 13px/1.45 "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
   color: #000;
   background-color: #555;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: none;
 }
 
-p, li, dt, dd {font-size: 12px;}
+p, li, dt, dd {font-size: 13px;}
 
-h1, h2, h3, strong {
-	/*font-family: 'NeXT Big_Bold', Arial, Helvetica, "Helvetica Neue", sans-serif;*/
+/*strong {
+	font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
 }
+em {
+	font-family: "NeXT Oblique", Helvetica, "Helvetica Neue", Arial, sans-serif;
+}*/
 
 hr {
   height: 1px;
@@ -49,9 +89,26 @@ hr {
 
 img {max-width: 100%;}
 
+::-webkit-scrollbar {
+	width: 17px;
+  background-image: url(../img/scroll-bg.png);
+}
+::-webkit-scrollbar-thumb {
+    background: #AAA url(../img/circle.png) center no-repeat;
+		border-top: 1px solid #FFF;
+		border-right: 1px solid #555;
+		border-bottom: 1px solid #555;
+		border-left: 1px solid #FFF;
+}
+
+a {color: #000;}
+
+::selection {color: #000; background-color: #AAA;}
+
 /* --------------- FORMS -------------------- */
 
 input {
+	font: 13px/1 "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
 	padding: 2px 1px;
 	border-top: 2px solid #555;
 	border-left: 2px solid #555;
@@ -93,7 +150,7 @@ legend {
 	width: 100%;
 	top: -0.5em;
 	left: 0;
-	font-size: 12px;
+	font-size: 13px;
 	text-align: center;
 	z-index: 10;
 }
@@ -107,8 +164,9 @@ legend span {
 button {
   position: relative;
 	width: 100%;
+	font: 13px/1 "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
 	background-color: #AAA;
-	padding: 0.3em 0;
+	padding: 5px 0;
 	border-top: 1px solid #FFF;
 	border-left: 1px solid #FFF;
 	border-bottom: 1px solid #000;
@@ -207,7 +265,7 @@ div.title-bar::before {
 }
   div.title-bar h2 {
   	flex: 1;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
   }
 
@@ -268,10 +326,8 @@ div.panel {border: 1px solid #000;}
 
   .panel.menu nav button span {
     float: right;
-    padding-right: 0.3em;
+    padding: 0 0.3em 0 0.5em;
   }
-
-
 
 /* ------------------------ SPECIFICS -------------------------- */
 
