@@ -30,7 +30,6 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${HOST}/default.html` },
-    { type: 'url', id: `https://suda.co.uk` },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
