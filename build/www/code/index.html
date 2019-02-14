@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Inside the Code — WorldWideWeb NeXT Application</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
+	<meta name="author" content="CERN" />
+	<link rel="stylesheet" type="text/css" href="/css/general.css" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+</head>
+
+<body>
+	<header>
+		<h1>Inside the Code — WorldWideWeb NeXT Application</h1>
+		
+
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/history/">History</a></li>
+				<li><a href="/timeline/">Timeline</a></li>
+				<li><a href="/worldwideweb/">The Browser</a></li>
+				<li><a href="/code/">Inside the Code</a></li>
+				<li><a href="/production/">Production Process</a></li>
+				<li><a href="/mailinglist/">Mailing List Archives</a></li>
+				<li><a href="/related/">Related Links</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main role="main">
+
+    <section>
+<h3>Versions</h3>
+<ul>
+<li>The source code version we have says it's version 0.15 with a date of 1991... but comments in the code have dates towards the end of 1992.</li>
+<li>The binary of WorldWideWeb that we have is prerelease b of version 0.13.</li>
+<li>The binary of Nexus that we have is 2.02.</li>
+</ul>
+<h3>ParseHTML</h3>
+<p>ParseHTML.h contains much of the same code we spent time analysing last time, related to (duh) parsing markup.  Here are some interesting things that stick out:</p>
+<ul>
+<li>Yet again, a state machine is used to parse the markup stream. The function names and switch statements look much like they did in the LMB code. And again, this parsing is done to manage the style stack.</li>
+<li>CERN's SGML implementation injected extra new line characters. There was a constant called CERN_WEIRDO – when this is true, logic executes to identify multiple new line characters and replace them with a single paragraph tag/output. (To output a paragraph, math was done using the styles to determine how many newlines to add to the window.)</li>
+</ul>
+<pre>
+int newlines = ((s-&gt;spaceBefore+s-&gt;spaceAfter) / s->paragraph-&gt;lineHt) + 1;
+for(i=0; i&lt;newlines; i++) OUTPUT('\n');
+</pre>
+<ul>
+<li>Tags supported (as in parsed): ADDRESS, A, DL, DT, DD, H1, H2, H3, H4, H5, H6, HP1, HP2, HP3, ISINDEX, LI, LISTING, NEXTID, NODE, OL, PLAINTEXT, PRE, RESTOFFILE, TITLE, UL, XMP.</li>
+<li>Entities detected: ampersand (&amp;AMP;), less than (&amp;LT;), greater than (&amp;GT;), quote (&amp;QUOT;).</li>
+<li>Subnodes are an incomplete concept in the code:</li>
+</ul>
+<pre>
+/* Subnodes are delimited by &lt;NODE&gt;...&lt;/NODE&gt;. They have the same address as the
+** node, but the anchor IDs must be different. This is not thought out.	@@
+** Perhaps a hierarchical anchor ID format ....
+*/
+	case S_tag_n:
+	    switch(c) {
+	    case 'o':
+	    case 'O':	if (check("ODE&gt;")) {	/* Load a subnode */
+			    if(TRACE)  printf("Loading subnode...NOT IMPLEMENTED\n");
+</pre>
+</section>
+<section>
+<p><img src="/images/screenshots/next_screenshot_02.png" alt="WorldWideWeb about screen and first web page"></p>
+<h3>Style sheet definition/parsing</h3>
+<p>We read through the style files and the application code to figure out how all of this worked, then we created test HTML files to load in WorldWideWeb (and Nexus) to validate our assumptions.</p>
+<p>Interestingly, the version of WorldWideWeb that we had (prerelease b of version 0.13) didn't have a complete set of code for rendering styles – even with a complete style sheet, it wasn't able to parse H4, H5, and H6. We had to use Nexus (v 2.02) to see what these tags looked like.</p>
+<p><strong>SAMPLE:</strong></p>
+<pre>
+Normal &lt;P&gt; 0 Helvetica 12.0   1
+	90 90	14.0 3.0  0  0 14	0
+</pre>
+<ul>
+<li>First line:
+<ul>
+<li>&quot;Normal&quot; is the style name</li>
+<li>&lt;P&gt; is the tag to which the style applies</li>
+<li>0 is the tag type (doesn't appear to be used, is always 0)</li>
+<li>&quot;Helvetica&quot; is the font</li>
+<li>12.0 is the font size (in points)</li>
+<li>1 indicates the NXTextStyle, which appears to translate into an element being treated as a block. (Italic, bold, and bold-italic – HP1, HP2, and HP3 – all have a value of 0 and are inline.)</li>
+</ul>
+</li>
+<li>Second line:
+<ul>
+<li>90 = 1st indent level (in pixels)</li>
+<li>90 = 2nd indent level (in pixels – you'll see why second level exists shortly)</li>
+<li>14.0 = line height (in points?)</li>
+<li>3.0 = descent line (in points?)</li>
+<li>0 = alignment (0 = left align, 1 = right align, 2 = center)</li>
+<li>0 = space before</li>
+<li>14 = space after (in points?)</li>
+<li>0 = number of tab stops</li>
+</ul>
+</li>
+</ul>
+<pre>
+Bold-Italic &lt;HP3&gt; 0	Helvetic-Bold-Oblique 12.0	0
+
+List &lt;LI&gt; 0 Helvetica 12.0   1
+        100 130	14 3  0  0 14  2
+	0 130	0 300
+</pre>
+<ul>
+<li>Bold-Italic is inline, and so it doesn't have a second line of styles, defining space around the block</li>
+<li>List styles are applied when a list is found in the markup. ParseHTML.h looks for &quot;\n&lt;UL&gt;\n&lt;LI&gt;&quot; to start a list, then &quot;\n&lt;LI&gt;&quot; to break up list items. ParseHTML.h specifies that starting text (&quot;\267\t&quot; – a dot then a tab character) be added to each list item. So the indents of 100 pixels and 130 pixels would first be for the bullet point (dot) and then for the placement of the text.</li>
+<li>List allows for two tab stops at 130 pixels and 300 pixels. (Mark is testing this)</li>
+</ul>
+<h3>Printing</h3>
+<pre>
+void main(int argc, char *argv[])
+{
+//    NXArgc = argc;        /
+//    NXArgv = argv;        /
+
+char *p;
+
+static NXDefaultsVector myDefaults = {
+{ "PaperType", "Letter"},        // Non-USA users will have to ove
+{ "LeftMargin", "72"},            //  (72) Space for ring
+
+</pre>
+<h3>HTTP Ports</h3>
+<pre>
+#define TCP_PORT 80    / Allocated to http by Jon Postel/ISI 24-
+#define OLD_TCP_PORT 2784    / Try the old one if no answer on 8
+</pre>
+</section>
+
+  </main>
+</body>
+
+<footer>
+	<h3><a href="/colophon/">Colophon</a></h3>
+	<p>&copy; 2019 CERN</p> <ul class="palette"><li></li> <li></li> <li></li> <a href="/images/wow.jpg"><li></li></a></ul>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Timeline — WorldWideWeb NeXT Application</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
+	<meta name="author" content="CERN" />
+	<link rel="stylesheet" type="text/css" href="/css/general.css" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <style>
+  section {
+    max-width: 100%;
+  }
+  .h-event {
+    list-style: none;
+    margin-bottom: 1em;
+  }
+  .u-url {
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .dt-start,
+  .p-name {
+    display: block;
+    line-height: 1;
+  }
+  .u-url:hover,
+  .u-url:focus {
+    background-color: transparent;
+  }
+  .u-url:hover .dt-start,
+  .u-url:focus .dt-start {
+    background-color: rgba(1,1,1,1);
+    color: rgba(255,255,255,1);
+  }
+  .u-url:hover .p-name,
+  .u-url:focus .p-name {
+    color: rgba(204,0,0,1);
+  }
+  .present {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .present .h-event {
+    font-weight: bold;
+    transform: scale(1.2);
+  }
+  .present .dt-start {
+    color: rgba(255,255,255,1);
+    background-color: rgba(1,1,1,1);
+    border: none;
+  }
+  @media all and (min-width: 30em) {
+    .canvas {
+      margin-top: 3em;
+      display: flex;
+      flex-direction: column;
+    }
+    .timeline,
+    .present {
+      position: relative;
+      width: 100%;
+      min-height: 10em;
+    }
+    .timeline__heading {
+      position: absolute;
+      top: -2em;
+    }
+    .timeline__list {
+      margin: 0;
+    }
+    .dt-start {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 2.75em;
+      height: 2.75em;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.5);
+      background-color: rgba(255,255,255,1);
+      z-index: 3;
+      transition: 0.3s;
+    }
+    @supports (left: calc((1989 - 1959) * (100%/30) - 5em)) {
+      .timeline::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 1.5em;
+        width: 100%;
+        border-bottom: 2px dotted rgba(0,0,0,0.125);
+        z-index: -1;
+      }
+      .h-event {
+        position: absolute;
+        width: 5em;
+      }
+      .past .h-event {
+        transition: left 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      .loading .past .h-event {
+        left: 100%;
+      }
+      .present .h-event {
+        right: calc(50% - (3em/2));
+        z-index: 3;
+      }
+      .future .h-event {
+        transition: right 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      .loading .future .h-event {
+        right: 100%;
+      }
+      .y1963 {
+        left: calc((1963 - 1959) * (100%/30) - 5em);
+      }
+      .y1964 {
+        left: calc((1964 - 1959) * (100%/30) - 5em);
+      }
+      .y1968 {
+        left: calc((1968 - 1959) * (100%/30) - 5em);
+      }
+      .y1969 {
+        left: calc((1969 - 1959) * (100%/30) - 5em);
+      }
+      .y1972 {
+        left: calc((1972 - 1959) * (100%/30) - 5em);
+      }
+      .y1974 {
+        left: calc((1974 - 1959) * (100%/30) - 5em);
+      }
+      .y1980 {
+        left: calc((1980 - 1959) * (100%/30) - 5em);
+      }
+      .y1986 {
+        left: calc((1986 - 1959) * (100%/30) - 6em);
+      }
+      .y1987 {
+        left: calc((1987 - 1959) * (100%/30) - 6em);
+      }
+      .y1988 {
+        left: calc((1988 - 1959) * (100%/30) - 7.5em);
+      }
+      .y1990 {
+        right: calc((2019 - 1990) * (100%/30) - 4.25em);
+      }
+      .y1991 {
+        right: calc((2019 - 1991) * (100%/30) - 4.25em);
+      }
+      .y1992 {
+        right: calc((2019 - 1992) * (100%/30) - 4.5em);
+      }
+      .y1993 {
+        right: calc((2019 - 1993) * (100%/30) - 6em);
+      }
+      .y1994 {
+        right: calc((2019 - 1994) * (100%/30) - 7.5em);
+      }
+      .y1995 {
+        right: calc((2019 - 1995) * (100%/30) - 9em);
+      }
+      .y1997 {
+        right: calc((2019 - 1997) * (100%/30) - 9em);
+      }
+      .y1999 {
+        right: calc((2019 - 1999) * (100%/30) - 9em);
+      }
+      .y2002 {
+        right: calc((2019 - 2002) * (100%/30) - 5em);
+      }
+      .y2003 {
+        right: calc((2019 - 2003) * (100%/30) - 6.5em);
+      }
+      .y2008 {
+        right: calc((2019 - 2008) * (100%/30) - 5em);
+      }
+      .y2014 {
+        right: calc((2019 - 2014) * (100%/30) - 5em);
+      }
+      .y2015 {
+        right: calc((2019 - 2015) * (100%/30) - 5em);
+      }
+      .networks .y1969 .p-name,
+      .hypertext .y1980 .p-name,
+      .formats .y1986 .p-name,
+      .browsers .y1990 .p-name,
+      .browsers .y2002 .p-name,
+      .browsers .y1992 .p-name,
+      .browsers .y1994 .p-name,
+      .servers .y1997 .p-name,
+      .formats .y1997 .p-name {
+        margin-top: -4em;
+      }
+    }
+  }
+  @media all and (min-width: 60em) and (min-height: 45em) {
+    .canvas {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
+    .past {
+      width: 47.5vw;
+      height: 90vh;
+      position: relative;
+    }
+    .present {
+      position: absolute;
+      width: 4vw;
+      top: calc(50% - 2em);
+      left: calc(50% - 3vw);
+    }
+    .future {
+      width: 47.5vw;
+      height: 90vh;
+      position: relative;
+    }
+    .future .timeline {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    @supports (left: calc((1989 - 1959) * (100%/30))) and (transform: rotate(10deg)) {
+      .timeline {
+        min-height: auto;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: calc(50% - 2em);
+        transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition-delay: 0.5s;
+      }
+      .loading .canvas .timeline {
+        transform: rotate(0);
+      }
+      .past .timeline {
+        transform-origin: center right;
+      }
+      .past .timeline__heading {
+        position: absolute;
+        transform: rotate(-90deg) translateY(-3em) translateX(-60%);
+      }
+      .past .hypertext {
+        transform: rotate(10deg);
+      }
+      .past .networks {
+        transform: rotate(-10deg);
+      }
+      .past .formats {
+        transform: rotate(27deg);
+      }
+      /* Tweaks for legibility */
+      .past .formats .timeline__heading {
+        transform: rotate(-90deg) translateY(-3em) translateX(-70%);
+      }
+      .past .computing {
+        transform: rotate(-30deg);
+      }
+      .past .computing .timeline__heading {
+        transform-origin: left center;
+        transform: rotate(90deg);
+      }
+      .present .p-name {
+        position: relative;
+        top: -10em;
+      }
+      .future .timeline {
+        transform-origin: center left;
+      }
+      .future .timeline__heading {
+        transform: rotate(90deg) translateY(-3em) translateX(60%);
+      }
+      .future .browsers {
+        transform: rotate(-35deg);
+      }
+      .future .servers {
+        transform: rotate(25deg);
+      }
+      .future .servers .timeline__heading {
+        transform-origin: right center;
+        transform: rotate(-90deg) translateY(0.5em) translateX(-25%);
+      }
+      .future .formats {
+        transform: rotate(-15deg);
+      }
+      /* Tweaks for legibility */
+      .future .formats .timeline__heading {
+        transform: rotate(90deg) translateY(-3em) translateX(70%);
+      }
+
+      /* Tweaks for legibility */
+      .hypertext .y1987 .p-name {
+        transform: translateX(-2.75em) translateY(-1.25em);
+      }
+    }
+    .present .h-event {
+      right: auto;
+    }
+  }
+  </style>
+  <script>document.documentElement.classList.add('loading')</script>
+</head>
+
+<body>
+	<header>
+		<h1>Timeline — 1959 – 1989 – 2019</h1>
+
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/history/">History</a></li>
+				<li><a href="/timeline/">Timeline</a></li>
+				<li><a href="/worldwideweb/">The Browser</a></li>
+				<li><a href="/code/">Inside the Code</a></li>
+				<li><a href="/production/">Production Process</a></li>
+				<li><a href="/mailinglist/">Mailing List Archives</a></li>
+				<li><a href="/related/">Related Links</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main role="main" class="nogrid">
+    <div class="canvas">
+      <div class="past">
+        <section class="hypertext timeline">
+          <h2 class="timeline__heading">Hypertext</h2>
+          <ol class="timeline__list">
+            <li class="h-event y1963">
+              <a href="https://en.wikipedia.org/wiki/Hypertext" class="u-url">
+                <time class="dt-start" datetime="1963">1963</time>
+                <span class="p-name">Hypertext</span>
+                <span class="p-summary h-card">Ted Nelson</span>
+              </a>
+            </li>
+            <li class="h-event y1980">
+              <a href="https://en.wikipedia.org/wiki/ENQUIRE" class="u-url">
+                <time class="dt-start" datetime="1980">1980</time>
+                <span class="p-name">ENQUIRE</span>
+              </a>
+            </li>
+            <li class="h-event y1987">
+              <a href="https://en.wikipedia.org/wiki/HyperCard" class="u-url">
+                <time class="dt-start" datetime="1987-08">1987</time>
+                <span class="p-name">Hyper<br>Card</span>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.timeline.hypertext -->
+        <section class="networks timeline">
+          <h2 class="timeline__heading">Networks</h2>
+          <ol class="timeline__list">
+            <li class="h-event y1964">
+              <a href="http://www.davidpaulkirkpatrick.com/2012/08/15/dial-f-for-frankenstein-the-birth-of-the-world-wide-web/" class="u-url">
+                <time class="dt-start" datetime="1964-01">1964</time>
+                <span class="p-name">Dial F For Frankenstein</span>
+              </a>
+            </li>
+            <li class="h-event y1969">
+              <a href="https://en.wikipedia.org/wiki/ARPANET" class="u-url">
+                <time class="dt-start" datetime="1969-10-29">1969</time>
+                <span class="p-name">ARPANET</span>
+              </a>
+            </li>
+            <li class="h-event y1974">
+              <a href="https://tools.ietf.org/html/rfc675" class="u-url">
+                <time class="dt-start" datetime="1974-12">1974</time>
+                <span class="p-name">Internet</span>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.timeline.networks -->
+        <section class="formats timeline">
+          <h2 class="timeline__heading">Formats</h2>
+          <ol class="timeline__list">
+            <li class="h-event y1969">
+              <a href="https://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language" class="u-url">
+                <time class="dt-start" datetime="1969">1969</time>
+                <abbr class="p-name" title="Generalized Markup Language">GML</abbr>
+              </a>
+            </li>
+            <li class="h-event y1986">
+              <a href="https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language" class="u-url">
+                <time class="dt-start" datetime="1986-10-01">1986</time>
+                <abbr class="p-name" title="Standard Generalized Markup Language">SGML</abbr>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.timeline.formats -->
+        <section class="computing timeline">
+          <h2 class="timeline__heading">Computing</h2>
+          <ol class="timeline__list">
+            <li class="h-event y1968">
+              <a href="https://en.wikipedia.org/wiki/NLS_%28computer_system%29" class="u-url">
+                <time class="dt-start" datetime="1969-12-09">1969</time>
+                <abbr class="p-name" title="oN-Line System">NLS</abbr>
+              </a>
+            </li>
+            <li class="h-event y1972">
+              <a href="https://en.wikipedia.org/wiki/Dynabook" class="u-url">
+                <time class="dt-start" datetime="1972-08">1972</time>
+                <span class="p-name">Dynabook</span>
+              </a>
+            </li>
+            <li class="h-event y1988">
+              <a href="https://en.wikipedia.org/wiki/NeXT_Computer" class="u-url">
+                <time class="dt-start" datetime="1988-10">1988</time>
+                <span class="p-name">NeXT</span>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.computing timeline -->
+      </div><!-- /.past -->
+      <div class="present">
+        <div class="h-event y1989">
+          <a href="https://www.w3.org/History/1989/proposal.html" class="u-url">
+            <time class="dt-start" datetime="1989-03-12">1989</time>
+            <span class="p-name">Information Management: A Proposal</span>
+          </a>
+        </div>
+      </div><!-- /.present -->
+      <div class="future">
+        <section class="browsers timeline">
+          <h2 class="timeline__heading">Browsers</h2>
+          <ol class="timeline_list">
+            <li class="h-event y1990">
+              <a href="https://www.w3.org/People/Berners-Lee/WorldWideWeb.html" class="u-url">
+                <time class="dt-start" datetime="1990-12">1990</time>
+                <abbr class="p-name" title="WorldWideWeb">WWW</abbr>
+              </a>
+            </li>
+            <li class="h-event y1992">
+              <a href="http://line-mode.cern.ch/" class="u-url">
+                <time class="dt-start" datetime="1992">1992</time>
+                <abbr class="p-name" title="Line Mode Browser">LMB</abbr>
+              </a>
+            </li>
+            <li class="h-event y1993">
+              <a href="https://en.wikipedia.org/wiki/Mosaic_(web_browser)" class="u-url">
+                <time class="dt-start" datetime="1993">1993</time>
+                <span class="p-name">Mosaic</span>
+              </a>
+            </li>
+            <li class="h-event y1994">
+              <a href="https://en.wikipedia.org/wiki/Netscape_Navigator" class="u-url">
+                <time class="dt-start" datetime="1994">1994</time>
+                <span class="p-name">Netscape</span>
+              </a>
+            </li>
+            <li class="h-event y1995">
+              <a href="https://en.wikipedia.org/wiki/Internet_Explorer" class="u-url">
+                <time class="dt-start" datetime="1995">1995</time>
+                <abbr class="p-name" title="Internet Explorer">IE</abbr>
+              </a>
+            </li>
+            <li class="h-event y2002">
+              <a href="https://en.wikipedia.org/wiki/Firefox" class="u-url">
+                <time class="dt-start" datetime="2002-09-23">2002</time>
+                <span class="p-name">Firefox</span>
+              </a>
+            </li>
+            <li class="h-event y2003">
+              <a href="https://en.wikipedia.org/wiki/Safari_(web_browser)" class="u-url">
+                <time class="dt-start" datetime="2003-01-07">2003</time>
+                <span class="p-name">Safari</span>
+              </a>
+            </li>
+            <li class="h-event y2008">
+              <a href="https://en.wikipedia.org/wiki/Google_Chrome" class="u-url">
+                <time class="dt-start" datetime="2008-09-02">2008</time>
+                <span class="p-name">Chrome</span>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.timeline.browsers -->
+        <section class="servers timeline">
+          <h2 class="timeline__heading">Servers</h2>
+          <ol class="timeline__list">
+            <li class="h-event y1991">
+              <a href="https://en.wikipedia.org/wiki/CERN_httpd" class="u-url">
+                <time class="dt-start" datetime="1991">1991</time>
+                <span class="p-name">CERN httpd</span>
+              </a>
+            </li>
+            <li class="h-event y1995">
+              <a href="https://en.wikipedia.org/wiki/Apache_HTTP_Server" class="u-url">
+                <time class="dt-start" datetime="1995">1995</time>
+                <span class="p-name">Apache</span>
+              </a>
+            </li>
+            <li class="h-event y1997">
+              <a href="https://tools.ietf.org/html/rfc2068" class="u-url">
+                <time class="dt-start" datetime="1997-01">1997</time>
+                <span class="p-name">HTTP/1.1</span>
+              </a>
+            </li>
+            <li class="h-event y2015">
+              <a href="https://en.wikipedia.org/wiki/HTTP/2" class="u-url">
+                <time class="dt-start" datetime="2015-05-14">2015</time>
+                <span class="p-name">HTTP/2</span>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.timeline.server -->
+        <section class="formats timeline">
+          <h2 class="timeline__heading">Formats</h2>
+          <ol class="timeline__list">
+            <li class="h-event y1992">
+              <a href="https://www.w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html" class="u-url">
+                <time class="dt-start" datetime="1992-03-11">1992</time>
+                <span class="p-name">HTML Tags</span>
+              </a>
+            </li>
+            <li class="h-event y1995">
+              <a href="https://www.w3.org/MarkUp/html-spec/html-spec_toc.html" class="u-url">
+                <time class="dt-start" datetime="1995-09-02">1995</time>
+                <span class="p-name">HTML 2.0</span>
+              </a>
+            </li>
+            <li class="h-event y1997">
+              <a href="https://www.w3.org/TR/2018/SPSD-html32-20180315/" class="u-url">
+                <time class="dt-start" datetime="1997-01-14">1997</time>
+                <span class="p-name">HTML 3.2</span>
+              </a>
+            </li>
+            <li class="h-event y1999">
+              <a href="https://www.w3.org/TR/html401/" class="u-url">
+                <time class="dt-start" datetime="1999-12-24">1999</time>
+                <span class="p-name">HTML 4.01</span>
+              </a>
+            </li>
+            <li class="h-event y2014">
+              <a href="https://www.w3.org/TR/html5/" class="u-url">
+                <time class="dt-start" datetime="2014-10-28">2014</time>
+                <span class="p-name">HTML5</span>
+              </a>
+            </li>
+          </ol>
+        </section><!-- /.timeline.formats -->
+      </div><!-- /.future -->
+    </div><!-- /.canvas -->
+  </main><!-- /.nogrid -->
+</body>
+
+<footer>
+	<h3><a href="/colophon/">Colophon</a></h3>
+	<p>&copy; 2019 CERN</p> <ul class="palette"><li></li> <li></li> <li></li> <a href="/images/wow.jpg"><li></li></a></ul>
+</footer>
+<script>setTimeout(function(){document.documentElement.classList.remove('loading')},50)</script>
+
+</body>
+</html>

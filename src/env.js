@@ -1,4 +1,4 @@
-let HOST = process.env.HOST;
+let HOST = process.env.HOST || window.location.origin;
 // strip a trailing slash
 if (HOST.endsWith('/')) HOST = HOST.slice(0, -1);
 

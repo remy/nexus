@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "client": "parcel --out-dir app/ ./src/index.html",
+    "client": "parcel --out-dir build/browser/ ./src/index.html",
+    "content": "eleventy --serve",
     "test": "node __tests__/*.test.js",
-    "build": "parcel build --out-dir app/ ./src/index.html"
+    "build:client": "parcel build --public-url='/browser' --out-dir build/browser/ ./src/index.html",
+    "build": "mkdir -p build; eleventy && npm run build:client"
   },
   "heroku-run-build-script": true,
   "browserslist": [
@@ -18,6 +20,7 @@
   "author": "Remy Sharp (https://remysharp.com)",
   "license": "MIT",
   "dependencies": {
+    "@11ty/eleventy": "^0.7.1",
     "@remy/envy": "^4.0.2",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",

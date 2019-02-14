@@ -37,7 +37,7 @@ const App = () => {
   const [active, setActive] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
-    { type: 'url', id: `${HOST}/default.html` },
+    { type: 'url', id: `${HOST}/browser/default.html` },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
