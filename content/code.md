@@ -1,7 +1,7 @@
 ---
 layout: baselayout
 title: Inside the Code — WorldWideWeb NeXT Application
-subhede: 
+subhede: A deconstruction of some of the more interesting bits we found hiding in the WorldWideWeb source code
 ---
 
 <section>

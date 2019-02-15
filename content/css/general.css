@@ -99,6 +99,9 @@ h1 {
 	font-family: 'NeXT Big_Bold';
 	font-weight: bold;
 }
+h2 { 
+	line-height: 1.2em;
+}
 hr {
 	margin: 0em auto 1em auto;
 	border: 0;

@@ -1,7 +1,7 @@
 ---
 layout: baselayout
-title: How WorldWideWeb was rebuilt
-subhede: 
+title: Production Details — WorldWideWeb NeXT Application
+subhede: The behind the scenes look at how the WorldWideWeb was rebuilt
 ---
 
 <section>
