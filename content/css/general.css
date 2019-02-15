@@ -227,6 +227,13 @@ video { width: 100%; border: 3px solid #000; }
 	border-right: 1px solid #069;
 	margin-bottom: 1.5em;
 }
+.button:hover,
+.button:focus {
+	border-top-color: #069;
+	border-left-color: #069;
+	border-bottom-color: #6cf;
+	border-right-color: #6cf;
+}
 @media all and (max-width: 30em) {
 	header .button {
 		width: 100%;
