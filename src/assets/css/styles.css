@@ -383,6 +383,21 @@ div.panel .webview {
 
 /* ------------------------ SPECIFICS -------------------------- */
 
+div.help-dialogue {
+  padding: 4px 20px;
+  width: 330px;
+}
+
+div.help-dialogue p {
+  margin: 18px 0;
+}
+
+div.help-dialogue button {
+  width: auto;
+  padding: 5px;
+}
+
+
 div.first-block {
   text-align: center;
   padding-bottom: 7px;

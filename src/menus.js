@@ -153,7 +153,7 @@ export const links = {
       action: 'method',
     },
     { title: 'Unlink', accelerator: 'Z', id: 'unlink', action: 'method' },
-    { title: 'Help', id: 'help' },
+    { title: 'Help', id: 'link-help', action: 'panel' },
   ],
 };
 

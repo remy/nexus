@@ -31,7 +31,7 @@ const App = () => {
   const [active, setActive] = useState({});
   const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'top' },
+    { type: 'menu', id: 'links' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
     // { type: 'url', id: `${PATH}/blank.html`, props: { ref: createRef() } },
   ]);
@@ -39,13 +39,14 @@ const App = () => {
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
   const add = ({ id, type, ...props }) => {
+    // check if we have the URL open already and insert set focus
+    const match = type === 'url' ? id.replace(/#.*$/, '') : id;
+    const found = windows.find(_ => _.type === type && _.id === match);
+    if (found) {
+      return setActive(found);
+    }
+
     if (type === 'url') {
-      // check if we have the URL open already and insert set focus
-      const match = id.replace(/#.*$/, '');
-      const found = windows.find(_ => _.type === 'url' && _.id === match);
-      if (found) {
-        return setActive(found);
-      }
       const ref = createRef();
       props.ref = ref;
     }
@@ -83,7 +84,6 @@ const App = () => {
 
     switch (action) {
       case 'panel':
-        console.log(panels[idTitleCase]);
         if (panels[idTitleCase]) {
           add({
             type: 'panel',
@@ -131,7 +131,6 @@ const App = () => {
           return (
             <Menu
               index={i}
-              _onFocus={() => setActive({ type: 'menu', id })}
               key={`menu:${id}`}
               {...menu}
               onClose={close('menu')}
@@ -153,9 +152,7 @@ const App = () => {
               ref={ref}
               onFocus={() => setActive({ type: 'url', id, ref })}
               onClose={close('url')}
-              onNavigate={id => {
-                add({ type: 'url', id });
-              }}
+              onNavigate={id => add({ type: 'url', id })}
               active={id === active.id}
               url={id}
               key={`url:${id}`}
@@ -166,12 +163,14 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'panel')
-        .map(({ props: { Component }, id }) => {
-          console.log('adding panel', id);
+        .map(({ props: { Component }, id }, index) => {
+          console.log('panel', Component, id);
           return (
             <Component
               key={`panel:${id}`}
               id={id}
+              index={index}
+              add={add}
               active={active.id == id}
               onAction={url => add({ type: 'url', id: url })}
               onFocus={() => setActive({ type: 'panel', id })}

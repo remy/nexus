@@ -20,6 +20,7 @@ const Window = ({
   onClose,
   onFocus,
   menu = undefined,
+  dialogue = false,
   dirty = false,
   children,
 }) => {
@@ -50,7 +51,7 @@ const Window = ({
           onMouseDown={onFocus}
           className={classnames(['title-bar', { active }])}
         >
-          {!menu && (
+          {!menu && !dialogue && (
             <button className="icon-buttons">
               <img src="img/full-window-button.png" alt="Full Window" />
             </button>
