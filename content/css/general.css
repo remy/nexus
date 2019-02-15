@@ -84,6 +84,8 @@ sub {
 	top: 0.4em;
 }
 
+.components { margin-bottom: 2em; margin-top: 2em; padding-bottom: 2em; border-bottom: 1px solid #ddd; }
+
 a {
 	color: #000;
 }
