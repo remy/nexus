@@ -5,6 +5,9 @@ import Menu from './components/Menu';
 import * as allMenus from './menus';
 import OpenURL from './components/OpenUrl.js';
 import { HOST } from './env';
+import InfoAbout from './components/InfoAbout.js';
+import BrowserNav from './components/BrowserNav.js';
+import StyleEditor from './components/StyleEditor.js';
 
 const keyMap = {};
 
@@ -53,6 +56,9 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${HOST}/default.html` },
+    { type: 'panel', id: 'info', props: {Component: InfoAbout}},
+    { type: 'panel', id: 'browser-nav', props: {Component: BrowserNav}},
+    { type: 'panel', id: 'style-editor', props: {Component: StyleEditor}}
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
