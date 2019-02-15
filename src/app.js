@@ -51,6 +51,7 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
+    { type: 'panel', id: 'open-url', props: { Component: panels.OpenUrl } },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });

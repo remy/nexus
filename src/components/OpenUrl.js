@@ -36,7 +36,7 @@ const OpenURL = ({ onAction, onClose, ...props }) => {
             </div>
           </fieldset>
           <button onClick={handleClick} className="enter-button">
-            <strong>Open</strong>
+            Open
           </button>
         </div>
       </div>
