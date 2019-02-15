@@ -50,7 +50,7 @@ const App = () => {
   const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
-    { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
+    { type: 'url', id: `${PATH}/default.html`, ref: createRef() },
     // { type: 'panel', id: 'open-url', props: { Component: panels.OpenUrl } },
   ]);
 
@@ -69,7 +69,7 @@ const App = () => {
       const ref = createRef();
       props.ref = ref;
     }
-    dispatch({ type: 'add', data: { type, id, props } });
+    dispatch({ type: 'add', data: { type, id, ...props } });
   };
 
   useEffect(() => {
@@ -169,7 +169,7 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'url')
-        .map(({ id, props: { ref } }, i) => {
+        .map(({ id, ref }, i) => {
           return (
             <WebView
               ref={ref}
@@ -186,7 +186,7 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'panel')
-        .map(({ props: { Component, ...props }, id }, index) => {
+        .map(({ Component, id, ...props }, index) => {
           return (
             <Component
               key={`panel:${id}`}
