@@ -1,14 +1,9 @@
 import React, { createRef } from 'react';
 import Window from './Window';
 
-const InfoAbout = ({ onAction, onClose, ...props }) => {
-  const inputRef = createRef();
-  const handleClick = () => {
-    onAction(inputRef.current.value);
-    onClose(props.id);
-  };
+const InfoAbout = ({ ...props }) => {
   return (
-    <Window {...props} title="Info" onClose={onClose}>
+    <Window {...props} title="Info">
       <div id="browser-info">
         <header>
           <p>
@@ -16,7 +11,9 @@ const InfoAbout = ({ onAction, onClose, ...props }) => {
           </p>
           <div className="hgroup">
             <h3>HyperMedia Browser/Editor</h3>
-            <p className="baseline">An excercise in global information availability</p>
+            <p className="baseline">
+              An excercise in global information availability
+            </p>
           </div>
           <p className="release">
             Version 1.0
@@ -39,25 +36,26 @@ const InfoAbout = ({ onAction, onClose, ...props }) => {
             </div>
             <div>
               <dt>HyperMedia:</dt>
-              <dd>Information which is not constrained linear... or to be text.</dd>
+              <dd>
+                Information which is not constrained linear... or to be text.
+              </dd>
             </div>
           </dl>
         </div>
         <div className="second-block">
-
           <div className="webview">
             <div className="r2l-content">
               <div className="l2r-content">
                 <p>
-                  This is the first version of the NextStep WorldWideWeb application
-                  like the libWWW Library. Bug reports to www-bug@info.cern.ch.
+                  This is the first version of the NextStep WorldWideWeb
+                  application like the libWWW Library. Bug reports to
+                  www-bug@info.cern.ch.
                   <br />
                   Check the list of know bugs in the web too.
                 </p>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </Window>
