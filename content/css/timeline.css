@@ -39,7 +39,7 @@
 }
 .present .h-event {
   font-weight: bold;
-  transform: scale(1.2);
+  font-size: 1.2em;
 }
 .present .dt-start {
   color: rgba(255,255,255,1);
@@ -99,7 +99,7 @@
       left: 100%;
     }
     .present .h-event {
-      right: calc(50% - (3em/2));
+      right: calc(50% - (5em/2));
       z-index: 3;
     }
     .future .h-event {
@@ -206,7 +206,7 @@
     position: absolute;
     width: 4vw;
     top: calc(50% - 2em);
-    left: calc(50% - 3vw);
+    left: calc(50% - 5vw);
   }
   .future {
     width: 47.5vw;
