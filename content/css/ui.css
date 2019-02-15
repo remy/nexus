@@ -246,8 +246,9 @@ div.title-bar::before {
 }
   div.title-bar h2 {
   	flex: 1;
-    font: 13px "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font: normal 13px "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
     text-align: center;
+    margin: 0;
   }
 
 
@@ -288,7 +289,7 @@ button.grab-window {
 
 /* --------------- PANELS -------------------- */
 
-div.panel {border: 1px solid #000;}
+div.panel {background-color: #AAA; border: 1px solid #000;}
 
   div.panel .content {
     background-color: #AAA;
@@ -319,7 +320,7 @@ div.panel {border: 1px solid #000;}
   }
 
   .panel.menu nav button.next {
-    background-image: url(../img/arrow-right.png);
+    background-image: url(../images/ui-patterns/arrow-right.png);
     background-position: right;
     background-repeat: no-repeat;
   }
@@ -329,7 +330,109 @@ div.panel {border: 1px solid #000;}
     padding: 0 0.3em 0 0.5em;
   }
 
+  div.demo .panel.menu {width: 135px;}
+  .panel.menu nav {
+    margin: 0;
+  }
+    .panel.menu nav ul li {
+      display: block;
+      margin-right: 0;
+    }
+
 /* ------------------------ SPECIFICS -------------------------- */
+
+section + section {
+  margin-top: 2rem;
+}
+
+section h2 {margin-bottom: 1rem;}
+section h2 + div.info {margin: -1rem 0 1rem;}
+section h3 {font-size: 0.9em; margin-bottom: 1rem;}
+
+div.demo + h3 {margin-top: 1rem;}
+
+div.demo * {
+  font: 13px/1 "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-weight: normal;
+}
+div.demo div.title-bar h2 {
+  font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+div.demo ul, div.demo ol {
+    margin: 0;
+}
+
+
+div.demo.staged {
+  background-color: #AAA;
+  padding: 1rem;
+}
+ul.thumbs {
+	display: flex;
+	list-style-type: none;
+  margin:  0;
+}
+	ul.thumbs li {
+		margin-right: 0.5em;
+	}
+
+div.info {
+	max-width: 35em;
+	margin-bottom: 2rem;
+}
+
+button.grab-window {
+	background-image: url(../images/ui-patterns/grabber-bg.png),
+                    url(../images/ui-patterns/grabber-bg2.png);
+}
+
+button.enter-button {
+	background: #AAA url(../images/ui-patterns/enter-button.png) right no-repeat;
+}
+
+div.demo.double {
+  display: flex;
+}
+  div.demo.double > * {
+    margin-right: 1rem;
+  }
+
+div.demo div.webview {
+  width: initial;
+  max-width: 550px;
+  height: 150px;
+  background-color: #FFF;
+}
+div.demo div.webview div.r2l-content {
+    height: auto;
+    max-height: 90vh;
+    width: 100%;
+}
+
+div.demo hr {
+  width: initial;
+  height: 1px;
+  background-color: #FFF;
+  margin: 0;
+  border: none;
+  border-top: 1px solid #555;
+}
+
+/* Exception for palette from colophon */
+
+div.demo ul.palette li {max-width: 50px;}
+div.demo ul.palette li::before {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50px;
+}
+
+div.demo ul.palette li:nth-child(4)::before {
+  content: "";
+  background-color: #FFF;
+}
 
 div.first-block {
 	text-align: center;
@@ -372,6 +475,7 @@ div.first-block {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 10px 10px 0;
+  border: 0;
 }
 	#browser-info .webview {margin-bottom: 10px;}
 	#browser-info .hgroup {flex: 1;}

@@ -4,12 +4,12 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>{{ title }}</title>
-	<meta name="description" content="{{ desc }}" />
+	<title>Production Details — WorldWideWeb NeXT Application</title>
+	<meta name="description" content="" />
 	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
 	<meta name="author" content="CERN" />
 	<link rel="stylesheet" type="text/css" href="/css/general.css" />
-	{% if extrastyle %}<link rel="stylesheet" type="text/css" href="/css/{{extrastyle}}" />{% endif %}
+	
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
@@ -25,7 +25,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
 
-	{% block extrahead %}  {% endblock %}
+	  
 </head>
 
 <body>
@@ -33,8 +33,8 @@
 
 		<a href="/browser" class="button">Launch WorldWideWeb</a>
 
-		<h1>{{ title }}</h1>
-		{% if subhede %}<h2>{{ subhede }}</h2>{% endif %}
+		<h1>Production Details — WorldWideWeb NeXT Application</h1>
+		<h2>The behind the scenes look at how the WorldWideWeb was rebuilt</h2>
 
 		<nav>
 			<ul>
@@ -48,9 +48,20 @@
 		</nav>
 	</header>
 
-	<main role="main"{% if gridclass %} class="{{ gridclass }}"{% endif %}>
+	<main role="main">
 
-    {{ content | safe }}
+    <section>
+<p>We had a lovely lunch with <a href="https://en.wikipedia.org/wiki/Robert_Cailliau">Robert Cailliau</a>, designer of the WWW logo, and collaborator with Tim Berners-Lee on developing the world wide web.</p>
+<p><img src="/images/production/robert.jpg" alt="Lunch with Robert Cailliau"></p>
+<p>Jean-Francois Groff hung out with us for a few days to help elucidate some of the design details of the WorldWideWeb browser, and to help us get some of the history straight. He wrote <a href="https://en.wikipedia.org/wiki/Libwww">wwwlib</a> with Tim Berners-Lee which became the core library for most modern web browsers.</p>
+<p><img src="/images/production/jean1.jpg" alt="Jean-Francois Groff">
+<img src="/images/production/jean2.jpg" alt="Jean-Francois Groff"></p>
+</section>
+<section>
+<p>Chaotic. Lots of coffee. Send Help.</p>
+<hr>
+<p><img src="/images/production/servers.jpg" alt="Visiting the server room"></p>
+</section>
 
   </main>
 </body>
@@ -64,12 +75,7 @@
 		</ul>
 	</nav>
 	<p>&copy; 2019 CERN</p>
-	<ul class="palette">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li><a href="/images/wow.jpg"><span>Surprise</span></a></li>
-	</ul>
+	<ul class="palette"><li></li> <li></li> <li></li> <li><a href="/images/wow.jpg" style="color: #fff;"></a></li></ul>
 
 </footer>
 

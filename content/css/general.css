@@ -99,7 +99,7 @@ h1 {
 	font-family: 'NeXT Big_Bold';
 	font-weight: bold;
 }
-h2 { 
+h2 {
 	line-height: 1.2em;
 }
 hr {
@@ -289,16 +289,16 @@ ul.palette {
 	display: flex;
 	flex-wrap: wrap;
 	list-style-type: none;
-	margin-left: 0;
+	margin: 0.5rem 0 0 0;
 }
 ul.palette li {
 	flex-basis: 45%;
-	max-width: 20px;
+	max-width: 25px;
 	text-align: center;
-	margin: 0 1rem 1rem 0;
+	margin: 0 1rem 0 0;
 }
 ul.palette li::before {
-	display: block;
+	display: inline-block;
 	content: "";
 	width: 20px;
 	height: 20px;
@@ -313,6 +313,26 @@ ul.palette li:nth-child(2)::before {
 ul.palette li:nth-child(3)::before {
 	background-color: #AAA;
 }
-ul.palette a::before {
+ul.palette li:nth-child(4)::before {
+	content: none;
+}
+
+ul.palette li:nth-child(4) a::before {
+	display: inline-block;
+	content: "";
+	width: 20px;
+	height: 20px;
 	background-color: #FFF;
+	margin-bottom: 0.5em;
+	border-radius: 20px;
+	border: 1px solid #000;
+}
+ul.palette li:nth-child(4) a {
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+ul.palette li:nth-child(4) span {
+	position: absolute;
+	left: -50em;
 }

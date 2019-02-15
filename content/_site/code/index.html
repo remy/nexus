@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Inside the Code — WorldWideWeb NeXT Application</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
+	<meta name="author" content="CERN" />
+	<link rel="stylesheet" type="text/css" href="/css/general.css" />
+	
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+
+	  
+</head>
+
+<body>
+	<header>
+
+		<a href="/browser" class="button">Launch WorldWideWeb</a>
+
+		<h1>Inside the Code — WorldWideWeb NeXT Application</h1>
+		<h2>A deconstruction of some of the more interesting bits we found hiding in the WorldWideWeb source code</h2>
+
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/history/">History</a></li>
+				<li><a href="/timeline/">Timeline</a></li>
+				<li><a href="/worldwideweb/">The Browser</a></li>
+				<li><a href="/code/">Inside the Code</a></li>
+				<li><a href="/production/">Production Process</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main role="main">
+
+    <section>
+<p>For this project, we had access to <a href="https://github.com/cynthia/WorldWideWeb">source code</a> which reported version 0.15 and copyright date of 1991 in the <a href="https://github.com/cynthia/WorldWideWeb/blob/master/NextStep/Implementation/WorldWideWeb.nib/data.nib">data.nib</a>. There were comments in the code with dates in 1992, however, so it's possible the version had not been updated and this code is a bit older.</p>
+<p>We weren't able to compile this code, but we did have access to a binary of WorldWideWeb that reported its version as &quot;prerelease b of version 0.13&quot;, also with a copyright date of 1991. We mostly cross referenced this application with the code mentioned above.</p>
+<p>We also had access to a binary of Nexus, version 2.02 based on libwww, with a copyright date of 1994. At times, we ran this version to determine if certain oddities -- we don't want to call them bugs -- were ever addressed.</p>
+<p>For all of the following comments, the terms &quot;source code&quot;, &quot;WorldWideWeb&quot;, and &quot;Nexus&quot; refer to the three things above.</p>
+<h2>Hypertext</h2>
+<p>Today, we may refer to HTML files as HTML documents or web pages, but at the time, the source code only refers to hypertext documents or nodes -- or &quot;a hypertext&quot; for short.</p>
+<p>When this source code was written, there was no version number associated with HTML. Based on the source code, the following tags--the term 'element' was not yet used--were recognized:</p>
+<ul>
+<li>ADDRESS</li>
+<li>A</li>
+<li>DL, DT, DD</li>
+<li>H1, H2, H3, H4, H5, H6</li>
+<li>HP1, HP2, HP3</li>
+<li>ISINDEX</li>
+<li>LI</li>
+<li>LISTING</li>
+<li>NEXTID</li>
+<li>NODE</li>
+<li>OL</li>
+<li>PLAINTEXT</li>
+<li>PRE</li>
+<li>RESTOFFILE</li>
+<li>TITLE</li>
+<li>UL</li>
+<li>XMP</li>
+</ul>
+<p>Unrecognized tags were considered junk and ignored. Most of these tags will be familiar to modern web programmers, however a few are likely to be new:</p>
+<ul>
+<li>HP1, HP2, and HP3: &quot;Highlighted phrase&quot; is a carry over from SGML, which is used to allow some text to stand out from any surrounding text in some way. (You could say that they're the precursors to B/STRONG and I/EM.) HP1 is intended to be styled in italic text, HP2 in bold, and HP3 in both italic and bold. While the tags were successfully parsed by both WorldWideWeb and Nexus, the code to apply these styles was incomplete, so the content only displayed as normal text.</li>
+<li>NODE: Nothing in a document with a NODE tag would get rendered to screen -- and WorldWideWeb would crash if you tried to click in the page! The comment associated with the source code reads:<pre><code>
+/* Subnodes are delimited by &lt;NODE&gt;...&lt;/NODE&gt;. They have the same address as the
+** node, but the anchor IDs must be different. This is not thought out.	@@
+** Perhaps a hierarchical anchor ID format ....
+<em>/
+case S_tag_n:
+switch(c) {
+case 'o':
+case 'O':	if (check(&quot;ODE&gt;&quot;)) {	/</em> Load a subnode */
+if(TRACE)  printf(&quot;Loading subnode...NOT IMPLEMENTED\n&quot;);</code></pre></li>
+<li>PLAINTEXT: It's likely this element was meant to be used at the top of a file, to indicate the rest of the file was in plain text. If it were used within an HTML file, none of the content before the PLAINTEXT tag would be displayed -- only the content after it. (And no further markup would be parsed -- including any closing PLAINTEXT tag.)</li>
+<li>RESTOFFILE: In WorldWideWeb, any content or markup appearing after the opening tag would be ignored (not rendered to screen). This tag may have been removed later, as the tag is ignored in Nexus and all content and markup appearing after the opening tag is rendered to screen.</li>
+</ul>
+<p>A few entities were supported: ampersand (<code>&amp;AMP;</code>), less than (<code>&amp;LT;</code>), greater than (<code>&amp;GT;</code>), quote (<code>&amp;QUOT;</code>).</p>
+<h3>ParseHTML</h3>
+<p>ParseHTML.h in the source code contained the instructions for parsing markup. Here are some interesting things that we noticed:</p>
+<p>The approach taken to parsing the markup looked much like the code we found in www.c in the <a href="http://line-mode.cern.ch">line mode browser</a>. A state machine is used to parse the markup stream--in fact, the function names are the same and switch statements are very similar code. And again, this parsing also manages the style stack.</p>
+<p>Comments in the code indicated that CERN's SGML implementation injected extra new line characters in files. The source code defines a constant called CERN_WEIRDO – when this is true, logic executes to identify multiple new line characters and replace them with a single paragraph tag/output.</p>
+</section>
+<section>
+<p><img src="/images/screenshots/next_screenshot_02.png" alt="WorldWideWeb about screen and first web page"></p>
+<h2>Styling</h2>
+<p>The concept of style sheets existed in these earliest applications, however they didn't look like the CSS we know today. We read through the style files and the application code to figure out how all of this worked, then we created test HTML files to load in WorldWideWeb and Nexus to validate our assumptions.</p>
+<p>WorldWideWeb and Nexus shipped with four style sheets: default, compact, project, and paper. Default was loaded at start up, compact used smaller indentations, project used larger fonts, and paper used serif fonts. In WorldWideWeb, the style panel presented options that made it look like a user could edit and create style sheets, however this functionality did not work and was removed in Nexus. That said, if you knew how to copy one of these style sheets and edit it, you could create your own style sheet and load it in the browser.</p>
+<p>Here is a sample from the <a href="https://github.com/cynthia/WorldWideWeb/blob/master/NextStep/Implementation/WorldWideWeb.app/default.style">default style sheet</a>, defining the normal text style, followed by a line-by-line explanation:</p>
+<pre><code>
+Normal &lt;P&gt; 0 Helvetica 12.0   1
+	90 90	14.0 3.0  0  0 14	0</code></pre>
+<ul>
+<li>On the first line:
+<ul>
+<li>&quot;Normal&quot; is the style name</li>
+<li>&lt;P&gt; is the tag to which the style would apply</li>
+<li>0 is the tag type (purpose unknown)</li>
+<li>&quot;Helvetica&quot; is the font</li>
+<li>12.0 is the font size</li>
+<li>1 indicates the NXTextStyle</li>
+</ul>
+</li>
+<li>On the second line:
+<ul>
+<li>90 = first indent level</li>
+<li>90 = second indent level</li>
+<li>14.0 = line height</li>
+<li>3.0 = descent line</li>
+<li>0 = alignment (0 for left align, 1 for right align, and 2 for center)</li>
+<li>0 = space before</li>
+<li>14 = space after</li>
+<li>0 = number of tab stops</li>
+</ul>
+</li>
+</ul>
+<p>The browsers expected 15 styles to be defined. In addition to Normal, the style names expected were: Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, Glossary, List, Address, Example, Listing, Italic, Bold, and Bold-Italic. Here are the styles for Bold-Italic and List:</p>
+<pre><code>
+Bold-Italic &lt;HP3&gt; 0	Helvetica-Bold-Oblique 12.0	0
+
+List &lt;LI&gt; 0 Helvetica 12.0   1
+        100 130	14 3  0  0 14  2
+	0 130	0 300</code></pre>
+<p>In comparing the NXTextStyle values of 1 for Normal and List against the 0 for Bold-Italic, our hypothesis is that the former was intended to imply a block treatment while the latter was meant to imply inline treatment. This is supported by the fact that Bold-Italic lacks the second line of styles (indentation, spacing, tab stops) which would only be needed for blocks of text.</p>
+<p>Although there are values set to define the amount of space before and after blocks--similar to margins in CSS today--these values are not directly used to insert space. Instead, the browser performs some math to determine how many line breaks to insert between blocks of text.</p>
+<pre><code>
+int newlines = ((s-&gt;<b>spaceBefore</b>+s-&gt;<b>spaceAfter</b>) / s-&gt;paragraph-&gt;<b>lineHt</b>) + 1;
+for(i=0; i&lt;newlines; i++) OUTPUT('\n');</code></pre>
+<p>Note that the List style does not define the list style indicator (bullet, number, etc.), as we do in CSS today. Instead, list styles are added by ParseHTML.h. Code in that file looks for &quot;\n&lt;UL&gt;\n&lt;LI&gt;&quot; to start a list, then &quot;\n&lt;LI&gt;&quot; to break up list items. It also specifies the starting text (&quot;\267\t&quot; – a dot then a tab character) which is added to each list item. So the indents of 100 pixels and 130 pixels in the styles are for the bullet point (dot) and then for the placement of the text.</p>
+<p>Our version of WorldWideWeb was missing code to apply styles to H4, H5, or H6, however by the time of Nexus, that code had been added. Likewise, PRE and FIXED appeared like normal text in WorldWideWeb but were correctly styled in Nexus. (FIXED was in the source code but the tag wasn't parsed -- it was only associated with styling.)</p>
+<h2>Other Interesting Notes</h2>
+<h3>Printing</h3>
+<p>These days, we don't spend a lot of time thinking about printing web documents--but this was a consideration at the time. The code even considered that the pages might be ring-bound after printing!</p>
+<pre><code>
+    static NXDefaultsVector myDefaults = {
+        { "PaperType", "Letter"},		// Non-USA users will have to override
+	{ "LeftMargin", "72"},			//  (72) Space for ring binding</code></pre>
+<h3>HTTP Ports</h3>
+<p>In HTUtils.h, we can see that <a href="https://en.wikipedia.org/wiki/Jon_Postel">Jon Postel</a> allocated port 80 to HTTP on 24 January 1992.</p>
+<pre><code>
+#define TCP_PORT 80	/* Allocated to http by Jon Postel/ISI 24-Jan-92 */
+#define OLD_TCP_PORT 2784	/* Try the old one if no answer on 80 */</code></pre>
+</section>
+
+  </main>
+</body>
+
+<footer>
+	<div class="cernlogo"><a href="https://cern.ch/"><img src="/images/colophon/cern_logo_bw.png" alt="CERN" /></a></div>
+	<nav>
+		<ul>
+			<li><a href="/colophon/">Colophon</a></li>
+			<li><a href="/related/">Related Links</a></li>
+		</ul>
+	</nav>
+	<p>&copy; 2019 CERN</p>
+	<ul class="palette"><li></li> <li></li> <li></li> <li><a href="/images/wow.jpg" style="color: #fff;"></a></li></ul>
+
+</footer>
+
+</body>
+</html>
