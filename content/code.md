@@ -20,7 +20,7 @@ For all of the following comments, the terms "source code", "WorldWideWeb", and 
 
 Today, we refer to HTML files as HTML documents or web pages, but at the beginning of the Web, the source code only refers to hypertext documents or nodes&mdash;or "a hypertext" for short. 
 
-When this source code was written, there was no version number associated with HTML. Based on the source code, the following tags--the term 'element' was not yet used--were recognized:
+When this source code was written, there was no version number associated with HTML. Based on the source code, the following tags&mdash;the term 'element' was not yet used&mdash;were recognized:
 
 - ADDRESS
 - A
@@ -66,7 +66,7 @@ A few entities were supported: ampersand (<code>&amp;AMP;</code>), less than (<c
 
 ParseHTML.h in the source code contained the instructions for parsing markup. Here are some interesting things that we noticed: 
 
-The approach taken to parsing the markup looked much like the code we found in www.c in the <a href="http://line-mode.cern.ch">line mode browser</a>. A state machine is used to parse the markup stream--in fact, the function names are the same and switch statements are very similar code. And again, this parsing also manages the style stack.
+The approach taken to parsing the markup looked much like the code we found in www.c in the <a href="http://line-mode.cern.ch">line mode browser</a>. A state machine is used to parse the markup stream&mdash;in fact, the function names are the same and switch statements are very similar code. And again, this parsing also manages the style stack.
 
 Comments in the code indicated that CERN's SGML implementation injected extra new line characters in files. The source code defines a constant called CERN_WEIRDO – when this is true, logic executes to identify multiple new line characters and replace them with a single paragraph tag/output.
 
@@ -115,7 +115,7 @@ List &lt;LI&gt; 0 Helvetica 12.0   1
 
 In comparing the NXTextStyle values of 1 for Normal and List against the 0 for Bold-Italic, our hypothesis is that the former was intended to imply a block treatment while the latter was meant to imply inline treatment. This is supported by the fact that Bold-Italic lacks the second line of styles (indentation, spacing, tab stops) which would only be needed for blocks of text. 
 
-Although there are values set to define the amount of space before and after blocks--similar to margins in CSS today--these values are not directly used to insert space. Instead, the browser performs some math to determine how many line breaks to insert between blocks of text. 
+Although there are values set to define the amount of space before and after blocks&mdash;similar to margins in CSS today&mdash;these values are not directly used to insert space. Instead, the browser performs some math to determine how many line breaks to insert between blocks of text. 
 <pre><code>
 int newlines = ((s-&gt;<b>spaceBefore</b>+s-&gt;<b>spaceAfter</b>) / s-&gt;paragraph-&gt;<b>lineHt</b>) + 1;
 for(i=0; i&lt;newlines; i++) OUTPUT('\n');</code></pre>
@@ -127,7 +127,7 @@ Our version of WorldWideWeb was missing code to apply styles to H4, H5, or H6, h
 ## Other Interesting Notes
 
 ### Printing
-These days, we don't spend a lot of time thinking about printing web documents--but this was a consideration at the time. The code even considered that the pages might be ring-bound after printing!
+These days, we don't spend a lot of time thinking about printing web documents&mdash;but this was a consideration at the time. The code even considered that the pages might be ring-bound after printing!
 
 <pre><code>
 static NXDefaultsVector myDefaults = {
