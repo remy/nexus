@@ -7,11 +7,7 @@ import keyMap from './keyMap';
 import * as panels from './panels';
 import * as actions from './actions';
 import { PATH } from './env';
-import { camelCase, titleCase } from './utils';
-
-function isUpper(letter) {
-  return /[A-Z]/.test(letter);
-}
+import { camelCase, titleCase, isUpper } from './utils';
 
 function addKeyMap(menu) {
   Object.entries(menu).map(([, { menu, accelerator, id: menuId }]) => {
@@ -55,7 +51,11 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
-    // { type: 'url', id: `${PATH}/blank.html`, props: { ref: createRef() } },
+    {
+      type: 'panel',
+      id: `${PATH}/blank.html`,
+      props: { Component: panels.SaveFile },
+    },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
@@ -114,6 +114,8 @@ const App = () => {
             id,
             Component: panels[idTitleCase],
           });
+        } else {
+          console.error(`unknown panel (${idTitleCase})`);
         }
         break;
       case 'method':
@@ -194,6 +196,7 @@ const App = () => {
               id={id}
               index={index}
               add={add}
+              close={close('panel')}
               {...props}
               active={active.id == id}
               onAction={url => add({ type: 'url', id: url })}

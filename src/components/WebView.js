@@ -1,7 +1,8 @@
 import React, { createRef } from 'react';
 import Window from './Window';
 import { HOST, API } from '../env';
-import { getLink } from '../utils';
+import { getLink, localToFilename } from '../utils';
+import * as filesystem from '../filesystem';
 import './WebView.scss';
 
 export default class WebView extends React.Component {
@@ -13,6 +14,7 @@ export default class WebView extends React.Component {
     this.state = {
       title: '',
       body: '',
+      local: false,
       links: [],
       dirty: false,
       nextId: 0,
@@ -38,7 +40,22 @@ export default class WebView extends React.Component {
     this.load(this.props.url);
   }
 
+  setClean() {
+    this.setState({ dirty: false });
+  }
+
   async load(url) {
+    if (url.startsWith('file://')) {
+      const filename = localToFilename(url);
+      const title = filename.replace(/\.html?$/, '');
+      const body = await filesystem.load(filename);
+      this.setState({
+        local: true,
+        title,
+        body,
+      });
+      return;
+    }
     const res = await fetch(`${API}?url=${encodeURIComponent(url)}`);
     const json = await res.json();
     if (json.title) {
@@ -54,10 +71,10 @@ export default class WebView extends React.Component {
   }
 
   unlink() {
-    const { local } = this.props;
+    const { local } = this.state;
     // only local files can be modified for marking
     if (!local) {
-      // return;
+      return;
     }
     const selection = window.getSelection();
 
@@ -77,7 +94,7 @@ export default class WebView extends React.Component {
     const { local } = this.props;
     // only local files can be modified for marking
     if (!local) {
-      // return;
+      return;
     }
     const selection = window.getSelection();
 
@@ -124,7 +141,7 @@ export default class WebView extends React.Component {
     const { local } = this.props;
     // only local files can be modified for marking
     if (!local) {
-      // return;
+      return;
     }
     const selection = window.getSelection();
 

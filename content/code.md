@@ -130,9 +130,9 @@ Our version of WorldWideWeb was missing code to apply styles to H4, H5, or H6, h
 These days, we don't spend a lot of time thinking about printing web documents--but this was a consideration at the time. The code even considered that the pages might be ring-bound after printing!
 
 <pre><code>
-    static NXDefaultsVector myDefaults = {
-        { "PaperType", "Letter"},		// Non-USA users will have to override
-	{ "LeftMargin", "72"},			//  (72) Space for ring binding</code></pre>
+static NXDefaultsVector myDefaults = {
+   { "PaperType", "Letter"},		// Non-USA users will have to override
+   { "LeftMargin", "72"},		//  (72) Space for ring binding</code></pre>
 
 ### HTTP Ports
 In HTUtils.h, we can see that <a href="https://en.wikipedia.org/wiki/Jon_Postel">Jon Postel</a> allocated port 80 to HTTP on 24 January 1992. 

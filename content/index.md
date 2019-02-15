@@ -24,7 +24,7 @@ Ready to browse the World Wide Web using WorldWideWeb?
 
 Click here to jump in: 
 
-<a href="/browser" class="button">Launch WorldWideWeb</a>
+<a href="/browser" class="button" target="_blank" rel="noopener">Launch WorldWideWeb</a>
 
 ---
 

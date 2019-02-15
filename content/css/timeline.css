@@ -48,7 +48,8 @@
 }
 @media all and (min-width: 30em) {
   .canvas {
-    margin-top: 3em;
+    margin-top: 6em;
+    margin-bottom: 3em;
     display: flex;
     flex-direction: column;
   }

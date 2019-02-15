@@ -1,10 +1,27 @@
-import React from 'react';
-import idb from 'idb-keyval';
+import React, { useState, useEffect } from 'react';
 import Window from './Window';
+import { save, load, list } from '../filesystem';
 
-const SaveFile = ({ add, ...props }) => {
+const SaveFile = ({ close, add, id, ...props }) => {
+  const [selected, setSelected] = useState('');
+  const [files, setFiles] = useState([]);
+
+  const saveAndLoad = async () => {
+    const template = await load('blank.html');
+    save(selected, template);
+    add({
+      id: 'file://WWW/' + selected,
+      type: 'url',
+    });
+    close(id);
+  };
+
+  useEffect(() => {
+    list().then(files => setFiles(files));
+  }, []);
+
   return (
-    <Window {...props} title="">
+    <Window {...props} id={id} title="" dialogue>
       <div id="save-file">
         <div className="content">
           <div className="first-block">
@@ -15,24 +32,17 @@ const SaveFile = ({ add, ...props }) => {
                 <h4>WWW</h4>
                 <div className="r2l-content">
                   <div className="l2r-content">
-                    <ul>
-                      <li>
-                        <input type="radio" name="file" id="file1" />
-                        <label htmlFor="file1">fileName.html</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="file" id="file2" />
-                        <label htmlFor="file2">fileName.html</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="file" id="file3" />
-                        <label htmlFor="file3">fileName.html</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="file" id="file4" />
-                        <label htmlFor="file4">fileName.html</label>
-                      </li>
-                    </ul>
+                    <select
+                      defaultValue={selected}
+                      onChange={e => {
+                        setSelected(e.target.value);
+                      }}
+                      size={files.length}
+                    >
+                      {files.map((filename, i) => {
+                        return <option key={i}>{filename}</option>;
+                      })}
+                    </select>
                   </div>
                 </div>
               </div>
@@ -41,10 +51,16 @@ const SaveFile = ({ add, ...props }) => {
           <div className="second-block">
             <p>
               <label>
-                Name: <input type="text" name="file-name" />
+                Name:{' '}
+                <input
+                  value={selected}
+                  onChange={e => setSelected(e.target.value)}
+                  type="text"
+                  name="file-name"
+                />
               </label>
             </p>
-            <ul class="buttons-bar">
+            <ul className="buttons-bar">
               <li>
                 <img src="img/house.png" alt="Icon of a house." />
               </li>
@@ -55,10 +71,12 @@ const SaveFile = ({ add, ...props }) => {
                 <img src="img/disk-arrow.png" alt="Icon of a disk with an arrow" />
               </li>
               <li>
-                <button>Cancel</button>
+                <button onClick={() => close(id)}>Cancel</button>
               </li>
               <li>
-                <button className="enter-button">OK</button>
+                <button onClick={saveAndLoad} className="enter-button">
+                  OK
+                </button>
               </li>
             </ul>
           </div>
