@@ -1,0 +1,265 @@
+/* 	-- 	CERN 2019
+		-- 	Supplemental website for the rebuilding 
+				of WorldWideWeb NeXT application
+				Built February, 2019
+                                                                                                    
+                                                                                                          
+                      `.-:/+++++++++++++++++++++++++++++++++++++++++++++++`     
+                  .:oo+/:-.``````.-:/oso/-````````````````````````````````      
+               .+s+-`                  `-+s+.                                   
+             :s+-                   ``.....:os:                   .:`           
+           -s+.               .-/+ooo+////++:-+s- `               /y            
+         `os.             `-+s+:.`             .s+-+/.            s+            
+        .s+             .+s/.                    +s.-+s/`        `y:            
+       `s+            -oo-                        +s` `/s/`      :y`            
+       oo            ./-                           oo   `/s:     +s             
+      :y.   .-----` ------``---.-.`  .`      `.    .y:    .so`   y/             
+      so  /+.    ..`y-   ` .y`   -y- /o/`    -/     os     `oo` -y-             
+     `y: +s        `y:.... .y.``./+` /..++`  -/     /y-      oo /y              
+     `y: os        `y-```` .y:.+o`   /.  .++.-/     :yo      `y:so              
+      y/ `o/`      `y-     .y.  .o/` /.    .os/     /yy-      /yy:              
+      oo   .:-----``/:----``/`    ::`-`      .-     oooo      .yy.              
+      -y-       --                                 -y--y.     `ys               
+       os`      oo                                `s+  s+     `y+               
+       .yo`     /y                               `oo   :y.    -y-               
+        +ys.    .y-                             .s+     s+    os                
+        `yss:    +s`                           /s:      :y`  -y-                
+         /y-+s:  `s+                         :s+`       `y/ .s/                 
+         `s+ .+s/.`s+                     ./so.          /y`s+                  
+          :y.  `-+s+/-                `-+sys-            `y/.                   
+           so      .:+oo+/::----::/+oo+/ss:             .-+s                    
+           -y-         `://-::::--.` `/s/`            -oo-.y:                   
+            os           :oo/.      :s+`          `-+s+.   +s                   
+            `-`            `:+so/`-so.       `.:/oo/-      .y-                  
+                               `-oo-:oooooooo+/:.           os                  
+                              `+s-                          -y-                 
+                            `/s:                             oo                 
+                           :s/`                              -y.                
+                         :s+`                                 s+                
+                       -oo.                                   :y.               
+                      :+-                                      +:               
+                                                                               
+
+*/
+
+@font-face {
+	font-family: 'NeXT Big_Bold';
+	src:    url('/css/fonts/NeXT_Big-Bold.woff') format('woff'),
+					url('/css/fonts/NeXT_Big-Bold.woff2') format('woff2');
+	font-weight: bold;
+	font-style: normal;
+}
+
+* {
+	margin:0;
+	padding:0;
+}
+
+::selection {
+	background: #aaaaaa;
+}
+
+html { 
+	padding: 2.5vw; 
+	border: 10px solid #aaaaaa; 
+	webkit-font-smoothing: none;
+	-moz-osx-font-smoothing: none;
+	font-smooth: never;
+}
+body {
+	font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	background-color: #ffffff;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #333;
+}
+
+sup,
+sub {
+	vertical-align: baseline;
+	position: relative;
+	top: -0.4em;
+}
+sub {
+	top: 0.4em;
+}
+
+a {
+	color: #000;
+}
+img { 
+  max-width: 100%;
+}
+h1, h2, h3, h4, h5 {
+	font-size: 1em;
+}
+h1 {
+	font-size: 1.5em;
+	font-family: 'NeXT Big_Bold';
+	font-weight: bold;
+}
+hr {
+	margin-bottom: 1em;
+	border: 0;
+	border-bottom: 1px solid #ddd;
+}
+ul, ol {
+	margin-left: 1em;
+	margin-bottom: 1em;
+}
+ul {
+	list-style: circle;
+}
+ol {
+	list-style: none;
+}
+ol li {
+	margin-left: 0;
+	padding-left: 1em;
+}
+ol a {
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+}
+ol a:hover,
+ol a:focus{
+	background-color: #f7f7f7;
+}
+ul ol {
+	border-left: 1px dotted #ddd;
+}
+ul ol ol {
+	list-style: none;
+	margin: 0;
+}
+ul ol ol li a::before {
+	content: "↳ ";
+}
+pre, code {
+	box-sizing: border-box;
+	background-color: #666; 
+	color: #fff;
+	font-family: monospace;
+	padding: 1em;
+	font-size: .8em;
+	display: inline-block;
+	margin-bottom: 1em;
+	width: 100%;
+	overflow: scroll;
+}
+pre::-webkit-scrollbar { /* WebKit */
+  width: 0px;
+}
+
+section p {  
+	margin-bottom: 1em;
+}
+section img {
+	width: 100%;
+}
+header {
+	grid-column: span 2;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 1em; 
+	margin-bottom: 1em;
+}
+nav {
+	margin: 1em 0;
+}
+nav ul {
+	list-style: none;
+	margin: 0;
+}
+nav ul li {
+	display: inline-block;
+	margin-right: 1em;
+}
+@media (min-width: 50em) {
+	main {
+		display: grid;
+		grid-template-columns: minmax(20em, 1fr) minmax(20em, 1fr);
+		grid-gap: 5em;
+		max-width: 80em;
+	}
+	main.nogrid {
+		display: block;
+	}
+}
+footer { 
+  grid-column: span 2;
+  margin-top: 1em;
+  border-top: 1px solid #ddd;
+  padding-top: 1em;
+  margin-top: 1em;
+}
+footer .cernlogo {
+	float: right;
+	width: 70px;
+}
+
+.history {
+	margin-top: 2em;
+	margin-bottom: 2em;
+	background-color: #fbfbfb;
+	padding: 1em;
+	border: 1px solid #ddd;
+}
+ul.history  {
+	padding-left: 2em;
+	margin-left: 0;
+}
+.history ol,
+.history ul {
+	margin-bottom: 0;
+}
+.history time {
+	float: right;
+	font-size: .8em;
+	color: #555;
+}
+
+.fullbleed {
+	grid-column: 1 / span 2;
+	height: auto;
+	max-width: 100%;
+	padding-top: 1em;
+}
+.fullbleed svg {
+	max-width: 100%;
+	height: auto;
+}
+
+/* 	colophon circles 
+		------------------ */
+ul.palette {
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+	margin-left: 0;
+}
+ul.palette li {
+	flex-basis: 45%;
+	max-width: 20px;
+	text-align: center;
+	margin: 0 1rem 1rem 0;
+}
+ul.palette li::before {
+	display: block;
+	content: "";
+	width: 20px;
+	height: 20px;
+	background-color: #000;
+	margin-bottom: 0.5em;
+	border-radius: 20px;
+	border: 1px solid #000;
+}
+ul.palette li:nth-child(2)::before {
+	background-color: #555;
+}
+ul.palette li:nth-child(3)::before {
+	background-color: #AAA;
+}
+ul.palette a::before {
+	background-color: #FFF;
+}
