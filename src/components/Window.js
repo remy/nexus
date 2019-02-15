@@ -18,8 +18,9 @@ const Window = ({
   title,
   active = true,
   onClose,
-  onFocus = () => {},
+  onFocus,
   menu = undefined,
+  dialogue = false,
   dirty = false,
   children,
 }) => {
@@ -47,10 +48,10 @@ const Window = ({
     <Draggable handle=".title-bar">
       <div className={classnames(['panel', { menu }])} style={style}>
         <div
+          onMouseDown={onFocus}
           className={classnames(['title-bar', { active }])}
-          onMouseDown={() => onFocus()}
         >
-          {!menu && (
+          {!menu && !dialogue && (
             <button className="icon-buttons">
               <img src="img/full-window-button.png" alt="Full Window" />
             </button>
@@ -60,7 +61,9 @@ const Window = ({
             <CloseButton onClick={() => onClose(id)} dirty={dirty} />
           )}
         </div>
-        <div className="content">{children}</div>
+        <div onMouseDown={onFocus} className="content">
+          {children}
+        </div>
       </div>
     </Draggable>
   );

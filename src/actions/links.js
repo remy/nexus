@@ -30,5 +30,5 @@ export const followLink = ({ active, add }) => {
 };
 
 export const unlink = ({ active }) => {
-  active.ref.current.unlink();
+  if (active.ref && active.ref.current) active.ref.current.unlink();
 };

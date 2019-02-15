@@ -65,9 +65,10 @@ export default class WebView extends React.Component {
     if (selection.anchorNode.nodeName === '#text') {
       const { anchorNode } = selection;
 
-      const parent = anchorNode.parentNode;
+      const parent = getLink(anchorNode);
       const node = document.createTextNode(anchorNode.nodeValue);
-      parent.replaceChild(node, anchorNode);
+
+      parent.parentNode.replaceChild(node, parent);
       this.setState({ dirty: true });
     }
   }
@@ -207,7 +208,10 @@ export default class WebView extends React.Component {
             />
           </div>
         </div>
-      </Window>
-    );
-  }
-}
+        <button className="grab-window">Grab the window</button>
+      </div>
+    </Window>
+  );
+};
+
+export default WebView;

@@ -13,6 +13,7 @@
   padding: 0;
   border: 0;
   cursor: default;
+  user-select: none !important;
 }
 
 header,
@@ -314,21 +315,37 @@ div.title-bar h2 {
 /* --------------- WEBVIEW -------------------- */
 
 div.webview {
-  border: 1px solid #000;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #000;
 }
 
-div.webview div.r2l-content {
-  direction: rtl;
-  overflow: auto;
-  height: 60%;
-  max-height: 90vh;
-  width: 600px;
-  background-color: #fff;
-}
-div.webview div.l2r-content {
-  direction: ltr;
-  background-color: #fff;
-  padding: 0.3rem;
+  div.webview div.r2l-content {
+    direction: rtl;
+    overflow: auto;
+	  height: 60%;
+	  max-height: 90vh;
+	  width: 600px;
+    background-color: #FFF;
+  }
+  div.webview div.l2r-content {
+    direction: ltr;
+    background-color: #FFF;
+    padding: 0.3rem;
+  }
+
+button.grab-window {
+	overflow: hidden;
+	height: 8px;
+	text-indent: -500em;
+	color: #AAA;
+	background-color: #AAA;
+	background-image: url(../img/grabber-bg.png), url(../img/grabber-bg2.png);
+	background-position: 50px 0, right center;
+	background-repeat: repeat-y;
+	border-right: none;
+	border-bottom: none;
+	margin-top: auto;
 }
 
 /* --------------- PANELS -------------------- */
@@ -382,6 +399,21 @@ div.panel .webview {
 
 /* ------------------------ SPECIFICS -------------------------- */
 
+div.help-dialogue {
+  padding: 4px 20px;
+  width: 330px;
+}
+
+div.help-dialogue p {
+  margin: 18px 0;
+}
+
+div.help-dialogue button {
+  width: auto;
+  padding: 5px;
+}
+
+
 div.first-block {
   text-align: center;
   padding-bottom: 7px;
@@ -413,10 +445,116 @@ ul.buttons-bar.limited button {
   width: 100px;
   padding: 5px 10px;
 }
-
 .second-block fieldset {
   padding: 5px 2px 0 2px;
 }
+	/* SAVE FILE PANEL */
+
+	.adaptable {
+		overflow-y: scroll;
+		padding: 2px;
+	}
+
+	#save-file {
+		display: flex;
+		flex-direction: column;
+		width: 300px;
+	}
+	#save-file .first-block, #save-file .second-block {text-align: left;}
+
+	#save-file .second-block {display: block; margin: 0 10px 10px;}
+	#save-file .second-block::before {
+		display: block;
+		content: "";
+		width: 100%;
+		height: 20px;
+		background-color: #555;
+		border-top: 1px solid #000;
+		border-left: 1px solid #000;
+		border-right: 1px solid #FFF;
+		border-bottom: 1px solid #FFF;
+	}
+
+	#save-file .second-block p {
+		margin: 10px 0;
+	}
+	#save-file .second-block ul.buttons-bar {
+		width: 100%;
+		justify-content: flex-end;
+	}
+		#save-file .second-block ul.buttons-bar li {
+			flex: initial;
+			padding-left: 5px;
+		}
+			#save-file .second-block ul.buttons-bar li:nth-child(4),
+			 	#save-file .second-block ul.buttons-bar li:nth-child(5) {
+				width: 60px;
+			}
+		#save-file ul.buttons-bar button {
+			padding: 6px 0;
+		}
+		#save-file ul.buttons-bar button.enter-button {
+			padding: 6px 15px 6px 0;
+		}
+	#save-file .second-block input {
+		width: 230px;
+		padding: 3px;
+	}
+
+	#save-file h3 {
+		font: 20px "NeXT Big_Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		background: url(../img/browser-logo.png) 0 10px no-repeat;
+		padding: 30px 0 30px 70px;
+		margin: 0 0 0 20px;
+	}
+
+	div.file-lists {display: flex;}
+		div.file-lists .list {
+			flex: 1;
+			margin: 10px 10px 0;
+			border-top: 1px solid #555;
+			border-left: 1px solid #555;
+			border-right: 1px solid #FFF;
+			border-bottom: 1px solid #FFF;
+			outline: 1px solid #555;
+		}
+		div.file-lists h4 {
+			font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+			text-align: center;
+			color: #FFF;
+			background-color: #555;
+			padding: 3px 0 0;
+			border-top: 1px solid #000;
+			border-left: 1px solid #000;
+			border-right: 1px solid #FFF;
+			border-bottom: 1px solid #FFF;
+		}
+
+		div.file-lists ul {list-style-type: none;}
+
+		div.file-lists li {
+			position: relative;
+			overflow: hidden;
+			font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+		}
+		div.file-lists input {
+			position: absolute;
+			left: -50em;
+		}
+		div.file-lists input[type=radio]:checked + label {
+			background-color: #FFF;
+		}
+
+		#save-file .r2l-content {
+			direction: rtl;
+			overflow: auto;
+			height: 200px;
+		}
+		#save-file .l2r-content {
+				direction: ltr;
+				background-color: #AAA;
+				padding: 0.3rem;
+			}
 
 /* BROWSER INFO */
 
@@ -442,7 +580,7 @@ ul.buttons-bar.limited button {
 }
 #browser-info header p.baseline {
   width: 10em;
-  font: 18px 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font: 17px 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
 }
 #browser-info header p.release {
@@ -451,7 +589,7 @@ ul.buttons-bar.limited button {
 }
 #browser-info header address {
   flex-basis: 100%;
-  font-size: 18px;
+  font-size: 17px;
   font-style: normal;
   text-align: right;
 }
@@ -470,7 +608,7 @@ ul.buttons-bar.limited button {
 #browser-info dt,
 #browser-info dd {
   display: inline;
-  font-size: 18px;
+  font-size: 17px;
   text-align: left;
 }
 
@@ -562,7 +700,7 @@ ul.buttons-bar.limited button {
 }
 
 #open-url .first-block p {
-  padding: 18px 0;
+  padding: 17px 0;
 }
 
 ul.buttons-bar.vertical {

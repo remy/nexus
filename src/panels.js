@@ -17,3 +17,13 @@ export const StyleEditor = Loadable({
   loader: () => import('./components/StyleEditor'),
   loading,
 });
+
+export const LinkHelp = Loadable({
+  loader: () => import('./components/LinkHelp'),
+  loading,
+});
+
+export const NewDocHelp = Loadable({
+  loader: () => import('./components/NewDocHelp'),
+  loading,
+});
