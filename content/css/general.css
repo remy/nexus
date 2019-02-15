@@ -132,6 +132,8 @@ footer {
   margin-top: 1em;
 }
 
+	footer .cernlogo { float: right; width: 70px; }
+
 
 
 ul, ol { margin-left: 1em; margin-bottom: 1em; }
@@ -198,7 +200,7 @@ pre::-webkit-scrollbar { /* WebKit */
 			}
 			ul.palette li:nth-child(2)::before {background-color: #555;}
 			ul.palette li:nth-child(3)::before {background-color: #AAA;}
-			ul.palette a::before {background-color: #FFF;}
+			ul.palette li:nth-child(4)::before {background-color: #FFF;}
 
 
 
