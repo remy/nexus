@@ -63,16 +63,60 @@ export default class WebView extends React.Component {
     }
   }
 
-  onMark() {
-    console.log('calling on mark');
-
+  linkToMarked(url) {
     const { local } = this.props;
     // only local files can be modified for marking
     if (!local) {
       // return;
     }
     const selection = window.getSelection();
-    console.log('mark', selection);
+
+    // we assume this is nearly always… I think
+    if (selection.anchorNode.nodeName === '#text') {
+      const nextId = this.state.nextId;
+      this.setState({ nextId: nextId + 1 });
+      const { anchorOffset, focusOffset, anchorNode } = selection;
+      const [start, end] = [focusOffset, anchorOffset].sort();
+
+      const parent = anchorNode.parentNode;
+      const text = anchorNode.nodeValue;
+      const linkText = selection.toString();
+
+      const left = document.createTextNode(text.substr(0, start));
+      const right = document.createTextNode(text.substr(end));
+      const middle = document.createElement('a');
+      middle.setAttribute('NAME', nextId);
+      middle.setAttribute('href', url);
+      middle.innerHTML = linkText;
+
+      parent.replaceChild(right, anchorNode);
+      parent.insertBefore(middle, right);
+      parent.insertBefore(left, middle);
+
+      // reselect the highlighted block
+      let range = document.createRange();
+      selection.removeAllRanges();
+      range.selectNode(middle);
+      selection.addRange(range);
+
+      const nextIdElement = this.ref.current.querySelector('nextid');
+      if (nextIdElement) {
+        // TODO workout how to set a numeric attrib…apparently it won't fly
+      }
+
+      this.setState({ dirty: true });
+
+      return { url: this.props.url + '#' + nextId };
+    }
+  }
+
+  onMark() {
+    const { local } = this.props;
+    // only local files can be modified for marking
+    if (!local) {
+      // return;
+    }
+    const selection = window.getSelection();
 
     // we assume this is nearly always… I think
     if (selection.anchorNode.nodeName === '#text') {
@@ -93,7 +137,20 @@ export default class WebView extends React.Component {
       parent.insertBefore(middle, right);
       parent.insertBefore(left, middle);
 
-      console.log('marked');
+      // reselect the highlighted block
+      let range = document.createRange();
+      selection.removeAllRanges();
+      range.selectNode(middle);
+      selection.addRange(range);
+
+      const nextIdElement = this.ref.current.querySelector('nextid');
+      if (nextIdElement) {
+        // TODO workout how to set a numeric attrib…apparently it won't fly
+      }
+
+      this.setState({ dirty: true });
+
+      return { url: this.props.url + '#' + nextId };
     }
   }
 

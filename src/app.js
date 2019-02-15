@@ -46,12 +46,20 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'links' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
+    { type: 'url', id: `${PATH}/blank.html`, props: { ref: createRef() } },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
   const add = ({ id, type, ...props }) => {
     if (type === 'url') {
+      // check if we have the URL open already and insert set focus
+      const match = id.replace(/#.*$/, '');
+      const found = windows.find(_ => _.type === 'url' && _.id === match);
+      console.log('found', found);
+      if (found) {
+        return setActive(found);
+      }
       const ref = createRef();
       props.ref = ref;
     }

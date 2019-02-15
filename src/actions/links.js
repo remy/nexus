@@ -1,4 +1,4 @@
-let currentLink = null;
+let currentLink = 'https://example.com/';
 
 export const markAll = ({ active }) => {
   console.log('marking all', active.id);
@@ -7,10 +7,13 @@ export const markAll = ({ active }) => {
 
 export const markSelection = ({ active }) => {
   console.log('marking selection', active.ref);
-  active.ref.current.onMark();
+  currentLink = active.ref.current.onMark().url;
+  console.log('currentLink: ' + currentLink.url);
 };
 
-export const linkToMarked = () => {};
+export const linkToMarked = ({ active }) => {
+  if (currentLink) active.ref.current.linkToMarked(currentLink);
+};
 
 export const followLink = () => {};
 

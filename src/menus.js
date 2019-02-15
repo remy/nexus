@@ -139,7 +139,12 @@ export const links = {
       id: 'mark-selection',
       action: 'method',
     },
-    { title: 'Link to marked', accelerator: 'L', id: 'link-to-marked' },
+    {
+      title: 'Link to marked',
+      accelerator: 'L',
+      id: 'link-to-marked',
+      action: 'method',
+    },
     { title: 'Link to file…', id: 'link-to-file' },
     { title: 'Link to New', accelerator: 'N', id: 'link-to-new' },
     { title: 'Follow link', id: 'follow-link' },
