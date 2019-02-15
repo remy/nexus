@@ -6,7 +6,7 @@ subhede: A deconstruction of some of the more interesting bits we found hiding i
 
 <section>
 
-##Introduction
+## Introduction
 
 The earliest (and only) <a href="https://github.com/cynthia/WorldWideWeb">source code</a> we could find for WorldWideWeb indicated it was version 0.15 (copyright 1991) in the <a href="https://github.com/cynthia/WorldWideWeb/blob/master/NextStep/Implementation/WorldWideWeb.nib/data.nib">data.nib</a> file. There were comments in the code with dates in 1992, however, so it's possible the version had not been updated and this code is a bit older. 
 

@@ -46,13 +46,13 @@ const SaveFile = ({ add, ...props }) => {
             </p>
             <ul class="buttons-bar">
               <li>
-                <img src="img/house.png" alt="" />
+                <img src="img/house.png" alt="Icon of a house." />
               </li>
               <li>
-                <img src="img/disk.png" alt="" />
+                <img src="img/disk.png" alt="Icon of a disk." />
               </li>
               <li>
-                <img src="img/disk-arrow.png" alt="" />
+                <img src="img/disk-arrow.png" alt="Icon of a disk with an arrow" />
               </li>
               <li>
                 <button>Cancel</button>
