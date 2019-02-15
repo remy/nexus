@@ -32,3 +32,8 @@ export const BrowserNav = Loadable({
   loader: () => import('./components/BrowserNav'),
   loading,
 });
+
+export const SaveFile = Loadable({
+  loader: () => import('./components/SaveFile'),
+  loading,
+});

@@ -4,44 +4,46 @@
 -------------------------------------------------------------------- */
 
 /* @FONT DECLARATIONS */
+
+/* @FONT DECLARATIONS */
 @font-face {
-    font-family: 'NeXT_Bold';
-    src:    url('/css/ui-fonts/NeXT-Bold.woff') format('woff'),
-            url('/css/ui-fonts/NeXT-Bold.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NeXT_Bold';
+  src: url('./fonts/CERN-www-regular-bold.woff2') format('woff2'),
+    url('./fonts/CERN-www-regular-bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'NeXT_Roman';
-    src:    url('/css/ui-fonts/NeXT-Roman.woff') format('woff'),
-            url('/css/ui-fonts/NeXT-Roman.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NeXT_Roman';
+  src: url('./fonts/CERN-www-regular.woff2') format('woff2'),
+    url('./fonts/CERN-www-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'NeXT Big_Bold';
-    src:    url('/css/ui-fonts/NeXT_Big-Bold.woff') format('woff'),
-            url('/css/ui-fonts/NeXT_Big-Bold.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NeXT Big_Bold';
+  src: url('./fonts/CERN-www-headline-bold.woff2') format('woff2'),
+    url('./fonts/CERN-www-headline-bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'NeXT Mono_Regular';
-    src:    url('/css/ui-fonts/NeXT_Mono-Regular.woff') format('woff'),
-            url('/css/ui-fonts/NeXT_Mono-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NeXT Mono_Regular';
+  src: url('./fonts/CERN-www-mono.woff2') format('woff2'),
+    url('./fonts/CERN-www-mono.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'NeXT Oblique';
-    src:    url('/css/ui-fonts/NeXT-Oblique.woff') format('woff'),
-            url('/css/ui-fonts/NeXT-Oblique.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'NeXT Oblique';
+  src: url('./fonts/CERN-www-regular-bold-oblique.woff2') format('woff2'),
+    url('./fonts/CERN-www-regular-bold-oblique.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* DEFAULTS */

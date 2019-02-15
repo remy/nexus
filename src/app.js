@@ -100,6 +100,8 @@ const App = () => {
       return;
     }
 
+    console.log(info);
+
     const { action, props = {} } = info;
     const idTitleCase = titleCase(id);
     const idCamelCase = camelCase(id);
@@ -185,13 +187,14 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'panel')
-        .map(({ props: { Component }, id }, index) => {
+        .map(({ props: { Component, ...props }, id }, index) => {
           return (
             <Component
               key={`panel:${id}`}
               id={id}
               index={index}
               add={add}
+              {...props}
               active={active.id == id}
               onAction={url => add({ type: 'url', id: url })}
               onFocus={() => setActive({ type: 'panel', id })}
