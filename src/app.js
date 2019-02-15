@@ -9,6 +9,28 @@ import * as actions from './actions';
 import { PATH } from './env';
 import { camelCase, titleCase } from './utils';
 
+function isUpper(letter) {
+  return /[A-Z]/.test(letter);
+}
+
+function addKeyMap(menu) {
+  Object.entries(menu).map(([, { menu, accelerator, id: menuId }]) => {
+    if (accelerator) {
+      if (isUpper(accelerator)) {
+        keyMap[menuId] = `ctrl+alt+shift+${accelerator.toLowerCase()}`;
+      } else {
+        keyMap[menuId] = `ctrl+alt+${accelerator}`;
+      }
+    }
+
+    if (menu) {
+      addKeyMap(menu);
+    }
+  });
+}
+
+addKeyMap(allMenus);
+
 function reducer(state, action) {
   const { data, type } = action;
 
@@ -31,7 +53,7 @@ const App = () => {
   const [active, setActive] = useState({});
   const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'links' },
+    { type: 'menu', id: 'top' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
     // { type: 'url', id: `${PATH}/blank.html`, props: { ref: createRef() } },
   ]);

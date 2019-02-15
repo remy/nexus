@@ -208,7 +208,10 @@ export default class WebView extends React.Component {
             />
           </div>
         </div>
-      </Window>
-    );
-  }
-}
+        <button className="grab-window">Grab the window</button>
+      </div>
+    </Window>
+  );
+};
+
+export default WebView;
