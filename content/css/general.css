@@ -108,7 +108,7 @@ ul, ol {
 	margin-bottom: 1em;
 }
 ul {
-	list-style: circle
+	list-style: circle;
 }
 ol {
 	list-style: none;
