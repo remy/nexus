@@ -190,7 +190,7 @@ export default class WebView extends React.Component {
 
     const { title, body, dirty } = this.state;
 
-    if (!url) {
+    if (!body) {
       return <Window title={title} {...props} />;
     }
 
