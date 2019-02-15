@@ -17,7 +17,7 @@ function camelCase(s = '') {
 }
 
 function titleCase(s = '') {
-  return s.replace(/\b./g, (m, i) => {
+  return s.replace(/\b./g, m => {
     if (m === '-') return '';
     return m.toUpperCase();
   });
@@ -44,7 +44,7 @@ function reducer(state, action) {
 const App = () => {
   const [active, setActive] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'links' },
+    { type: 'menu', id: 'top' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
     // { type: 'url', id: `${PATH}/blank.html`, props: { ref: createRef() } },
   ]);
