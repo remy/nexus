@@ -206,12 +206,13 @@ footer .cernlogo {
 	text-decoration: none;
 	text-align: center;
 	font-size: 0.86em;
-	background-color: #AAA;
-	padding: 0.3333em;
-	border-top: 1px solid #FFF;
-	border-left: 1px solid #FFF;
-	border-bottom: 1px solid #000;
-	border-right: 1px solid #000;
+	background-color: #09c;
+	color: #fff;
+	padding: 0.3333em 0.6666em;
+	border-top: 1px solid #6cf;
+	border-left: 1px solid #6cf;
+	border-bottom: 1px solid #069;
+	border-right: 1px solid #069;
 	margin-bottom: 1.5em;
 }
 @media all and (max-width: 30em) {
