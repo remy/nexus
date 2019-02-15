@@ -100,9 +100,11 @@ h1 {
 	font-weight: bold;
 }
 hr {
-	margin-bottom: 1em;
+	margin: 0 auto 1em auto;
 	border: 0;
 	border-bottom: 1px solid #ddd;
+	width: 70%;
+	text-align: center;
 }
 ul, ol {
 	margin-left: 1.5em;
@@ -199,6 +201,8 @@ footer .cernlogo {
 	float: right;
 	width: 70px;
 }
+
+video { width: 100%; border: 3px solid #000; }
 
 .button {
 	box-sizing: border-box;
