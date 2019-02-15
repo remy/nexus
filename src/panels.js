@@ -38,4 +38,7 @@ export const SaveFile = Loadable({
   loading,
 });
 
-console.log('wat');
+export const OpenFile = Loadable({
+  loader: () => import('./components/OpenFile'),
+  loading,
+});
