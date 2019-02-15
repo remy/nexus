@@ -83,6 +83,7 @@ const WebView = ({ url, onNavigate, onFocus, ...props }) => {
             }}
           />
         </div>
+        <button className="grab-window">Grab the window</button>
       </div>
     </Window>
   );

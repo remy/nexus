@@ -8,6 +8,7 @@ import { HOST } from './env';
 import InfoAbout from './components/InfoAbout.js';
 import BrowserNav from './components/BrowserNav.js';
 import StyleEditor from './components/StyleEditor.js';
+import SaveFile from './components/SaveFile.js';
 
 const keyMap = {};
 
@@ -58,7 +59,8 @@ const App = () => {
     { type: 'url', id: `${HOST}/default.html` },
     { type: 'panel', id: 'info', props: {Component: InfoAbout}},
     { type: 'panel', id: 'browser-nav', props: {Component: BrowserNav}},
-    { type: 'panel', id: 'style-editor', props: {Component: StyleEditor}}
+    { type: 'panel', id: 'style-editor', props: {Component: StyleEditor}},
+    { type: 'panel', id: 'save-file', props: {Component: SaveFile}}
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
