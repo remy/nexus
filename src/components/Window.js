@@ -5,9 +5,9 @@ import classnames from 'classnames';
 const CloseButton = ({ onClick, dirty }) => (
   <button className="icon-buttons" onClick={onClick}>
     {dirty ? (
-      <img src="/img/expand-window-button.png" alt="Save & Close Window" />
+      <img src="img/expand-window-button.png" alt="Save & Close Window" />
     ) : (
-      <img src="/img/close-window-button.png" alt="Close Window" />
+      <img src="img/close-window-button.png" alt="Close Window" />
     )}
   </button>
 );
@@ -18,7 +18,7 @@ const Window = ({
   title,
   active = true,
   onClose,
-  onFocus,
+  onFocus = () => {},
   menu = undefined,
   dirty = false,
   children,
@@ -52,7 +52,7 @@ const Window = ({
         >
           {!menu && (
             <button className="icon-buttons">
-              <img src="/img/full-window-button.png" alt="Full Window" />
+              <img src="img/full-window-button.png" alt="Full Window" />
             </button>
           )}
           <h2>{title}</h2>
