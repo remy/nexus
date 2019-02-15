@@ -95,6 +95,7 @@ h1, h2, h3, h4, h5 {
 }
 h1 {
 	font-size: 1.5em;
+	line-height: 1.2;
 	font-family: 'NeXT Big_Bold';
 	font-weight: bold;
 }
@@ -163,6 +164,7 @@ header {
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 1em; 
 	margin-bottom: 1em;
+	max-width: 80em;
 }
 nav {
 	margin: 1em 0;
@@ -197,6 +199,32 @@ footer .cernlogo {
 	float: right;
 	width: 70px;
 }
+
+.button {
+	box-sizing: border-box;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	font-size: 0.86em;
+	background-color: #AAA;
+	padding: 0.3333em;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+	margin-bottom: 1.5em;
+}
+@media all and (max-width: 30em) {
+	header .button {
+		width: 100%;
+	}
+}
+@media all and (min-width: 44em) {
+	header .button {
+		float: right;
+	}
+}
+
 
 .history {
 	margin-top: 2em;
