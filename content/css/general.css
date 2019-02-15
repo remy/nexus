@@ -100,7 +100,7 @@ h1 {
 	font-weight: bold;
 }
 hr {
-	margin: 0 auto 1em auto;
+	margin: 0em auto 1em auto;
 	border: 0;
 	border-bottom: 1px solid #ddd;
 	width: 70%;

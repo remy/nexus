@@ -28,7 +28,9 @@ Hello! We're a team of developers and designers who flew in from around the worl
 
 Here's a video of us made by the American Mission in Geneva of our visit to the data center: 
 
-<video controls src="/images/cern_data.mp4" style="display: inline;">
+<video controls poster="/images/cern_data-poster.jpg" src="/images/cern_data.mp4" style="display: inline;">
+
+<a href="https://www.facebook.com/usmissiongeneva/videos/415779382505638/">Facebook original video source</a>
 
 </video>
 

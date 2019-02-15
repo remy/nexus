@@ -1,7 +1,7 @@
 ---
 layout: baselayout
 title: History — WorldWideWeb NeXT Application
-subhede: 
+subhede: Context for how the WorldWideWeb application was developed 
 gridclass: three
 ---
 
@@ -44,7 +44,7 @@ In February 2019, in celebration of the thirtieth anniversary of the development
 
 ### Abbreviated lineage of web servers and browsers, post-1990
 
-<!--[![Future History](/images/history/future.png)](/images/history/future-highres.png)-->
+Three main technologies were developed essentially in tandem around 1990: the WorldWideWeb NeXT hypertext browser, the CERN httpd web server, and the libwww C library. Most of the modern web is descendant from this trio. Here's a basic time line of how the propagation occurred. 
 
 
 <ul class="history">
@@ -227,6 +227,6 @@ Some notable, or interesting conversations over the years include
 
 <section>
 
-Full, fully-comprehensive map of web browsers here: [https://en.wikipedia.org/wiki/Timeline_of_web_browsers](https://en.wikipedia.org/wiki/Timeline_of_web_browsers)
+You can find a full, fully-comprehensive, slightly mind-blowing map of web browsers here: [https://en.wikipedia.org/wiki/Timeline_of_web_browsers](https://en.wikipedia.org/wiki/Timeline_of_web_browsers)
 
 </section>
