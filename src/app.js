@@ -7,21 +7,7 @@ import keyMap from './keyMap';
 import * as panels from './panels';
 import * as actions from './actions';
 import { PATH } from './env';
-
-function camelCase(s = '') {
-  return s.replace(/\b./g, (m, i) => {
-    if (i === 0) return m;
-    if (m === '-') return '';
-    return m.toUpperCase();
-  });
-}
-
-function titleCase(s = '') {
-  return s.replace(/\b./g, m => {
-    if (m === '-') return '';
-    return m.toUpperCase();
-  });
-}
+import { camelCase, titleCase } from './utils';
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -43,6 +29,7 @@ function reducer(state, action) {
 
 const App = () => {
   const [active, setActive] = useState({});
+  const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
@@ -68,6 +55,12 @@ const App = () => {
   useEffect(() => {
     setActive(windows[windows.length - 1]);
   }, [windows]);
+
+  useEffect(() => {
+    if (active.type === 'url') {
+      setActiveWindow(active);
+    }
+  }, [active]);
 
   const actionHandler = id => {
     const info = Object.keys(allMenus).reduce((acc, curr) => {
@@ -101,7 +94,7 @@ const App = () => {
         break;
       case 'method':
         if (actions[idCamelCase]) {
-          actions[idCamelCase]({ active });
+          actions[idCamelCase]({ active: activeWindow });
         }
         break;
       case 'url':
@@ -111,12 +104,12 @@ const App = () => {
         if (props.all) {
           windows
             .filter(_ => _.type === 'url')
-            .filter(_ => _.id !== active.id)
+            .filter(_ => _.id !== activeWindow.id)
             .map(({ id }) => close('url')(id));
           break;
         }
 
-        close('url')(active.id);
+        close('url')(activeWindow.id);
         break;
     }
   };

@@ -1,22 +1,8 @@
 import React, { createRef } from 'react';
 import Window from './Window';
 import { HOST, API } from '../env';
+import { getLink } from '../utils';
 import './WebView.scss';
-
-function getLink(element, root) {
-  if (element === root) {
-    return false;
-  }
-
-  if (element.nodeName === 'A') {
-    if (element.href) {
-      return element;
-    }
-    return false;
-  }
-
-  return getLink(element.parentNode, root);
-}
 
 export default class WebView extends React.Component {
   constructor(props) {
@@ -163,12 +149,6 @@ export default class WebView extends React.Component {
       return <Window title={title} {...props} />;
     }
 
-    // forwardRef.onStyle = () => {
-    //   console.log('style');
-    // };
-
-    // forwardRef.onLink = () => {};
-
     return (
       <Window title={title} onFocus={onFocus} dirty={dirty} {...props}>
         <div className="webview">
@@ -191,6 +171,7 @@ export default class WebView extends React.Component {
                   let navigateTo = link.href;
 
                   // if we're a relative url, then rebase since we're hosting the html
+                  console.log(link);
                   if (link.origin === HOST) {
                     navigateTo = new URL(
                       link.getAttribute('href'),
