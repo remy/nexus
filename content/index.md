@@ -16,13 +16,12 @@ In February 2019, in celebration of the thirtieth anniversary of the development
 
 ### Contents
 
-- [History](/history/) contains a brief history of the application which was built in 1989 as a progenitor to what we know as "the web" today
-- [Production Process](/production/) is a behind the scenes look at how the WorldWideWeb browser was rebuilt for today
-- [Inside the Code](/code/) is a look at some of the original code of WorldWideWeb
-- [Digital Archeology](/archeology/) is a look at how we unpacked and rediscovered the inner workings of this original browser
-- [Screenshots](/screenshots/) is a collection of screenshots from WorldWideWeb running on a NeXT system
-- [Mailing List Archives](/mailinglist) are some select correspondence that was happening in 1989 around the time of the production of this applcation
-- [Related Links](/related/) are links to additional historical and technical resources around the production of WorldWideWeb
+- [History](/history/) — a brief history of the application which was built in 1989 as a progenitor to what we know as "the web" today.
+- [Timeline](/timeline/) — a timeline of the thirty years of influences leading up to (and the thirty years of influence leading out from) the publication of the memo that lead to the development of the first web browser. 
+- [Production Process](/production/) — a behind the scenes look at how the WorldWideWeb browser was rebuilt for today.
+- [Inside the Code](/code/) — a look at some of the original code of WorldWideWeb.
+- [Related Links](/related/) — links to additional historical and technical resources around the production of WorldWideWeb.
+- [Colophon](/colophon) — a bit of info about the folks behind the project.
 
 </section>
 
