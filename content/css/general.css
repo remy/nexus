@@ -193,6 +193,10 @@ footer {
   padding-top: 1em;
   margin-top: 1em;
 }
+footer .cernlogo {
+	float: right;
+	width: 70px;
+}
 
 .history {
 	margin-top: 2em;
