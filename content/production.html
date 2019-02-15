@@ -12,7 +12,24 @@ subhede: The behind the scenes look at how the WorldWideWeb was rebuilt
 
 	<h3>Digital Archeology</h3>
 
-	<p>We arrived at CERN and spent the first day figuring out the task at hand: How do we pull apart the old WorldWideWeb browser to best emulate it in a contemporary browser?</p>
+	<p>On our first day, we established the following principles to guide the work that we did:</p>
+
+	<ul>
+		<li>Build something that would convey a user's experience, if they were on a NeXT Computer in 1991.</li>
+		<li>Demonstrate the browser-editor capabilities of WorldWideWeb.</li>
+		<li>Tell the story of what was going on in the world of hypertext/hypermedia at the time.</li>
+		<li>We were able to leverage some of the code written during the Line Mode Browser project, including the Node proxy server and some of the CSS. Like that project, we decide to replicate the interface as much as possible, including fonts and a grayscale display.</li>
+	</ul>
+
+	<p>Because WorldWideWeb ran in a graphical user interface (GUI) environment, we felt it was important to emulate that experience as well, including the windowing and various tools that make up the experience.</p>
+
+	<p>With the <a href="/browser/">emulator we build</a>, you can browse the web (modern web sites as well as old markup). The editor functionality works and stores to the browser's localStorage. (Thanks modern web technologies!)</p>
+
+	<p>For an optimal experience, load the WorldWideWeb emulator and enter full-screen mode.</p>
+
+	<hr>
+
+	<p>But before cobbled together our simulator, we were vexed! How do we pull apart the old WorldWideWeb browser to best emulate it in a contemporary browser?</p>
 
 	<p>Thankfully, we had an old NeXT box (almost but not quite the very one on which Tim Berners-Lee developed the WorldWideWeb application). </p>
 
@@ -22,10 +39,14 @@ subhede: The behind the scenes look at how the WorldWideWeb was rebuilt
 
 	<h3>Oral Histories</h3>
 
-	<p>We had a lovely lunch with <a href="https://en.wikipedia.org/wiki/Robert_Cailliau">Robert Cailliau</a>, designer of the WWW logo (which we're using as our favicon!), and collaborator with Tim Berners-Lee on developing the World Wide Web.</p>
+	<p>We had lunch with <a href="https://en.wikipedia.org/wiki/Robert_Cailliau">Robert Cailliau</a>, early proponent of hypertext, designer of the WWW logo (which we're using as our favicon!), and collaborator with Tim Berners-Lee on developing the World Wide Web.</p>
 
 	<figure>
 		<img src="/images/production/robert.jpg" alt="Lunch with Robert Cailliau" />
+	</figure>
+
+	<figure>
+		<img src="/images/production/robertlunch.jpg" alt="Robert Cailliau lunch" />
 	</figure>
 
 	<h3>Past Developers</h3>
@@ -45,11 +66,35 @@ subhede: The behind the scenes look at how the WorldWideWeb was rebuilt
 
 <section>
 
+	<h3>Decommissioned Accelerator</h3>
+	<p>On our first day we were given a tour of the oldest, now decommissioned, accelerator, the (awesomely named) Synchrocyclotron.</p>
+
+	<figure>
+		<img src="/images/production/synchro.jpg" alt="the synchrocyclotron" />
+	</figure>
+
+	<p>Which features a beautiful set of maintenance tools:</p>
+
+	<figure>
+		<img src="/images/production/tools.jpg" alt="the synchrocyclotron toolset" />
+	</figure>	
+
+	<p>That everyone lit with their phones when the lighting was too dim to snap a decent pic:</p>
+
+	<figure>
+		<img src="/images/production/lighting.jpg" alt="lighting the tools" />
+	</figure>		
+
+	<h3>Data centers</h3>
+
+	<p>Our workspace for the week was right inside the CERN datacenter, just across from the coffee machine. On the third day we were given a tour of the impressive facilities:</p>
+
 	<figure class="double">
 		<img src="/images/production/servers.jpg" alt="Visiting the server room" />
 		<img src="/images/production/servers2.jpg" alt="Working" />
 	</figure>
 
+	<h3>Finally, progress</h3>
 	<p>Eventually, finally, it was all working:</p>
 
 	<figure>
