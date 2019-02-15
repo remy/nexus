@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>{{ title }}</title>
-	<meta name="description" content="{{ desc }}" />
+	<title>CERN 2019 WorldWideWeb Rebuild</title>
+	<meta name="description" content="" />
 	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
 	<meta name="author" content="CERN" />
 	<link rel="stylesheet" type="text/css" href="/css/general.css" />
-	{% if extrastyle %}<link rel="stylesheet" type="text/css" href="/css/{{extrastyle}}" />{% endif %}
+	
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
@@ -23,23 +24,17 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="@cern">
-	<meta name="twitter:creator" content="@cern">
-	<meta name="twitter:title" property="og:title" content="{{ title }}">
-	<meta name="twitter:description" property="og:description" content="{{ subhede }}">
-	<meta name="twitter:image" property="og:image" content="https://worldwideweb.cern.ch/images/colophon/thegroup.jpg">
 
-	{% block extrahead %}  {% endblock %}
+	  
 </head>
 
 <body>
 	<header>
 
-		<a href="/browser" class="button" target="_blank" rel="noopener">Launch WorldWideWeb</a>
+		<a href="/browser" class="button">Launch WorldWideWeb</a>
 
-		<h1>{{ title }}</h1>
-		{% if subhede %}<h2>{{ subhede }}</h2>{% endif %}
+		<h1>CERN 2019 WorldWideWeb Rebuild</h1>
+		<h2>2019 rebuilding of the original NeXT web browser</h2>
 
 		<nav>
 			<ul>
@@ -47,16 +42,33 @@
 				<li><a href="/history/">History</a></li>
 				<li><a href="/timeline/">Timeline</a></li>
 				<li><a href="/worldwideweb/">The Browser</a></li>
-				<li><a href="/typography/">Typography</a></li>
 				<li><a href="/code/">Inside the Code</a></li>
 				<li><a href="/production/">Production Process</a></li>
 			</ul>
 		</nav>
 	</header>
 
-	<main role="main"{% if gridclass %} class="{{ gridclass }}"{% endif %}>
+	<main role="main">
 
-    {{ content | safe }}
+    <section>
+<h3>Hello, World</h3>
+<p>In December 1990, an application called WorldWideWeb was developed on a NeXT machine at The European Organization for Nuclear Research (known as CERN) just outside of Geneva. This program – WorldWideWeb — is the antecedent of most of what we consider or know of as &quot;the web&quot; today.</p>
+<p>In February 2019, in celebration of the thirtieth anniversary of the development of WorldWideWeb, a group of developers and designers convened at CERN to rebuild the original browser <em>within</em> a contemporary browser, allowing users around the world to experience the origins of this transformative technology.</p>
+<hr>
+<h3>Contents</h3>
+<ul>
+<li><a href="/history/">History</a> — a brief history of the application which was built in 1989 as a progenitor to what we know as &quot;the web&quot; today.</li>
+<li><a href="/timeline/">Timeline</a> — a timeline of the thirty years of influences leading up to (and the thirty years of influence leading out from) the publication of the memo that lead to the development of the first web browser.</li>
+<li><a href="/production/">Production Process</a> — a behind the scenes look at how the WorldWideWeb browser was rebuilt for today.</li>
+<li><a href="/code/">Inside the Code</a> — a look at some of the original code of WorldWideWeb.</li>
+<li><a href="/related/">Related Links</a> — links to additional historical and technical resources around the production of WorldWideWeb.</li>
+<li><a href="/colophon">Colophon</a> — a bit of info about the folks behind the project.</li>
+</ul>
+</section>
+<section>
+<p><img src="/images/www_project.png" alt="WorldWideWeb"></p>
+</section>
+
 
   </main>
 </body>
@@ -70,12 +82,7 @@
 		</ul>
 	</nav>
 	<p>&copy; 2019 CERN</p>
-	<ul class="palette">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li><a href="/images/wow.jpg"><span>Surprise</span></a></li>
-	</ul>
+	<ul class="palette"><li></li> <li></li> <li></li> <li><a href="/images/wow.jpg" style="color: #fff;"></a></li></ul>
 
 </footer>
 

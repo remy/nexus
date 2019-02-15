@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>{{ title }}</title>
-	<meta name="description" content="{{ desc }}" />
+	<title>CERN 2019 WorldWideWeb Rebuild, Screenshots</title>
+	<meta name="description" content="" />
 	<meta name="keywords" content="CERN, WorldWideWeb, Tim Berners-Lee" />
 	<meta name="author" content="CERN" />
 	<link rel="stylesheet" type="text/css" href="/css/general.css" />
-	{% if extrastyle %}<link rel="stylesheet" type="text/css" href="/css/{{extrastyle}}" />{% endif %}
+	
 
 	<link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
@@ -23,23 +24,17 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:site" content="@cern">
-	<meta name="twitter:creator" content="@cern">
-	<meta name="twitter:title" property="og:title" content="{{ title }}">
-	<meta name="twitter:description" property="og:description" content="{{ subhede }}">
-	<meta name="twitter:image" property="og:image" content="https://worldwideweb.cern.ch/images/colophon/thegroup.jpg">
 
-	{% block extrahead %}  {% endblock %}
+	  
 </head>
 
 <body>
 	<header>
 
-		<a href="/browser" class="button" target="_blank" rel="noopener">Launch WorldWideWeb</a>
+		<a href="/browser" class="button">Launch WorldWideWeb</a>
 
-		<h1>{{ title }}</h1>
-		{% if subhede %}<h2>{{ subhede }}</h2>{% endif %}
+		<h1>CERN 2019 WorldWideWeb Rebuild, Screenshots</h1>
+		<h2>2019 rebuilding of the original NeXT web browser, A collection of screenshots from WorldWideWeb running on a NeXT system</h2>
 
 		<nav>
 			<ul>
@@ -47,16 +42,25 @@
 				<li><a href="/history/">History</a></li>
 				<li><a href="/timeline/">Timeline</a></li>
 				<li><a href="/worldwideweb/">The Browser</a></li>
-				<li><a href="/typography/">Typography</a></li>
 				<li><a href="/code/">Inside the Code</a></li>
 				<li><a href="/production/">Production Process</a></li>
 			</ul>
 		</nav>
 	</header>
 
-	<main role="main"{% if gridclass %} class="{{ gridclass }}"{% endif %}>
+	<main role="main">
 
-    {{ content | safe }}
+    <section>
+<p>A collection of screenshots from the original WorldWideWeb browser.</p>
+</section>
+<section>
+<img src="/images/screenshots/image2.png" alt="A style editor from the NeXT Cube computer" /> <br /> <br />
+<img src="/images/screenshots/image7.png" alt="A style editor from the NeXT Cube computer" /> <br /> <br />
+<img src="/images/screenshots/image11.png" alt="Document inspector from the NeXT Cube computer" /> <br /> <br />
+<img src="/images/screenshots/image15.png" alt="Info Window for NeXT Cube computer's Hypermedia browser / editor with a Nexus" /> <br /> <br />
+<img src="/images/screenshots/image21.png" alt="Reading news from the NeXT Cube computer's Nexus browser" /> <br /> <br />
+</section>
+
 
   </main>
 </body>
@@ -70,12 +74,7 @@
 		</ul>
 	</nav>
 	<p>&copy; 2019 CERN</p>
-	<ul class="palette">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li><a href="/images/wow.jpg"><span>Surprise</span></a></li>
-	</ul>
+	<ul class="palette"><li></li> <li></li> <li></li> <li><a href="/images/wow.jpg" style="color: #fff;"></a></li></ul>
 
 </footer>
 

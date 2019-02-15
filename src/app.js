@@ -50,13 +50,14 @@ const App = () => {
   const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
-    { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
-    { type: 'panel', id: 'open-url', props: { Component: panels.OpenUrl } },
+    { type: 'url', id: `${PATH}/default.html`, ref: createRef() },
+    // { type: 'panel', id: 'open-url', props: { Component: panels.OpenUrl } },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
   const add = ({ id, type, ...props }) => {
+    id = id.toLowerCase();
     // check if we have the URL open already and insert set focus
     const match = type === 'url' ? id.replace(/#.*$/, '') : id;
     const found = windows.find(_ => _.type === type && _.id === match);
@@ -68,7 +69,7 @@ const App = () => {
       const ref = createRef();
       props.ref = ref;
     }
-    dispatch({ type: 'add', data: { type, id, props } });
+    dispatch({ type: 'add', data: { type, id, ...props } });
   };
 
   useEffect(() => {
@@ -168,7 +169,7 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'url')
-        .map(({ id, props: { ref } }, i) => {
+        .map(({ id, ref }, i) => {
           return (
             <WebView
               ref={ref}
@@ -185,7 +186,7 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'panel')
-        .map(({ props: { Component, ...props }, id }, index) => {
+        .map(({ Component, id, ...props }, index) => {
           return (
             <Component
               key={`panel:${id}`}
