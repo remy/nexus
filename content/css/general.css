@@ -144,6 +144,10 @@ ul ol ol li a::before {
 }
 pre {
 	display: inline-block;
+	width: 100%;
+	padding: 1em;
+	margin-bottom: 1em;
+	font-size: .8em;
 }
 code {
 	display: inline;
@@ -153,15 +157,7 @@ pre, code {
 	background-color: #666;
 	color: #fff;
 	font-family: monospace;
-	padding: 1em;
-	font-size: .8em;
-	margin-bottom: 1em;
-	width: 100%;
 	overflow: scroll;
-}
-pre code {
-	padding: 0;
-	font-size: 1em;
 }
 pre::-webkit-scrollbar { /* WebKit */
   width: 0px;

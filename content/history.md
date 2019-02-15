@@ -9,7 +9,7 @@ gridclass: three
 
 ### 1989
 
-In March 1989, Tim Berners-Lee, along with Robert Cailliau, at CERN the the European Organization for Nuclear Research, circulated "WorldWideWeb: Proposal for a HyperText Project".
+In March 1989, Tim Berners-Lee, along with Robert Cailliau, at CERN the the European Organization for Nuclear Research, circulated "Information Management: A Proposal".
 
 It imagined a simple client-server architecture, and links, and a 6 month time frame.
 
