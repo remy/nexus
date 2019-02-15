@@ -33,5 +33,5 @@ export function isUpper(letter) {
 }
 
 export function localToFilename(url) {
-  return url.replace(/^file.+WWW\//, '');
+  return url.replace(/^file.+WWW\//i, '').replace(/[?#].*/, '');
 }

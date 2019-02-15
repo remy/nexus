@@ -57,6 +57,7 @@ const App = () => {
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
   const add = ({ id, type, ...props }) => {
+    id = id.toLowerCase();
     // check if we have the URL open already and insert set focus
     const match = type === 'url' ? id.replace(/#.*$/, '') : id;
     const found = windows.find(_ => _.type === type && _.id === match);

@@ -45,8 +45,12 @@ export default class WebView extends React.Component {
   }
 
   async load(url) {
+    console.log('open ', url);
+
     if (url.startsWith('file://')) {
       const filename = localToFilename(url);
+      console.log('filename', filename);
+
       const title = filename.replace(/\.html?$/, '');
       const body = await filesystem.load(filename);
       this.setState({
