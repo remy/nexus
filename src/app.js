@@ -186,7 +186,6 @@ const App = () => {
       {windows
         .filter(({ type }) => type === 'panel')
         .map(({ props: { Component }, id }, index) => {
-          console.log('panel', Component, id);
           return (
             <Component
               key={`panel:${id}`}

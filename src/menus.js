@@ -124,7 +124,7 @@ export const navigate = {
     { title: 'Previous', accelerator: '<', id: 'previous' },
     { title: 'Home', accelerator: 'H', id: 'home' },
     // { title: 'Inspect…', accelerator: '3', id: 'inspect' },
-    { title: 'Panel', id: 'navigate-panel' },
+    { title: 'Panel', id: 'browser-nav', action: 'panel' },
   ],
 };
 

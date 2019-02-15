@@ -27,3 +27,8 @@ export const NewDocHelp = Loadable({
   loader: () => import('./components/NewDocHelp'),
   loading,
 });
+
+export const BrowserNav = Loadable({
+  loader: () => import('./components/BrowserNav'),
+  loading,
+});
