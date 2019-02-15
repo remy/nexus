@@ -163,8 +163,18 @@ export const style = {
   id: 'style',
   title: 'Style',
   menu: [
-    { title: 'Copy style', accelerator: '1', id: 'copy-style' },
-    { title: 'Apply style', accelerator: '2', id: 'apply-style' },
+    {
+      title: 'Copy style',
+      accelerator: '1',
+      id: 'copy-style',
+      action: 'method',
+    },
+    {
+      title: 'Apply style',
+      accelerator: '2',
+      id: 'apply-style',
+      action: 'method',
+    },
     // Not available in 0.13
     //    { title: 'Glossary', accelerator: 'G', id: 'glossary' },
     //    { title: 'List', accelerator: '7', id: 'list' },

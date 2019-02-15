@@ -141,6 +141,29 @@ export default class WebView extends React.Component {
     }
   }
 
+  applyStyle(style) {
+    const { local } = this.state;
+    // only local files can be modified for marking
+    if (!local) {
+      return;
+    }
+    const selection = window.getSelection();
+
+    // we assume this is nearly always… I think
+    if (selection.anchorNode.nodeName === '#text') {
+      const { anchorNode, focusNode } = selection;
+      console.log(anchorNode, focusNode, selection);
+
+      const html = anchorNode.innerHTML;
+      const node = document.createAttribute(style.tag.replace(/<(.*)>/, '$1'));
+
+      this.ref.current.replaceChild(node, focusNode);
+      node.innerHTML = html;
+
+      this.setState({ dirty: true });
+    }
+  }
+
   onMark() {
     const { local } = this.state;
     // only local files can be modified for marking
