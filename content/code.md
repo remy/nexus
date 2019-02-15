@@ -6,17 +6,19 @@ subhede: A deconstruction of some of the more interesting bits we found hiding i
 
 <section>
 
-For this project, we had access to <a href="https://github.com/cynthia/WorldWideWeb">source code</a> which reported version 0.15 and copyright date of 1991 in the <a href="https://github.com/cynthia/WorldWideWeb/blob/master/NextStep/Implementation/WorldWideWeb.nib/data.nib">data.nib</a>. There were comments in the code with dates in 1992, however, so it's possible the version had not been updated and this code is a bit older. 
+##Introduction
 
-We weren't able to compile this code, but we did have access to a binary of WorldWideWeb that reported its version as "prerelease b of version 0.13", also with a copyright date of 1991. We mostly cross referenced this application with the code mentioned above. 
+The earliest (and only) <a href="https://github.com/cynthia/WorldWideWeb">source code</a> we could find for WorldWideWeb indicated it was version 0.15 (copyright 1991) in the <a href="https://github.com/cynthia/WorldWideWeb/blob/master/NextStep/Implementation/WorldWideWeb.nib/data.nib">data.nib</a> file. There were comments in the code with dates in 1992, however, so it's possible the version had not been updated and this code is a bit older. 
 
-We also had access to a binary of Nexus, version 2.02 based on libwww, with a copyright date of 1994. At times, we ran this version to determine if certain oddities -- we don't want to call them bugs -- were ever addressed. 
+We weren't able to compile this code, but we did have access to a binary of WorldWideWeb which we were able to run on an original NeXT Computer provide by <a href="https://www.bolo.ch/">Mus&eacute;e Bolo</a>. It reported its version as "prerelease b of version 0.13", also copyright 1991. We mostly cross referenced this application's functionality with the code mentioned above. 
+
+We also had access to a binary of Nexus, version 2.02 based on libwww, with a copyright date of 1994. At times, we ran this version to determine if certain oddities&mdash;we don't want to call them bugs!&mdash;were ever resolved and to understand how functionality changed over time. 
 
 For all of the following comments, the terms "source code", "WorldWideWeb", and "Nexus" refer to the three things above. 
 
 ## Hypertext
 
-Today, we may refer to HTML files as HTML documents or web pages, but at the time, the source code only refers to hypertext documents or nodes -- or "a hypertext" for short. 
+Today, we refer to HTML files as HTML documents or web pages, but at the beginning of the Web, the source code only refers to hypertext documents or nodes&mdash;or "a hypertext" for short. 
 
 When this source code was written, there was no version number associated with HTML. Based on the source code, the following tags--the term 'element' was not yet used--were recognized:
 
@@ -41,17 +43,20 @@ When this source code was written, there was no version number associated with H
 Unrecognized tags were considered junk and ignored. Most of these tags will be familiar to modern web programmers, however a few are likely to be new:
 
 - HP1, HP2, and HP3: "Highlighted phrase" is a carry over from SGML, which is used to allow some text to stand out from any surrounding text in some way. (You could say that they're the precursors to B/STRONG and I/EM.) HP1 is intended to be styled in italic text, HP2 in bold, and HP3 in both italic and bold. While the tags were successfully parsed by both WorldWideWeb and Nexus, the code to apply these styles was incomplete, so the content only displayed as normal text. 
-- NODE: Nothing in a document with a NODE tag would get rendered to screen -- and WorldWideWeb would crash if you tried to click in the page! The comment associated with the source code reads:<pre><code>
+
+- NODE: Nothing in a document with a NODE tag would get rendered to screen&mdash;and WorldWideWeb would crash if you tried to click in the page! The comment associated with the source code reads:<pre><code>
 /* Subnodes are delimited by &lt;NODE&gt;...&lt;/NODE&gt;. They have the same address as the
 ** node, but the anchor IDs must be different. This is not thought out.	@@
 ** Perhaps a hierarchical anchor ID format ....
 */
-	case S_tag_n:
-	    switch(c) {
-	    case 'o':
-	    case 'O':	if (check("ODE&gt;")) {	/* Load a subnode */
-			    if(TRACE)  printf("Loading subnode...NOT IMPLEMENTED\n");</code></pre>
-- PLAINTEXT: It's likely this element was meant to be used at the top of a file, to indicate the rest of the file was in plain text. If it were used within an HTML file, none of the content before the PLAINTEXT tag would be displayed -- only the content after it. (And no further markup would be parsed -- including any closing PLAINTEXT tag.)
+case S_tag_n:
+    switch(c) {
+    case 'o':
+    case 'O':	if (check("ODE&gt;")) {	/* Load a subnode */
+		    if(TRACE)  printf("Loading subnode...NOT IMPLEMENTED\n");</code></pre>
+
+- PLAINTEXT: It's likely this element was meant to be used at the top of a file, to indicate the rest of the file was in plain text. If it were used within an HTML file, none of the content before the PLAINTEXT tag would be displayed&mdash;only the content after it. (And no further markup would be parsed&mdash;including any closing PLAINTEXT tag.)
+
 - RESTOFFILE: In WorldWideWeb, any content or markup appearing after the opening tag would be ignored (not rendered to screen). This tag may have been removed later, as the tag is ignored in Nexus and all content and markup appearing after the opening tag is rendered to screen. 
 
 A few entities were supported: ampersand (<code>&amp;AMP;</code>), less than (<code>&amp;LT;</code>), greater than (<code>&amp;GT;</code>), quote (<code>&amp;QUOT;</code>).
@@ -89,6 +94,7 @@ Normal &lt;P&gt; 0 Helvetica 12.0   1
   - "Helvetica" is the font
   - 12.0 is the font size
   - 1 indicates the NXTextStyle
+
 - On the second line:
   - 90 = first indent level
   - 90 = second indent level
@@ -114,9 +120,9 @@ Although there are values set to define the amount of space before and after blo
 int newlines = ((s-&gt;<b>spaceBefore</b>+s-&gt;<b>spaceAfter</b>) / s-&gt;paragraph-&gt;<b>lineHt</b>) + 1;
 for(i=0; i&lt;newlines; i++) OUTPUT('\n');</code></pre>
 
-Note that the List style does not define the list style indicator (bullet, number, etc.), as we do in CSS today. Instead, list styles are added by ParseHTML.h. Code in that file looks for "\n&lt;UL&gt;\n&lt;LI&gt;" to start a list, then "\n&lt;LI&gt;" to break up list items. It also specifies the starting text ("\267\t" – a dot then a tab character) which is added to each list item. So the indents of 100 pixels and 130 pixels in the styles are for the bullet point (dot) and then for the placement of the text. 
+Note that the List style does not define the list style indicator (bullet, number, etc.), as we do in CSS today. Instead, list styles are added by ParseHTML.h. Code in that file looks for <code>\n&lt;UL&gt;\n&lt;LI&gt;</code> to start a list, then <code>\n&lt;LI&gt;</code> to break up list items. It also specifies the starting text (<code>\267\t</code> – a dot then a tab character) which is added to each list item. So the indents of 100 pixels and 130 pixels in the styles are essentially tab stops for the dot and then for the text. 
 
-Our version of WorldWideWeb was missing code to apply styles to H4, H5, or H6, however by the time of Nexus, that code had been added. Likewise, PRE and FIXED appeared like normal text in WorldWideWeb but were correctly styled in Nexus. (FIXED was in the source code but the tag wasn't parsed -- it was only associated with styling.)
+Our version of WorldWideWeb was missing code to apply styles to H4, H5, or H6, however by the time of Nexus, that code had been added. Likewise, PRE and FIXED appeared like normal text in WorldWideWeb but were correctly styled in Nexus. (FIXED was in the source code but the tag wasn't parsed&mdash;it was only associated with styling.)
 
 ## Other Interesting Notes
 
