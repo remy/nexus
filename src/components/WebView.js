@@ -14,6 +14,7 @@ export default class WebView extends React.Component {
     this.state = {
       title: '',
       body: '',
+      local: false,
       links: [],
       dirty: false,
       nextId: 0,
@@ -49,6 +50,7 @@ export default class WebView extends React.Component {
       const title = filename.replace(/\.html?$/, '');
       const body = await filesystem.load(filename);
       this.setState({
+        local: true,
         title,
         body,
       });
@@ -69,10 +71,10 @@ export default class WebView extends React.Component {
   }
 
   unlink() {
-    const { local } = this.props;
+    const { local } = this.state;
     // only local files can be modified for marking
     if (!local) {
-      // return;
+      return;
     }
     const selection = window.getSelection();
 
@@ -92,7 +94,7 @@ export default class WebView extends React.Component {
     const { local } = this.props;
     // only local files can be modified for marking
     if (!local) {
-      // return;
+      return;
     }
     const selection = window.getSelection();
 
@@ -139,7 +141,7 @@ export default class WebView extends React.Component {
     const { local } = this.props;
     // only local files can be modified for marking
     if (!local) {
-      // return;
+      return;
     }
     const selection = window.getSelection();
 
