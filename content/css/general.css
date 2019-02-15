@@ -87,7 +87,8 @@ sub {
 a {
 	color: #000;
 }
-img {
+img,
+video {
   max-width: 100%;
 }
 h1, h2, h3, h4, h5 {
