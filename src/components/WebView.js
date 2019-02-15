@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { createRef } from 'react';
 import Window from './Window';
 import { HOST, API } from '../env';
 import './WebView.scss';
