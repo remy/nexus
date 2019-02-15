@@ -180,7 +180,6 @@
     .networks .y1969 .p-name,
     .hypertext .y1980 .p-name,
     .formats .y1986 .p-name,
-    .browsers .y1990 .p-name,
     .browsers .y2002 .p-name,
     .browsers .y1992 .p-name,
     .browsers .y1994 .p-name,
@@ -288,6 +287,9 @@
     /* Tweaks for legibility */
     .hypertext .y1987 .p-name {
       transform: translateX(-2.75em) translateY(-1.25em);
+    }
+    .browsers .y1990 .p-name {
+      margin-top: -4em;
     }
   }
   .present .h-event {
