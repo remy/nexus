@@ -249,7 +249,10 @@ video { width: 100%; border: 3px solid #000; }
 	.constrained {
 		max-width: 100%;
 		columns: 2;
-		column-gap: 1em;
+		column-gap: 5em;
+	}
+	.constrained p {
+		break-inside: avoid;
 	}
 }
 .history {
