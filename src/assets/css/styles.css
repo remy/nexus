@@ -529,21 +529,40 @@ ul.buttons-bar.limited button {
 			border-left: 1px solid #000;
 			border-right: 1px solid #FFF;
 			border-bottom: 1px solid #FFF;
-		}
+    }
+
+    div.file-lists select {
+      font-family: "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
+      font-size: 13px;
+      overflow:auto;
+      height: 100%;
+      width: 100%;
+      border: 0;
+      background: none;
+    }
+
+    div.file-lists select option {
+      padding: 0.2em 0.3em 0.1em;
+    }
 
 		div.file-lists ul {list-style-type: none;}
 
 		div.file-lists li {
 			position: relative;
 			overflow: hidden;
-			font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+      font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
 		}
 		div.file-lists input {
-			position: absolute;
-			left: -50em;
-		}
+      position: absolute;
+      left: -50em;
+    }
+    div.file-lists label {
+      display: block;
+      margin: 0.1em 0;
+      padding: 0 0.3em;
+    }
 		div.file-lists input[type=radio]:checked + label {
-			background-color: #FFF;
+      background-color: #FFF;
 		}
 
 		#save-file .r2l-content {
@@ -554,7 +573,7 @@ ul.buttons-bar.limited button {
 		#save-file .l2r-content {
 				direction: ltr;
 				background-color: #AAA;
-				padding: 0.3rem;
+				padding: 0;
 			}
 
 /* BROWSER INFO */

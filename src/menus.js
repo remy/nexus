@@ -71,7 +71,7 @@ export const document = {
       action: 'panel',
       props: { url: PATH + '/blank.html' },
     },
-    { title: 'Save', accelerator: 's', id: 'save' },
+    { title: 'Save', accelerator: 's', id: 'save', action: 'method' },
     {
       title: 'Save all edited windows',
       accelerator: 'S',

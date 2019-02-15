@@ -1,7 +1,8 @@
 import React, { createRef } from 'react';
 import Window from './Window';
 import { HOST, API } from '../env';
-import { getLink } from '../utils';
+import { getLink, localToFilename } from '../utils';
+import * as filesystem from '../filesystem';
 import './WebView.scss';
 
 export default class WebView extends React.Component {
@@ -38,7 +39,21 @@ export default class WebView extends React.Component {
     this.load(this.props.url);
   }
 
+  setClean() {
+    this.setState({ dirty: false });
+  }
+
   async load(url) {
+    if (url.startsWith('file://')) {
+      const filename = localToFilename(url);
+      const title = filename.replace(/\.html?$/, '');
+      const body = await filesystem.load(filename);
+      this.setState({
+        title,
+        body,
+      });
+      return;
+    }
     const res = await fetch(`${API}?url=${encodeURIComponent(url)}`);
     const json = await res.json();
     if (json.title) {
