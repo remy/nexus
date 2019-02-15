@@ -195,7 +195,6 @@ export default class WebView extends React.Component {
                   let navigateTo = link.href;
 
                   // if we're a relative url, then rebase since we're hosting the html
-                  console.log(link);
                   if (link.origin === HOST) {
                     navigateTo = new URL(
                       link.getAttribute('href'),
@@ -207,11 +206,9 @@ export default class WebView extends React.Component {
               }}
             />
           </div>
+          <button className="grab-window">Grab the window</button>
         </div>
-        <button className="grab-window">Grab the window</button>
-      </div>
-    </Window>
-  );
-};
-
-export default WebView;
+      </Window>
+    );
+  }
+}
