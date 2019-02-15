@@ -12,6 +12,10 @@ In December 1990, an application called WorldWideWeb was developed on a NeXT mac
 
 In February 2019, in celebration of the thirtieth anniversary of the development of WorldWideWeb, a group of developers and designers convened at CERN to rebuild the original browser *within* a contemporary browser, allowing users around the world to experience the origins of this transformative technology. 
 
+Click here to jump in: 
+
+<a href="/browser" class="button">Launch WorldWideWeb</a>
+
 ---
 
 ### Contents

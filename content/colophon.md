@@ -1,7 +1,7 @@
 ---
 layout: baselayout
-title: The team behind the project
-subhede: 
+title: The Team — WorldWideWeb NeXT Application
+subhede: The global team behind this project
 ---
 
 
