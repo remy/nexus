@@ -51,6 +51,8 @@ const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
     { type: 'url', id: `${PATH}/default.html`, ref: createRef() },
+    // { type: 'url', id: `file://WWW/cern.html`, ref: createRef() },
+    // { type: 'panel', id: `style-editor`, Component: panels.StyleEditor },
     // { type: 'panel', id: 'open-url', props: { Component: panels.OpenUrl } },
   ]);
 
