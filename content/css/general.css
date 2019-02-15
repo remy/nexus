@@ -91,6 +91,7 @@ img,
 video {
   max-width: 100%;
 }
+figure { margin-bottom: 1em; display: inline-block; }
 figure.double img { width: 49%; float: left; }
 figure.double img:first-child { margin-right: 2%; }
 h1, h2, h3, h4, h5 {
