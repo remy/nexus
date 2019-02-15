@@ -56,7 +56,6 @@ const App = () => {
       // check if we have the URL open already and insert set focus
       const match = id.replace(/#.*$/, '');
       const found = windows.find(_ => _.type === 'url' && _.id === match);
-      console.log('found', found);
       if (found) {
         return setActive(found);
       }
