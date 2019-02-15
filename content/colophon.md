@@ -1,11 +1,11 @@
 ---
 layout: baselayout
-title: The team behind the project
-subhede: 
+title: The Team — WorldWideWeb NeXT Application
+subhede: The global team behind this project
 ---
 
 
-<img src="/images/colophon/thegroup.jpg" class="fullbleed"/>
+<img src="/images/colophon/thegroup.jpg" alt="The team gathered around a globe in the basement of the CERN Data Centre. They’re smiling and their arms are raised in celebration." class="fullbleed"/>
 
 
 <section>
@@ -46,6 +46,9 @@ The design is inspired by the pallet and simplicity of the original NeXT OS. We 
 
 But for our main header, we employ a special, retro-designed edition of Helvetica, as pulled from screenshots of the NeXT box. 
 
+### The WorldWideWeb simulator
+
+The [simulator](/browser/) was built using React and Javascript.
 
 
 

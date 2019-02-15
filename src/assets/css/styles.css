@@ -45,7 +45,7 @@ body {
 
 /* @FONT DECLARATIONS */
 @font-face {
-  font-family: 'NeXT_Bold';
+  font-family: 'NeXT_Bold'; /* use at 13px */
   src: url('../../../content/css/fonts/CERN-www-regular-bold.woff2') format('woff2'),
     url('../../../content/css/fonts/CERN-www-regular-bold.woff') format('woff');
   font-weight: normal;
@@ -53,7 +53,7 @@ body {
 }
 
 @font-face {
-  font-family: 'NeXT_Roman';
+  font-family: 'NeXT_Roman'; /* use at 13px */
   src: url('../../../content/css/fonts/CERN-www-regular.woff2') format('woff2'),
     url('../../../content/css/fonts/CERN-www-regular.woff') format('woff');
   font-weight: normal;
@@ -61,7 +61,7 @@ body {
 }
 
 @font-face {
-  font-family: 'NeXT Big_Bold';
+  font-family: 'NeXT Big_Bold'; /* use at 20px */
   src: url('../../../content/css/fonts/CERN-www-headline-bold.woff2') format('woff2'),
     url('../../../content/css/fonts/CERN-www-headline-bold.woff') format('woff');
   font-weight: normal;
@@ -69,7 +69,7 @@ body {
 }
 
 @font-face {
-  font-family: 'NeXT Mono_Regular';
+  font-family: 'NeXT Mono_Regular'; /* use at 10px */
   src: url('../../../content/css/fonts/CERN-www-mono.woff2') format('woff2'),
     url('../../../content/css/fonts/CERN-www-mono.woff') format('woff');
   font-weight: normal;
@@ -77,12 +77,38 @@ body {
 }
 
 @font-face {
-  font-family: 'NeXT Oblique';
+  font-family: 'NeXT Oblique'; /* use at 13px */
+  src: url('../../../content/css/fonts/CERN-www-regular-oblique.woff2') format('woff2'),
+    url('../../../content/css/fonts/CERN-www-regular-oblique.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NeXT Bold-Oblique'; /* use at 13px */
   src: url('../../../content/css/fonts/CERN-www-regular-bold-oblique.woff2') format('woff2'),
     url('../../../content/css/fonts/CERN-www-regular-bold-oblique.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'NeXT Bold_14'; /* use at 14px */
+  src: url('../../../content/css/fonts/CERN-www-bold-14.woff2') format('woff2'),
+    url('../../../content/css/fonts/CERN-www-bold-14.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NeXT Oblique_16'; /* use at 16px */
+  src: url('../../../content/css/fonts/CERN-www-oblique-16.woff2') format('woff2'),
+    url('../../../content/css/fonts/CERN-www-oblique-16.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 /* DEFAULTS */
 body {
@@ -529,21 +555,40 @@ ul.buttons-bar.limited button {
 			border-left: 1px solid #000;
 			border-right: 1px solid #FFF;
 			border-bottom: 1px solid #FFF;
-		}
+    }
+
+    div.file-lists select {
+      font-family: "NeXT_Roman", Helvetica, "Helvetica Neue", Arial, sans-serif;
+      font-size: 13px;
+      overflow:auto;
+      height: 100%;
+      width: 100%;
+      border: 0;
+      background: none;
+    }
+
+    div.file-lists select option {
+      padding: 0.2em 0.3em 0.1em;
+    }
 
 		div.file-lists ul {list-style-type: none;}
 
 		div.file-lists li {
 			position: relative;
 			overflow: hidden;
-			font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
+      font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
 		}
 		div.file-lists input {
-			position: absolute;
-			left: -50em;
-		}
+      position: absolute;
+      left: -50em;
+    }
+    div.file-lists label {
+      display: block;
+      margin: 0.1em 0;
+      padding: 0 0.3em;
+    }
 		div.file-lists input[type=radio]:checked + label {
-			background-color: #FFF;
+      background-color: #FFF;
 		}
 
 		#save-file .r2l-content {
@@ -554,7 +599,7 @@ ul.buttons-bar.limited button {
 		#save-file .l2r-content {
 				direction: ltr;
 				background-color: #AAA;
-				padding: 0.3rem;
+				padding: 0;
 			}
 
 /* BROWSER INFO */
@@ -691,7 +736,7 @@ ul.buttons-bar.limited button {
 }
 
 #open-url .second-block button.enter-button {
-  font: 14px 'NeXT Big_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font: 18px 'NeXT Bold_14', Helvetica, 'Helvetica Neue', Arial, sans-serif;
   width: 100px;
   margin-right: 15px;
 }

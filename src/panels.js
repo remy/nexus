@@ -37,3 +37,8 @@ export const SaveFile = Loadable({
   loader: () => import('./components/SaveFile'),
   loading,
 });
+
+export const OpenFile = Loadable({
+  loader: () => import('./components/OpenFile'),
+  loading,
+});

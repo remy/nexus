@@ -87,9 +87,13 @@ sub {
 a {
 	color: #000;
 }
-img {
+img,
+video {
   max-width: 100%;
 }
+figure { margin-bottom: 1em; display: inline-block; }
+figure.double img { width: 49%; float: left; }
+figure.double img:first-child { margin-right: 2%; }
 h1, h2, h3, h4, h5 {
 	font-size: 1em;
 }
@@ -103,7 +107,7 @@ h2 {
 	line-height: 1.2em;
 }
 hr {
-	margin: 0em auto 1em auto;
+	margin: 2em auto 2em auto;
 	border: 0;
 	border-bottom: 1px solid #ddd;
 	width: 70%;
@@ -115,32 +119,6 @@ ul, ol {
 }
 ul {
 	list-style: circle;
-}
-ol {
-	list-style: none;
-}
-ol li {
-	margin-left: 0;
-	padding-left: 1em;
-}
-ol a {
-	display: inline-block;
-	width: 100%;
-	text-decoration: none;
-}
-ol a:hover,
-ol a:focus{
-	background-color: #f7f7f7;
-}
-ul ol {
-	border-left: 1px dotted #ddd;
-}
-ul ol ol {
-	list-style: none;
-	margin: 0;
-}
-ul ol ol li a::before {
-	content: "↳ ";
 }
 pre {
 	display: inline-block;
@@ -227,6 +205,13 @@ video { width: 100%; border: 3px solid #000; }
 	border-right: 1px solid #069;
 	margin-bottom: 1.5em;
 }
+.button:hover,
+.button:focus {
+	border-top-color: #069;
+	border-left-color: #069;
+	border-bottom-color: #6cf;
+	border-right-color: #6cf;
+}
 @media all and (max-width: 30em) {
 	header .button {
 		width: 100%;
@@ -265,6 +250,30 @@ ul.history  {
 .history ol,
 .history ul {
 	margin-bottom: 0;
+}
+.history ol {
+	list-style: none;
+	border-left: 1px dotted #ddd;
+}
+.history ol li {
+	margin-left: 0;
+	padding-left: 1em;
+}
+.history ol a {
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+}
+.history ol a:hover,
+.history ol a:focus{
+	background-color: #f7f7f7;
+}
+.history ol ol {
+	list-style: none;
+	margin: 0;
+}
+.history ol ol li a::before {
+	content: "↳ ";
 }
 .history time {
 	float: right;

@@ -1,12 +1,9 @@
 import React from 'react';
 import Window from './Window';
-import { save, load } from '../filesystem';
 import FilePicker from './FilePicker';
 
 const SaveFile = ({ close, add, id, ...props }) => {
-  const saveAndLoad = async selected => {
-    const template = await load('blank.html');
-    save(selected, template);
+  const selectAndLoad = async selected => {
     add({
       id: 'file://WWW/' + selected,
       type: 'url',
@@ -17,9 +14,9 @@ const SaveFile = ({ close, add, id, ...props }) => {
   return (
     <Window {...props} id={id} title="" dialogue>
       <FilePicker
-        title="Save"
+        title="Open"
         onCancel={() => close(id)}
-        onSubmit={saveAndLoad}
+        onSubmit={selectAndLoad}
       />
     </Window>
   );

@@ -71,7 +71,7 @@ export const document = {
       action: 'panel',
       props: { url: PATH + '/blank.html' },
     },
-    { title: 'Save', accelerator: 's', id: 'save' },
+    { title: 'Save', accelerator: 's', id: 'save', action: 'method' },
     {
       title: 'Save all edited windows',
       accelerator: 'S',
@@ -85,6 +85,8 @@ export const document = {
     {
       title: 'Open master template document',
       id: 'open-master-template-document',
+      action: 'url',
+      props: { url: 'file://WWW/blank.html' },
     },
     {
       title: 'Close all other windows',

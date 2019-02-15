@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-
+<html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -24,6 +23,12 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@cern">
+	<meta name="twitter:creator" content="@cern">
+	<meta name="twitter:title" property="og:title" content="{{ title }}">
+	<meta name="twitter:description" property="og:description" content="{{ subhede }}">
+	<meta name="twitter:image" property="og:image" content="https://worldwideweb.cern.ch/images/colophon/thegroup.jpg">
 
 	{% block extrahead %}  {% endblock %}
 </head>
@@ -31,7 +36,7 @@
 <body>
 	<header>
 
-		<a href="/browser" class="button">Launch WorldWideWeb</a>
+		<a href="/browser" class="button" target="_blank" rel="noopener">Launch WorldWideWeb</a>
 
 		<h1>{{ title }}</h1>
 		{% if subhede %}<h2>{{ subhede }}</h2>{% endif %}
@@ -42,6 +47,7 @@
 				<li><a href="/history/">History</a></li>
 				<li><a href="/timeline/">Timeline</a></li>
 				<li><a href="/worldwideweb/">The Browser</a></li>
+				<li><a href="/typography/">Typography</a></li>
 				<li><a href="/code/">Inside the Code</a></li>
 				<li><a href="/production/">Production Process</a></li>
 			</ul>

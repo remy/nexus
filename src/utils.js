@@ -27,3 +27,11 @@ export function getLink(element, root) {
 
   return getLink(element.parentNode, root);
 }
+
+export function isUpper(letter) {
+  return /[A-Z]/.test(letter);
+}
+
+export function localToFilename(url) {
+  return url.replace(/^file.+WWW\//i, '').replace(/[?#].*/, '');
+}
