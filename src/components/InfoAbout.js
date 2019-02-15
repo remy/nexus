@@ -7,7 +7,7 @@ const InfoAbout = ({ ...props }) => {
       <div id="browser-info">
         <header>
           <p>
-            <img src="/img/wwwicon.png" alt="" />
+            <img src="/img/wwwicon.png" alt="WorldWideWeb" />
           </p>
           <div className="hgroup">
             <h3>HyperMedia Browser/Editor</h3>
