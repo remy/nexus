@@ -91,7 +91,7 @@ export default class WebView extends React.Component {
   }
 
   linkToMarked(url) {
-    const { local } = this.props;
+    const { local } = this.state;
     // only local files can be modified for marking
     if (!local) {
       return;
@@ -138,7 +138,7 @@ export default class WebView extends React.Component {
   }
 
   onMark() {
-    const { local } = this.props;
+    const { local } = this.state;
     // only local files can be modified for marking
     if (!local) {
       return;

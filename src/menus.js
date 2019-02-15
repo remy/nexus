@@ -85,6 +85,8 @@ export const document = {
     {
       title: 'Open master template document',
       id: 'open-master-template-document',
+      action: 'url',
+      props: { url: 'file://WWW/blank.html' },
     },
     {
       title: 'Close all other windows',
