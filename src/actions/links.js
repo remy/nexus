@@ -1,3 +1,5 @@
+import { getLink } from '../utils';
+
 let currentLink = '';
 
 export const markAll = ({ active }) => {
@@ -15,6 +17,18 @@ export const linkToMarked = ({ active }) => {
   if (currentLink) active.ref.current.linkToMarked(currentLink);
 };
 
-export const followLink = () => {};
+export const followLink = ({ active, add }) => {
+  const selection = window.getSelection();
+  const link = getLink(
+    selection.focusNode,
+    active.ref.current.getRef().current
+  );
 
-export const unlink = () => {};
+  if (link && link.href) {
+    add({ type: 'url', id: link.href });
+  }
+};
+
+export const unlink = ({ active }) => {
+  active.ref.current.unlink();
+};

@@ -30,7 +30,7 @@ export const edit = {
     { title: 'Paste', id: 'paste', accelerator: 'v' },
     // These features weren't functional in 0.13
     //    { title: 'Paste As', id: 'paste-as', accelerator: 'x' },
-    { title: 'Delete', id: 'delete', accelerator: 'x' },
+    { title: 'Delete', id: 'delete', accelerator: 'X' },
     //    { title: 'Undo', id: 'undo', accelerator: 'z' },
     //    { title: 'Find', id: 'find', accelerator: 'x' },
     { title: 'Spelling...', id: 'spelling', accelerator: 'x' },
@@ -147,8 +147,12 @@ export const links = {
     },
     { title: 'Link to file…', id: 'link-to-file' },
     { title: 'Link to New', accelerator: 'N', id: 'link-to-new' },
-    { title: 'Follow link', id: 'follow-link' },
-    { title: 'Unlink', accelerator: 'Z', id: 'unlink' },
+    {
+      title: 'Follow link',
+      id: 'follow-link',
+      action: 'method',
+    },
+    { title: 'Unlink', accelerator: 'Z', id: 'unlink', action: 'method' },
     { title: 'Help', id: 'help' },
   ],
 };

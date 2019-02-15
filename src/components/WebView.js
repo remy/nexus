@@ -49,6 +49,29 @@ export default class WebView extends React.Component {
     }
   }
 
+  getRef() {
+    return this.ref;
+  }
+
+  unlink() {
+    const { local } = this.props;
+    // only local files can be modified for marking
+    if (!local) {
+      // return;
+    }
+    const selection = window.getSelection();
+
+    // BUG only supports unlinking a single link - come on, we had 5 days!
+    if (selection.anchorNode.nodeName === '#text') {
+      const { anchorNode } = selection;
+
+      const parent = anchorNode.parentNode;
+      const node = document.createTextNode(anchorNode.nodeValue);
+      parent.replaceChild(node, anchorNode);
+      this.setState({ dirty: true });
+    }
+  }
+
   linkToMarked(url) {
     const { local } = this.props;
     // only local files can be modified for marking

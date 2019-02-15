@@ -38,45 +38,46 @@ body {
   min-height: 100%;
   display: flex;
   flex: 1;
+  outline: none;
 }
 
 /* @FONT DECLARATIONS */
 @font-face {
   font-family: 'NeXT_Bold';
-  src: url('NeXT-Bold.woff2') format('woff2'),
-    url('NeXT-Bold.woff') format('woff');
+  src: url('../fonts/NeXT-Bold.woff2') format('woff2'),
+    url('../fonts/NeXT-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'NeXT_Roman';
-  src: url('NeXT-Roman.woff2') format('woff2'),
-    url('NeXT-Roman.woff') format('woff');
+  src: url('../fonts/NeXT-Roman.woff2') format('woff2'),
+    url('../fonts/NeXT-Roman.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'NeXT Big_Bold';
-  src: url('NeXT_Big-Bold.woff2') format('woff2'),
-    url('NeXT_Big-Bold.woff') format('woff');
+  src: url('../fonts/NeXT_Big-Bold.woff2') format('woff2'),
+    url('../fonts/NeXT_Big-Bold.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'NeXT Mono_Regular';
-  src: url('NeXT_Mono-Regular.woff2') format('woff2'),
-    url('NeXT_Mono-Regular.woff') format('woff');
+  src: url('../fonts/NeXT_Mono-Regular.woff2') format('woff2'),
+    url('../fonts/NeXT_Mono-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'NeXT Oblique';
-  src: url('NeXT-Oblique.woff2') format('woff2'),
-    url('NeXT-Oblique.woff') format('woff');
+  src: url('../fonts/NeXT-Oblique.woff2') format('woff2'),
+    url('../fonts/NeXT-Oblique.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }

@@ -94,7 +94,7 @@ const App = () => {
         break;
       case 'method':
         if (actions[idCamelCase]) {
-          actions[idCamelCase]({ active: activeWindow });
+          actions[idCamelCase]({ active: activeWindow, add });
         }
         break;
       case 'url':
