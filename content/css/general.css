@@ -142,6 +142,12 @@ ul ol ol {
 ul ol ol li a::before {
 	content: "↳ ";
 }
+pre {
+	display: inline-block;
+}
+code {
+	display: inline;
+}
 pre, code {
 	box-sizing: border-box;
 	background-color: #666;
@@ -149,10 +155,13 @@ pre, code {
 	font-family: monospace;
 	padding: 1em;
 	font-size: .8em;
-	display: inline-block;
 	margin-bottom: 1em;
 	width: 100%;
 	overflow: scroll;
+}
+pre code {
+	padding: 0;
+	font-size: 1em;
 }
 pre::-webkit-scrollbar { /* WebKit */
   width: 0px;
@@ -233,7 +242,16 @@ video { width: 100%; border: 3px solid #000; }
 	}
 }
 
-
+.constrained {
+	max-width: 35em;
+}
+@media all and (min-width: 35em) and (min-height: 35em) {
+	.constrained {
+		max-width: 100%;
+		columns: 2;
+		column-gap: 1em;
+	}
+}
 .history {
 	margin-top: 2em;
 	margin-bottom: 2em;
