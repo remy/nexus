@@ -13,6 +13,7 @@
   padding: 0;
   border: 0;
   cursor: default;
+  user-select: none !important;
 }
 
 header,
@@ -398,6 +399,21 @@ div.panel .webview {
 
 /* ------------------------ SPECIFICS -------------------------- */
 
+div.help-dialogue {
+  padding: 4px 20px;
+  width: 330px;
+}
+
+div.help-dialogue p {
+  margin: 18px 0;
+}
+
+div.help-dialogue button {
+  width: auto;
+  padding: 5px;
+}
+
+
 div.first-block {
   text-align: center;
   padding-bottom: 7px;
@@ -564,7 +580,7 @@ ul.buttons-bar.limited button {
 }
 #browser-info header p.baseline {
   width: 10em;
-  font: 18px 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  font: 17px 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
 }
 #browser-info header p.release {
@@ -573,7 +589,7 @@ ul.buttons-bar.limited button {
 }
 #browser-info header address {
   flex-basis: 100%;
-  font-size: 18px;
+  font-size: 17px;
   font-style: normal;
   text-align: right;
 }
@@ -592,7 +608,7 @@ ul.buttons-bar.limited button {
 #browser-info dt,
 #browser-info dd {
   display: inline;
-  font-size: 18px;
+  font-size: 17px;
   text-align: left;
 }
 
@@ -684,7 +700,7 @@ ul.buttons-bar.limited button {
 }
 
 #open-url .first-block p {
-  padding: 18px 0;
+  padding: 17px 0;
 }
 
 ul.buttons-bar.vertical {

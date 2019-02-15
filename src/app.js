@@ -3,20 +3,11 @@ import { HotKeys } from 'react-hotkeys';
 import WebView from './components/WebView';
 import Menu from './components/Menu';
 import * as allMenus from './menus';
-import OpenURL from './components/OpenUrl.js';
-import { HOST } from './env';
-import InfoAbout from './components/InfoAbout.js';
-import BrowserNav from './components/BrowserNav.js';
-import StyleEditor from './components/StyleEditor.js';
-import SaveFile from './components/SaveFile.js';
-
 import keyMap from './keyMap';
 import * as panels from './panels';
 import * as actions from './actions';
 import { PATH } from './env';
 import { camelCase, titleCase } from './utils';
-
-const keyMap = {};
 
 function isUpper(letter) {
   return /[A-Z]/.test(letter);
@@ -63,28 +54,21 @@ const App = () => {
   const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
     { type: 'menu', id: 'top' },
-<<<<<<< HEAD
-    { type: 'url', id: `${HOST}/default.html` },
-    { type: 'panel', id: 'info', props: {Component: InfoAbout}},
-    { type: 'panel', id: 'browser-nav', props: {Component: BrowserNav}},
-    { type: 'panel', id: 'style-editor', props: {Component: StyleEditor}},
-    { type: 'panel', id: 'save-file', props: {Component: SaveFile}}
-=======
     { type: 'url', id: `${PATH}/default.html`, props: { ref: createRef() } },
     // { type: 'url', id: `${PATH}/blank.html`, props: { ref: createRef() } },
->>>>>>> 5e8d41d834c8e01d84477f30c1dd431132cb5e0d
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
   const add = ({ id, type, ...props }) => {
+    // check if we have the URL open already and insert set focus
+    const match = type === 'url' ? id.replace(/#.*$/, '') : id;
+    const found = windows.find(_ => _.type === type && _.id === match);
+    if (found) {
+      return setActive(found);
+    }
+
     if (type === 'url') {
-      // check if we have the URL open already and insert set focus
-      const match = id.replace(/#.*$/, '');
-      const found = windows.find(_ => _.type === 'url' && _.id === match);
-      if (found) {
-        return setActive(found);
-      }
       const ref = createRef();
       props.ref = ref;
     }
@@ -122,7 +106,6 @@ const App = () => {
 
     switch (action) {
       case 'panel':
-        console.log(panels[idTitleCase]);
         if (panels[idTitleCase]) {
           add({
             type: 'panel',
@@ -170,7 +153,6 @@ const App = () => {
           return (
             <Menu
               index={i}
-              _onFocus={() => setActive({ type: 'menu', id })}
               key={`menu:${id}`}
               {...menu}
               onClose={close('menu')}
@@ -192,9 +174,7 @@ const App = () => {
               ref={ref}
               onFocus={() => setActive({ type: 'url', id, ref })}
               onClose={close('url')}
-              onNavigate={id => {
-                add({ type: 'url', id });
-              }}
+              onNavigate={id => add({ type: 'url', id })}
               active={id === active.id}
               url={id}
               key={`url:${id}`}
@@ -205,12 +185,14 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'panel')
-        .map(({ props: { Component }, id }) => {
-          console.log('adding panel', id);
+        .map(({ props: { Component }, id }, index) => {
+          console.log('panel', Component, id);
           return (
             <Component
               key={`panel:${id}`}
               id={id}
+              index={index}
+              add={add}
               active={active.id == id}
               onAction={url => add({ type: 'url', id: url })}
               onFocus={() => setActive({ type: 'panel', id })}
