@@ -10,7 +10,17 @@ subhede: 2019 rebuilding of the original NeXT web browser
 
 In December 1990, an application called WorldWideWeb was developed on a NeXT machine at The European Organization for Nuclear Research (known as CERN) just outside of Geneva. This program – WorldWideWeb — is the antecedent of most of what we consider or know of as "the web" today.
 
-In February 2019, in celebration of the thirtieth anniversary of the development of WorldWideWeb, a group of developers and designers convened at CERN to rebuild the original browser *within* a contemporary browser, allowing users around the world to experience the origins of this transformative technology. 
+In February 2019, in celebration of the thirtieth anniversary of the development of WorldWideWeb, a group of developers and designers convened at CERN to rebuild the original browser *within* a contemporary browser, allowing users around the world to experience the origins of this transformative technology.
+
+### Party like it’s 1989
+
+Ready to browse the World Wide Web using WorldWideWeb?
+
+1. [Launch the WorldWideWeb browser](/browser).
+2. Select "Document" from the menu on the side.
+3. Select "Open from full document reference".
+4. Type a URL into the "reference" field.
+5. Click "Open".
 
 Click here to jump in: 
 

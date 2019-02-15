@@ -87,7 +87,8 @@ sub {
 a {
 	color: #000;
 }
-img {
+img,
+video {
   max-width: 100%;
 }
 figure.double img { width: 49%; float: left; }
@@ -118,42 +119,21 @@ ul, ol {
 ul {
 	list-style: circle;
 }
-ol {
-	list-style: none;
-}
-ol li {
-	margin-left: 0;
-	padding-left: 1em;
-}
-ol a {
+pre {
 	display: inline-block;
 	width: 100%;
-	text-decoration: none;
+	padding: 1em;
+	margin-bottom: 1em;
+	font-size: .8em;
 }
-ol a:hover,
-ol a:focus{
-	background-color: #f7f7f7;
-}
-ul ol {
-	border-left: 1px dotted #ddd;
-}
-ul ol ol {
-	list-style: none;
-	margin: 0;
-}
-ul ol ol li a::before {
-	content: "↳ ";
+code {
+	display: inline;
 }
 pre, code {
 	box-sizing: border-box;
 	background-color: #666;
 	color: #fff;
 	font-family: monospace;
-	padding: 1em;
-	font-size: .8em;
-	display: inline-block;
-	margin-bottom: 1em;
-	width: 100%;
 	overflow: scroll;
 }
 pre::-webkit-scrollbar { /* WebKit */
@@ -224,6 +204,13 @@ video { width: 100%; border: 3px solid #000; }
 	border-right: 1px solid #069;
 	margin-bottom: 1.5em;
 }
+.button:hover,
+.button:focus {
+	border-top-color: #069;
+	border-left-color: #069;
+	border-bottom-color: #6cf;
+	border-right-color: #6cf;
+}
 @media all and (max-width: 30em) {
 	header .button {
 		width: 100%;
@@ -235,7 +222,19 @@ video { width: 100%; border: 3px solid #000; }
 	}
 }
 
-
+.constrained {
+	max-width: 35em;
+}
+@media all and (min-width: 35em) and (min-height: 35em) {
+	.constrained {
+		max-width: 100%;
+		columns: 2;
+		column-gap: 5em;
+	}
+	.constrained p {
+		break-inside: avoid;
+	}
+}
 .history {
 	margin-top: 2em;
 	margin-bottom: 2em;
@@ -250,6 +249,30 @@ ul.history  {
 .history ol,
 .history ul {
 	margin-bottom: 0;
+}
+.history ol {
+	list-style: none;
+	border-left: 1px dotted #ddd;
+}
+.history ol li {
+	margin-left: 0;
+	padding-left: 1em;
+}
+.history ol a {
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+}
+.history ol a:hover,
+.history ol a:focus{
+	background-color: #f7f7f7;
+}
+.history ol ol {
+	list-style: none;
+	margin: 0;
+}
+.history ol ol li a::before {
+	content: "↳ ";
 }
 .history time {
 	float: right;

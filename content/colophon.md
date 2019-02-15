@@ -5,7 +5,7 @@ subhede: The global team behind this project
 ---
 
 
-<img src="/images/colophon/thegroup.jpg" class="fullbleed"/>
+<img src="/images/colophon/thegroup.jpg" alt="The team gathered around a globe in the basement of the CERN Data Centre. They’re smiling and their arms are raised in celebration." class="fullbleed"/>
 
 
 <section>

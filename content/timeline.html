@@ -6,12 +6,12 @@ extrastyle: timeline.css
 gridclass: nogrid
 ---
 
-<script>document.documentElement.classList.add('loading')</script>
+    <script>document.documentElement.classList.add('loading')</script>
 
     <div class="canvas">
       <div class="past">
         <section class="hypertext timeline">
-          <h2 class="timeline__heading">Hypertext</h2>
+          <h3 class="timeline__heading">Hypertext</h3>
           <ol class="timeline__list">
             <li class="h-event y1963">
               <a href="https://en.wikipedia.org/wiki/Hypertext" class="u-url">
@@ -34,7 +34,7 @@ gridclass: nogrid
           </ol>
         </section><!-- /.timeline.hypertext -->
         <section class="networks timeline">
-          <h2 class="timeline__heading">Networks</h2>
+          <h3 class="timeline__heading">Networks</h3>
           <ol class="timeline__list">
             <li class="h-event y1964">
               <a href="http://www.davidpaulkirkpatrick.com/2012/08/15/dial-f-for-frankenstein-the-birth-of-the-world-wide-web/" class="u-url">
@@ -57,7 +57,7 @@ gridclass: nogrid
           </ol>
         </section><!-- /.timeline.networks -->
         <section class="formats timeline">
-          <h2 class="timeline__heading">Formats</h2>
+          <h3 class="timeline__heading">Formats</h3>
           <ol class="timeline__list">
             <li class="h-event y1969">
               <a href="https://en.wikipedia.org/wiki/IBM_Generalized_Markup_Language" class="u-url">
@@ -74,7 +74,7 @@ gridclass: nogrid
           </ol>
         </section><!-- /.timeline.formats -->
         <section class="computing timeline">
-          <h2 class="timeline__heading">Computing</h2>
+          <h3 class="timeline__heading">Computing</h3>
           <ol class="timeline__list">
             <li class="h-event y1968">
               <a href="https://en.wikipedia.org/wiki/NLS_%28computer_system%29" class="u-url">
@@ -107,7 +107,7 @@ gridclass: nogrid
       </div><!-- /.present -->
       <div class="future">
         <section class="browsers timeline">
-          <h2 class="timeline__heading">Browsers</h2>
+          <h3 class="timeline__heading">Browsers</h3>
           <ol class="timeline_list">
             <li class="h-event y1990">
               <a href="https://www.w3.org/People/Berners-Lee/WorldWideWeb.html" class="u-url">
@@ -160,7 +160,7 @@ gridclass: nogrid
           </ol>
         </section><!-- /.timeline.browsers -->
         <section class="servers timeline">
-          <h2 class="timeline__heading">Servers</h2>
+          <h3 class="timeline__heading">Servers</h3>
           <ol class="timeline__list">
             <li class="h-event y1991">
               <a href="https://en.wikipedia.org/wiki/CERN_httpd" class="u-url">
@@ -195,7 +195,7 @@ gridclass: nogrid
           </ol>
         </section><!-- /.timeline.server -->
         <section class="formats timeline">
-          <h2 class="timeline__heading">Formats</h2>
+          <h3 class="timeline__heading">Formats</h3>
           <ol class="timeline__list">
             <li class="h-event y1992">
               <a href="https://www.w3.org/History/19921103-hypertext/hypertext/WWW/MarkUp/Tags.html" class="u-url">
@@ -231,10 +231,12 @@ gridclass: nogrid
         </section><!-- /.timeline.formats -->
       </div><!-- /.future -->
     </div><!-- /.canvas -->
-    <section class="constrained">
+    <section>
       <h2>Background</h2>
-      <p>March 2019 marks the 30<sup>th</sup> anniversary of the original proposal that would become the World Wide Web. A lot has happened in those thirty years. HTML has grown. HTTP has evolved. Browsers have changed.</p>
-      <p>What about the thirty years before that? Tim Berners-Lee was influenced by ideas on hypertext. The World Wide Web couldn’t exist without the internet. And computers needed to be powerful enough, usable enough, and affordable enough to make a global collaborative information space a reality.</p>
-      <p>This visualisation takes March 1989 as its centre point. Advances in hypertext, networks, computing, and formats are fired into <cite>Information Management: A Proposal</cite>. </p>
+      <div class="constrained">
+        <p>March 2019 marks the 30<sup>th</sup> anniversary of the original proposal that would become the World Wide Web. A lot has happened in those thirty years. HTML has grown. HTTP has evolved. Browsers have changed.</p>
+        <p>What about the thirty years before that? Tim Berners-Lee was influenced by ideas on hypertext. The World Wide Web couldn’t exist without the internet. And computers needed to be powerful enough, usable enough, and affordable enough to make a global collaborative information space a reality.</p>
+        <p>This visualisation takes March 1989 as its centre point. Advances in hypertext, networks, computing, and formats are fired into <cite>Information Management: A Proposal</cite>. An explosion of browsers, formats, and servers shoots out the other side.</p>
+      </div><!-- /.constrained -->
     </section>
     <script>setTimeout(function(){document.documentElement.classList.remove('loading')},50)</script>
