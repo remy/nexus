@@ -63,11 +63,9 @@ A few entities were supported: ampersand (&amp;AMP;), less than (&amp;LT;), grea
 
 ParseHTML.h in the source code contained the instructions for parsing markup. Here are some interesting things that we noticed: 
 
-- The approach taken to parsing the markup looked much like the code we found in www.c in the <a href="http://line-mode.cern.ch">line mode browser</a>. A state machine is used to parse the markup stream--in fact, the function names are the same and switch statements are very similar code. And again, this parsing also manages the style stack.
-- Comments in the code indicated that CERN's SGML implementation injected extra new line characters in files. The source code defines a constant called CERN_WEIRDO – when this is true, logic executes to identify multiple new line characters and replace them with a single paragraph tag/output. (To output a paragraph, math was done using the styles to determine how many newlines to add to the window.)<pre>
-int newlines = ((s-&gt;spaceBefore+s-&gt;spaceAfter) / s->paragraph-&gt;lineHt) + 1;
-for(i=0; i&lt;newlines; i++) OUTPUT('\n');
-</pre>
+The approach taken to parsing the markup looked much like the code we found in www.c in the <a href="http://line-mode.cern.ch">line mode browser</a>. A state machine is used to parse the markup stream--in fact, the function names are the same and switch statements are very similar code. And again, this parsing also manages the style stack.
+
+Comments in the code indicated that CERN's SGML implementation injected extra new line characters in files. The source code defines a constant called CERN_WEIRDO – when this is true, logic executes to identify multiple new line characters and replace them with a single paragraph tag/output.
 
 </section>
 
@@ -84,8 +82,7 @@ WorldWideWeb and Nexus shipped with four style sheets: default, compact, project
 Here is a sample from the <a href="https://github.com/cynthia/WorldWideWeb/blob/master/NextStep/Implementation/WorldWideWeb.app/default.style">default style sheet</a>, defining the normal text style, followed by a line-by-line explanation:
 <pre>
 Normal &lt;P&gt; 0 Helvetica 12.0   1
-	90 90	14.0 3.0  0  0 14	0
-</pre>
+	90 90	14.0 3.0  0  0 14	0</pre>
 
 - On the first line:
   - "Normal" is the style name
@@ -110,15 +107,14 @@ Bold-Italic &lt;HP3&gt; 0	Helvetica-Bold-Oblique 12.0	0
 
 List &lt;LI&gt; 0 Helvetica 12.0   1
         100 130	14 3  0  0 14  2
-	0 130	0 300
-</pre>
+	0 130	0 300</pre>
 
 In comparing the NXTextStyle values of 1 for Normal and List against the 0 for Bold-Italic, our hypothesis is that the former was intended to imply a block treatment while the latter was meant to imply inline treatment. This is supported by the fact that Bold-Italic lacks the second line of styles (indentation, spacing, tab stops) which would only be needed for blocks of text. 
 
 Although there are values set to define the amount of space before and after blocks--similar to margins in CSS today--these values are not directly used to insert space. Instead, the browser performs some math to determine how many line breaks to insert between blocks of text. 
 <pre>
-(space before + space after / line height) + 1
-</pre>
+int newlines = ((s-&gt;<b>spaceBefore</b>+s-&gt;<b>spaceAfter</b>) / s-&gt;paragraph-&gt;<b>lineHt</b>) + 1;
+for(i=0; i&lt;newlines; i++) OUTPUT('\n');</pre>
 
 Note that the List style does not define the list style indicator (bullet, number, etc.), as we do in CSS today. Instead, list styles are added by ParseHTML.h. Code in that file looks for "\n&lt;UL&gt;\n&lt;LI&gt;" to start a list, then "\n&lt;LI&gt;" to break up list items. It also specifies the starting text ("\267\t" – a dot then a tab character) which is added to each list item. So the indents of 100 pixels and 130 pixels in the styles are for the bullet point (dot) and then for the placement of the text. 
 
@@ -132,16 +128,14 @@ These days, we don't spend a lot of time thinking about printing web documents--
 <pre>
     static NXDefaultsVector myDefaults = {
         { "PaperType", "Letter"},		// Non-USA users will have to override
-	{ "LeftMargin", "72"},			//  (72) Space for ring binding
-</pre>
+	{ "LeftMargin", "72"},			//  (72) Space for ring binding</pre>
 
 ### HTTP Ports
 In HTUtils.h, we can see that <a href="https://en.wikipedia.org/wiki/Jon_Postel">Jon Postel</a> allocated port 80 to HTTP on 24 January 1992. 
 
 <pre>
 #define TCP_PORT 80	/* Allocated to http by Jon Postel/ISI 24-Jan-92 */
-#define OLD_TCP_PORT 2784	/* Try the old one if no answer on 80 */
-</pre>
+#define OLD_TCP_PORT 2784	/* Try the old one if no answer on 80 */</pre>
 
 
 </section>
