@@ -1,51 +1,51 @@
 /* 	-- 	CERN 2019
-		-- 	Supplemental website for the rebuilding 
+		-- 	Supplemental website for the rebuilding
 				of WorldWideWeb NeXT application
 				Built February, 2019
-                                                                                                    
-                                                                                                          
-                      `.-:/+++++++++++++++++++++++++++++++++++++++++++++++`     
-                  .:oo+/:-.``````.-:/oso/-````````````````````````````````      
-               .+s+-`                  `-+s+.                                   
-             :s+-                   ``.....:os:                   .:`           
-           -s+.               .-/+ooo+////++:-+s- `               /y            
-         `os.             `-+s+:.`             .s+-+/.            s+            
-        .s+             .+s/.                    +s.-+s/`        `y:            
-       `s+            -oo-                        +s` `/s/`      :y`            
-       oo            ./-                           oo   `/s:     +s             
-      :y.   .-----` ------``---.-.`  .`      `.    .y:    .so`   y/             
-      so  /+.    ..`y-   ` .y`   -y- /o/`    -/     os     `oo` -y-             
-     `y: +s        `y:.... .y.``./+` /..++`  -/     /y-      oo /y              
-     `y: os        `y-```` .y:.+o`   /.  .++.-/     :yo      `y:so              
-      y/ `o/`      `y-     .y.  .o/` /.    .os/     /yy-      /yy:              
-      oo   .:-----``/:----``/`    ::`-`      .-     oooo      .yy.              
-      -y-       --                                 -y--y.     `ys               
-       os`      oo                                `s+  s+     `y+               
-       .yo`     /y                               `oo   :y.    -y-               
-        +ys.    .y-                             .s+     s+    os                
-        `yss:    +s`                           /s:      :y`  -y-                
-         /y-+s:  `s+                         :s+`       `y/ .s/                 
-         `s+ .+s/.`s+                     ./so.          /y`s+                  
-          :y.  `-+s+/-                `-+sys-            `y/.                   
-           so      .:+oo+/::----::/+oo+/ss:             .-+s                    
-           -y-         `://-::::--.` `/s/`            -oo-.y:                   
-            os           :oo/.      :s+`          `-+s+.   +s                   
-            `-`            `:+so/`-so.       `.:/oo/-      .y-                  
-                               `-oo-:oooooooo+/:.           os                  
-                              `+s-                          -y-                 
-                            `/s:                             oo                 
-                           :s/`                              -y.                
-                         :s+`                                 s+                
-                       -oo.                                   :y.               
-                      :+-                                      +:               
-                                                                               
+
+
+                      `.-:/+++++++++++++++++++++++++++++++++++++++++++++++`
+                  .:oo+/:-.``````.-:/oso/-````````````````````````````````
+               .+s+-`                  `-+s+.
+             :s+-                   ``.....:os:                   .:`
+           -s+.               .-/+ooo+////++:-+s- `               /y
+         `os.             `-+s+:.`             .s+-+/.            s+
+        .s+             .+s/.                    +s.-+s/`        `y:
+       `s+            -oo-                        +s` `/s/`      :y`
+       oo            ./-                           oo   `/s:     +s
+      :y.   .-----` ------``---.-.`  .`      `.    .y:    .so`   y/
+      so  /+.    ..`y-   ` .y`   -y- /o/`    -/     os     `oo` -y-
+     `y: +s        `y:.... .y.``./+` /..++`  -/     /y-      oo /y
+     `y: os        `y-```` .y:.+o`   /.  .++.-/     :yo      `y:so
+      y/ `o/`      `y-     .y.  .o/` /.    .os/     /yy-      /yy:
+      oo   .:-----``/:----``/`    ::`-`      .-     oooo      .yy.
+      -y-       --                                 -y--y.     `ys
+       os`      oo                                `s+  s+     `y+
+       .yo`     /y                               `oo   :y.    -y-
+        +ys.    .y-                             .s+     s+    os
+        `yss:    +s`                           /s:      :y`  -y-
+         /y-+s:  `s+                         :s+`       `y/ .s/
+         `s+ .+s/.`s+                     ./so.          /y`s+
+          :y.  `-+s+/-                `-+sys-            `y/.
+           so      .:+oo+/::----::/+oo+/ss:             .-+s
+           -y-         `://-::::--.` `/s/`            -oo-.y:
+            os           :oo/.      :s+`          `-+s+.   +s
+            `-`            `:+so/`-so.       `.:/oo/-      .y-
+                               `-oo-:oooooooo+/:.           os
+                              `+s-                          -y-
+                            `/s:                             oo
+                           :s/`                              -y.
+                         :s+`                                 s+
+                       -oo.                                   :y.
+                      :+-                                      +:
+
 
 */
 
 @font-face {
 	font-family: 'NeXT Big_Bold';
-	src:    url('/css/fonts/NeXT_Big-Bold.woff') format('woff'),
-					url('/css/fonts/NeXT_Big-Bold.woff2') format('woff2');
+	src:    url('/css/fonts/CERN-www-headline-bold.woff') format('woff'),
+					url('/css/fonts/CERN-www-headline-bold.woff2') format('woff2');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -59,9 +59,9 @@
 	background: #aaaaaa;
 }
 
-html { 
-	padding: 2.5vw; 
-	border: 10px solid #aaaaaa; 
+html {
+	padding: 2.5vw;
+	border: 10px solid #aaaaaa;
 	webkit-font-smoothing: none;
 	-moz-osx-font-smoothing: none;
 	font-smooth: never;
@@ -87,7 +87,7 @@ sub {
 a {
 	color: #000;
 }
-img { 
+img {
   max-width: 100%;
 }
 h1, h2, h3, h4, h5 {
@@ -139,7 +139,7 @@ ul ol ol li a::before {
 }
 pre, code {
 	box-sizing: border-box;
-	background-color: #666; 
+	background-color: #666;
 	color: #fff;
 	font-family: monospace;
 	padding: 1em;
@@ -153,7 +153,7 @@ pre::-webkit-scrollbar { /* WebKit */
   width: 0px;
 }
 
-section p {  
+section p {
 	margin-bottom: 1em;
 }
 section img {
@@ -162,7 +162,7 @@ section img {
 header {
 	grid-column: span 2;
 	border-bottom: 1px solid #ddd;
-	padding-bottom: 1em; 
+	padding-bottom: 1em;
 	margin-bottom: 1em;
 	max-width: 80em;
 }
@@ -188,7 +188,7 @@ nav ul li {
 		display: block;
 	}
 }
-footer { 
+footer {
   grid-column: span 2;
   margin-top: 1em;
   border-top: 1px solid #ddd;
@@ -259,7 +259,7 @@ ul.history  {
 	height: auto;
 }
 
-/* 	colophon circles 
+/* 	colophon circles
 		------------------ */
 ul.palette {
 	display: flex;
