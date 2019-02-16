@@ -62,11 +62,8 @@ export default class WebView extends React.Component {
   }
 
   async load(url) {
-    console.log('open ', url);
-
     if (url.startsWith('file://')) {
       const filename = localToFilename(url);
-      console.log('filename', filename);
 
       const title = filename.replace(/\.html?$/, '');
       const body = await filesystem.load(filename);
@@ -169,7 +166,6 @@ export default class WebView extends React.Component {
     // we assume this is nearly always… I think
     if (selection.anchorNode.nodeName === '#text') {
       const { anchorNode, focusNode } = selection;
-      console.log(anchorNode, focusNode, selection);
 
       const html = anchorNode.innerHTML;
       const node = document.createAttribute(style.tag.replace(/<(.*)>/, '$1'));
@@ -225,8 +221,23 @@ export default class WebView extends React.Component {
     }
   }
 
+  visitUrl = e => {
+    const { url, onNavigate } = this.props;
+    const link = getLink(e.target, this.ref.current);
+    if (link) {
+      e.preventDefault();
+      let navigateTo = link.href;
+
+      // if we're a relative url, then rebase since we're hosting the html
+      if (!link.getAttribute('href').startsWith('http')) {
+        navigateTo = new URL(link.getAttribute('href'), url).toString();
+      }
+      onNavigate(navigateTo);
+    }
+  };
+
   render() {
-    const { url, onNavigate, onFocus, ...props } = this.props;
+    const { onFocus, ...props } = this.props;
 
     const { title, body, dirty } = this.state;
 
@@ -249,23 +260,7 @@ export default class WebView extends React.Component {
               spellCheck={false}
               onMouseDown={() => onFocus()}
               onClick={e => e.preventDefault()}
-              onDoubleClick={e => {
-                const link = getLink(e.target, this.ref.current);
-                if (link) {
-                  e.preventDefault();
-                  let navigateTo = link.href;
-
-                  // if we're a relative url, then rebase since we're hosting the html
-                  // console.log(link, link.origin, HOST);
-                  if (!link.getAttribute('href').startsWith('http')) {
-                    navigateTo = new URL(
-                      link.getAttribute('href'),
-                      url
-                    ).toString();
-                  }
-                  onNavigate(navigateTo);
-                }
-              }}
+              onDoubleClick={this.visitUrl}
             />
           </div>
           <button className="grab-window">Grab the window</button>

@@ -47,6 +47,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "parcel-plugin-asset-copier": "^1.0.0",
     "postcss-modules": "^1.4.1",
