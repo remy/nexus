@@ -61,10 +61,17 @@ const App = () => {
   const add = ({ id, type, ...props }) => {
     // check if we have the URL open already and insert set focus
     const match = type === 'url' ? id.replace(/#.*$/, '') : id;
+
     const found = windows.find(
-      _ => _.type === type && _.id.toLowerCase() === match.toLowerCase()
+      _ =>
+        _.type === type &&
+        _.id.replace(/#.*$/, '').toLowerCase() === match.toLowerCase()
     );
     if (found) {
+      if (id.includes('#')) {
+        const hash = id.replace(/^.*?#(.*$)/, '$1');
+        found.ref.current.scrollTo(hash);
+      }
       return setActive(found);
     }
 

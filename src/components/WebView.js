@@ -24,6 +24,19 @@ class WebView extends React.Component {
     };
   }
 
+  scrollTo = hash => {
+    const parentNode = this.ref.current;
+    let target = parentNode.querySelector(`a[name="${hash}"]`);
+
+    if (!target) {
+      target = parentNode.querySelector(`#${hash}`);
+    }
+
+    if (target) {
+      target.scrollIntoView();
+    }
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.body === this.state.body) {
       return;
@@ -41,8 +54,8 @@ class WebView extends React.Component {
       this.setState({ links });
 
       if (this.props.url.includes('#')) {
-        const target = parentNode.querySelector(`a[name="${'Groff'}"]`);
-        target.scrollIntoView();
+        const hash = this.props.url.replace(/^.*?#(.*$)/, '$1');
+        this.scrollTo(hash);
       }
 
       Array.from(parentNode.childNodes)
