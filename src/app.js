@@ -158,6 +158,7 @@ const App = () => {
             <Menu
               index={i}
               key={`menu:${id}`}
+              active={id === active.id}
               {...menu}
               onClose={close('menu')}
               onOpen={id => {

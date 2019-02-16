@@ -34,6 +34,7 @@ figcaption {
 html,
 body {
   height: 100%;
+  overflow: hidden; /* hide OS scrollbars */
 }
 
 #root, #root > div {
@@ -140,6 +141,9 @@ hr {
 
 img {
   max-width: 100%;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 ::-webkit-scrollbar {

@@ -44,12 +44,16 @@ const Window = ({
     showClose = true;
   }
 
+  const webView = !menu && !dialogue;
+
+  const titleActive = webView ? active : true;
+
   return (
     <Draggable handle=".title-bar">
       <div className={classnames(['panel', { menu }])} style={style}>
         <div
           onMouseDown={onFocus}
-          className={classnames(['title-bar', { active }])}
+          className={classnames(['title-bar', { active: titleActive }])}
         >
           {!menu && !dialogue && (
             <button className="icon-buttons">
