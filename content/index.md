@@ -22,7 +22,7 @@ Ready to browse the World Wide Web using WorldWideWeb?
 4. Type a URL into the "reference" field.
 5. Click "Open".
 
-Click here to jump in: 
+Click here to jump in (and remember you need to double-click on links): 
 
 <a href="/browser" class="button" target="_blank" rel="noopener">Launch WorldWideWeb</a>
 
