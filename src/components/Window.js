@@ -16,7 +16,7 @@ const Window = ({
   id,
   index,
   title,
-  active = true,
+  active,
   onClose,
   onFocus,
   menu = undefined,

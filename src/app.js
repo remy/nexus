@@ -166,6 +166,7 @@ const App = () => {
               index={i}
               key={`menu:${id}`}
               active={id === active.id}
+              onFocus={() => setActive({ type: 'menu', id })}
               {...menu}
               onClose={close('menu')}
               onOpen={id => {
