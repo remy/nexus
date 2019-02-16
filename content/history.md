@@ -9,7 +9,7 @@ gridclass: three
 
 ### 1989
 
-In March 1989, Tim Berners-Lee, along with Robert Cailliau, at CERN the the European Organization for Nuclear Research, circulated "Information Management: A Proposal".
+In March 1989, Tim Berners-Lee, along with Robert Cailliau, at CERN, the European Organization for Nuclear Research, circulated "Information Management: A Proposal".
 
 It imagined a simple client-server architecture, and links, and a 6 month time frame.
 
@@ -19,20 +19,20 @@ His boss at CERN at the time, Mark Sendall found it "Vague, but exciting".
 
 
 ### 1990
-In November 1990, [the proposal was re-formulated](https://www.w3.org/History/19921103-hypertext/hypertext/WWW/Proposal.html),    
+In November 1990, [the proposal was re-formulated](https://www.w3.org/History/19921103-hypertext/hypertext/WWW/Proposal.html).  
 
 
 At the same time, Tim Berners-Lee completed the earliest version of an application he called WorldWideWeb. It was developed on a NeXT machine at The European Organization for Nuclear Research (known as CERN) just outside of Geneva. This program is the antecedent of most of what we consider or know of as "the web" today. 
 
 The WorldWideWeb application was considered a prototype or test of a networked "HyperMedia Browser/Editor." WorldWideWeb was the user-facing layer. This browser/editor application worked on a local machine on local files. However, in conjunction with this application, Tim also developed the first hypertext server software known as "httpd" which ran in the background and was the server to which the browser would connect to serve up, what we know today, as "web pages." 
 
-WorldWideWeb, later renamed Nexus to avoid confusion withe World Wide Web project, (internal debates at CERN as to the name of the project included "The MESH", The Information Mine, and simple "the Web") was originally developed in Objective C, using Interface Builder for a NeXT computer. NeXT computer was founded by Apple founder Steve Jobs after his ouster from Apple, but only sold a few tens of thousands of devices.
+WorldWideWeb, later renamed Nexus to avoid confusion wih the World Wide Web project, (internal debates at CERN as to the name of the project included "The MESH", The Information Mine, and simply "the Web") was originally developed in Objective C, using Interface Builder for a NeXT computer. NeXT computer was founded by Apple founder Steve Jobs after his ouster from Apple, but only sold a few tens of thousands of devices.
 
 To make the Web more widely accessible, a second browser project at CERN, the [Line Mode browser](http://line-mode.cern.ch), began in late 1990, to bring the Web to commonly used much lower powered devices, such as the "line mode" terminals that were used to access mini computers, still common at the time.
 
 ### Philosophy of the Web  
 
-While the Web is largely thought of as a medium for consuming information, the WorldWideWeb browser also allowed the user to edit and create web pages. This reflects the philosophy of the Web as both  read and write medium well captured in this observation by Tim Berners-Lee ["If you think surfing hypertext is cool, that's because you haven't tried writing it"](https://www.w3.org/DesignIssues/Editor.html).
+While the Web is largely thought of as a medium for consuming information, the WorldWideWeb browser also allowed the user to edit and create web pages. This reflects the philosophy of the Web as both  read and write medium, well captured in this observation by Tim Berners-Lee ["If you think surfing hypertext is cool, that's because you haven't tried writing it"](https://www.w3.org/DesignIssues/Editor.html).
 
 ### 2019 
 
@@ -44,7 +44,7 @@ In February 2019, in celebration of the thirtieth anniversary of the development
 
 ### Abbreviated lineage of web servers and browsers, post-1990
 
-Three main technologies were developed essentially in tandem around 1990: the WorldWideWeb NeXT hypertext browser, the CERN httpd web server, and the libwww C library. Most of the modern web is descendant from this trio. Here's a basic time line of how the propagation occurred. 
+Three main technologies were developed essentially in tandem around 1990: the WorldWideWeb NeXT hypertext browser, the CERN httpd web server, and the libwww C library. Most of the modern web is descendant from this trio. Here's a basic time line of how the propagation occurred: 
 
 
 <ul class="history">
