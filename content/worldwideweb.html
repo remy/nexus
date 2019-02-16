@@ -7,349 +7,401 @@ gridclass: nogrid
 ---
 
 <section>
-
-<h2>WorldWideWeb</h2>
-<div class="constrained components">
-<p>The idea of hypertext preceded the World Wide Web by decades. But nearly all hypertext systems worked on local files. Tim Berners-Lee wanted to create a system that would work across networks so that people could link from a file on one machine to another file on another machine.</p>
-<p>WorldWideWeb wasn't just a programme for browsing files. It was a browser and editor. The introductory text reads:</p>
-<blockquote>HyperMedia Browser/Editor, An excercise in global information availability by Tim Berners-Lee</blockquote>
-<p>Today it's hard to imagine that web browsers might also be used to create web pages. It turned out that people were quite happy to write HTML by hand—something that Tim Berners-Lee and colleagues never expected. They thought that some kind of user interface would be needed for making web pages and links. That's what the WorldWideWeb browser provided. You could open a document in one window and "mark" it. Then, in a document in another window, you could create a link to the marked page.</p>
-<p>You'll notice as you use the WorldWideWeb browser that you need to double-click links to open them. That's because a single click was used for editing.</p>
-</div>
-</section>
-
-<section>
-	<p>Below is a collection of HTML-based components recreating the original NeXT interface. Feel free to grab, view-source, etc, to use for your own projects. </p>
-	<h2 id="#palette-section">Color Palette</h2>
-
-	<div class="demo">
-		<ul class="palette">
-			<li>#000</li>
-			<li>#555</li>
-			<li>#AAA</li>
-			<li>#FFF</li>
-		</ul>
+	<h2>WorldWideWeb</h2>
+	<div class="constrained">
+		<p>The idea of hypertext preceded the World Wide Web by decades. But nearly all hypertext systems worked on local files. Tim Berners-Lee wanted to create a system that would work across networks so that people could link from a file on one machine to another file on another machine.</p>
+		<p>WorldWideWeb wasn't just a programme for browsing files. It was a browser and editor. The introductory text reads:</p>
+		<blockquote>HyperMedia Browser/Editor, An excercise in global information availability by Tim Berners-Lee</blockquote>
+		<p>Today it's hard to imagine that web browsers might also be used to create web pages. It turned out that people were quite happy to write HTML by hand—something that Tim Berners-Lee and colleagues never expected. They thought that some kind of user interface would be needed for making web pages and links. That's what the WorldWideWeb browser provided. You could open a document in one window and "mark" it. Then, in a document in another window, you could create a link to the marked page.</p>
+		<p>You'll notice as you use the WorldWideWeb browser that you need to double-click links to open them. That's because a single click was used for editing.</p>
 	</div>
 </section>
 
 <section>
-	<h2 id="form-section">Form Elements</h2>
-
-	<h3>Inputs</h3>
-	<div class="demo">
-		<p><label>A label <input type="text" name="the-input" /></label></p>
-	</div>
-	<h3>Fieldsets</h3>
-	<div class="demo staged">
-		<fieldset>
-			<legend><span>Legend</span></legend>
-			<div class="content">
-				<p><label>A label <input type="text" name="the-input" /></label></p>
-			</div>
-		</fieldset>
+	<h2>Browsing</h2>
+	<div class="constrained">
+		<p>The user interface of the WorldWideWeb browser somewhat blurred the lines between documents on your own computer and documents out on the network. To "browse" directly to a document out on the network, you need to know its URL. But you can't simply type that URL into an address bar; there is no address bar. Instead you have to follow a sequence of steps:</p>
+		<ol>
+			<li>From the "WorldWideWeb" menu, select "Document".</li>
+			<li>Now from the newly-opened "Document" menu, select "Open from full document reference".</li>
+			<li>Type the URL into the field marked "reference".</li>
+			<li>Press the "Open" button</li>
+		</ol>
+		<p>Once you've got a web-based document (or web page, as we would say today) open in WorldWideWeb, you can navigate by double-clicking on links. Every link you double-click will open in a new window.</p>
 	</div>
 </section>
 
 <section>
-	<h2 id="buttons-section">Buttons</h2>
-	<div class="info">
-		<p>In the case of buttons, there's no standard for paddings. The button must
-			match the width/height of the parent, so all buttons of the same group are of the
-			same width/height.</p>
-	</div>
-
-	<h3>Simple button</h3>
-	<div class="demo staged">
-		<p><button>Find unstyled text</button></p>
-	</div>
-	<h3>Image Buttons</h3>
-	<div class="demo staged">
-		<ul class="thumbs">
-			<li><button class="icon-buttons"><img src="/images/ui-patterns/full-window-button.png" alt="Full Window" /></button></li>
-			<li><button class="icon-buttons"><img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button></li>
-			<li><button class="icon-buttons"><img src="/images/ui-patterns/expand-window-button.png" alt="Expand Window" /></button></li>
-			<li><button class="icon-buttons"><img src="/images/ui-patterns/scroll-down-button.png" alt="Scroll down" /></button></li>
-			<li><button class="icon-buttons"><img src="/images/ui-patterns/scroll-top-button.png" alt="Scroll up" /></button></li>
-		</ul>
-	</div>
-</section>
-
-<section>
-	<h2 id="panels-section">Panels</h2>
-	<div class="info">
-		<p>Width and height properties must be defined locally.</p>
-	</div>
-	<div class="demo double">
-		<div class="panel">
-			<div class="title-bar">
-				<button class="icon-buttons">
-					<img src="/images/ui-patterns/full-window-button.png" alt="Full Window" /></button>
-				<h2>Panel</h2>
-				<button class="icon-buttons">
-					<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
-			</div>
-			<div class="content">
-				<p>Content goes here; it can be a webview, group of buttons, forms...</p>
-			</div>
-		</div>
-
-		<div class="panel">
-			<div class="title-bar active">
-				<button class="icon-buttons">
-					<img src="/images/ui-patterns/full-window-button.png" alt="Full Window" /></button>
-				<h2>Active Panel</h2>
-				<button class="icon-buttons">
-					<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
-			</div>
-			<div class="content">
-				<p>Content goes here; it can be a webview, group of buttons, forms...</p>
-			</div>
-		</div>
+	<h2>Linking</h2>
+	<div class="constrained">
+		<p>At its heart, WorldWideWeb is a word processor …but with links. And just as you <em>can</em> use a word processor purely for reading documents, the real fun comes when you write your own. Especially when you throw hyperlinks into the mix.</p>
+		<p>To create a document:</p>
+		<ol>
+			<li>From the "WorldWideWeb" menu, select "New File..."</li>
+			<li>Type the name of the file you want to create e.g. example.html</li>
+			<li>In the boilerplate document, click on the heading to edit. Same with the text.</li>
+		</ol>
+		<p>Once you've got a document written, it's time to turn from regular text into <em>hyper</em>text:</p>
+		<ol>
+			<li>From the "WorldWideWeb" menu, select "Links"</li>
+			<li>To link to another document, you need to have that other document open in another window. Click on its title bar to focus it.</li>
+			<li>With that document in focus, select "Mark all" from the "Links" menu.</li>
+			<li>Now switch back to your example.html document and highlight the text you want to be a link.</li>
+			<li>From the "Links" menu, select "Link to marked".</li>
+		</ol>
+		<p>You can even save your new document on to your hard drive. Click on "Save a copy offline" under the "Documents" menu.</p>
+		<p>Once you've downloaded the file to your computer, you can open it up with a text editor to see what the HTML would have looked like.</p>
 	</div>
 </section>
 
 <section>
-	<h2 id="webview-section">WebView</h2>
-	<div class="info">
-		<p>Width and height properties must be defined locally.</p>
-	</div>
-	<div class="demo">
-		<div class="webview">
-			<div class="r2l-content">
-				<div class="l2r-content">
-					<p><a href="#">Omnia sol temperat</a>
-							Purus et subtilis<br />
-							Novo mundo reserat<br />
-							Faciem Aprilis<br />
-							Ad amorem properat<br />
-							Animus herilis<br />
-							Et iocundis imperat<br />
-							Deus puerilis<br />
-							Et iocundis imperat<br />
-							Deus puerilis</p>
-						<p>Ama me fideliter<br />
-							Fidem meam nota<br />
-							De corde totaliter<br />
-							Et Ex mente tota<br />
-							Ama me fideliter<br />
-							Fidem meam nota<br />
-							De corde totaliter<br />
-							Et Ex mente tota</p>
-
-						<p>Rerum tanta novitas<br />
-							In sollmenti vere<br />
-							Et veris auctoritas<br />
-							Iubet nos gaudere<br />
-							Vices prebet solitas<br />
-							Et in tuo vere<br />
-							Fides est et probitas<br />
-							Tuum retinere<br />
-							Fides est et probitas<br />
-							Tuum retinere</p>
-				</div>
-			</div>
-			<button class="grab-window">Grab the window</button>
-		</div>
+<h2>Editing</h2>
+<div class="constrained">
+	<p>To edit any document, whether it's one you created, or a page on the world wide web:</p>
+	<ol>
+		<li>Click on the text you want edit.</li>
+		<li>Edit it.</li>
+	</ol>
+	<p>That's it.</p>
+	<p>If you want to keep a copy of the edited document, choose "Save a copy offline" from the "Documents" menu.</p>
 	</div>
 </section>
 
-<section>
-	<h2 id="nav-section">Floating Menus</h2>
-	<div class="demo">
-		<div class="panel menu">
-			<div class="title-bar">
-				<h2>WorldWideWeb</h2>
-			</div>
-			<div class="content">
-				<nav class="floating-menu">
-					<ul>
-						<li><button class="next">Info</button></li>
-						<li><button class="next">Navigate</button></li>
-						<li><button>Print <span aria-label="Keyboard shortcut">p</span></button></li>
-						<li><button>Page layout...</button></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</div>
-</section>
+<section class="components">
+	<h2>Components</h2>
+	<p>Here is a collection of HTML-based components recreating the original NeXT interface. Feel free to grab, view-source, etc, to use for your own projects. </p>
+	<section>
+		<h3 id="#palette-section">Color Palette</h3>
 
-<section>
-	<h2 id="general-section">General UI Elements</h2>
-	<h3>Divisions</h3>
-	<div class="demo staged">
-		<hr />
-	</div>
-</section>
-
-<section>
-	<h2 id="open-url-section">Open URL</h2>
-	<div class="demo">
-		<div id="open-url" class="panel">
-			<div class="title-bar">
-				<h2>Open using hypertext reference</h2>
-				<button class="icon-buttons">
-					<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
-			</div>
-			<div class="content">
-				<div class="first-block">
-					<p><label for="addr-reference">Reference:</label>
-						<input type="text" id="addr-reference" name="reference" /></p>
-				</div>
-				<div class="second-block">
-					<fieldset>
-						<legend><span>Diagnostics only</span></legend>
-						<div class="content">
-							<ul class="buttons-bar vertical">
-								<li><button>Open showing source</button></li>
-							</ul>
-						</div>
-					</fieldset>
-					<button class="enter-button"><strong>Open</strong></button>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section>
-		<h2 id="navigation-section">Browser Navigation</h2>
 		<div class="demo">
-			<div id="browser-nav" class="panel">
+			<ul class="palette">
+				<li>#000</li>
+				<li>#555</li>
+				<li>#AAA</li>
+				<li>#FFF</li>
+			</ul>
+		</div>
+	</section>
+
+	<section>
+		<h3 id="form-section">Form Elements</h3>
+
+		<h4>Inputs</h4>
+		<div class="demo">
+			<p><label>A label <input type="text" name="the-input" /></label></p>
+		</div>
+		<h4>Fieldsets</h4>
+		<div class="demo staged">
+			<fieldset>
+				<legend><span>Legend</span></legend>
+				<div class="content">
+					<p><label>A label <input type="text" name="the-input" /></label></p>
+				</div>
+			</fieldset>
+		</div>
+	</section>
+
+	<section>
+		<h3 id="buttons-section">Buttons</h3>
+		<div class="info">
+			<p>In the case of buttons, there's no standard for paddings. The button must
+				match the width/height of the parent, so all buttons of the same group are of the
+				same width/height.</p>
+		</div>
+
+		<h4>Simple button</h4>
+		<div class="demo staged">
+			<p><button>Find unstyled text</button></p>
+		</div>
+		<h4>Image Buttons</h4>
+		<div class="demo staged">
+			<ul class="thumbs">
+				<li><button class="icon-buttons"><img src="/images/ui-patterns/full-window-button.png" alt="Full Window" /></button></li>
+				<li><button class="icon-buttons"><img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button></li>
+				<li><button class="icon-buttons"><img src="/images/ui-patterns/expand-window-button.png" alt="Expand Window" /></button></li>
+				<li><button class="icon-buttons"><img src="/images/ui-patterns/scroll-down-button.png" alt="Scroll down" /></button></li>
+				<li><button class="icon-buttons"><img src="/images/ui-patterns/scroll-top-button.png" alt="Scroll up" /></button></li>
+			</ul>
+		</div>
+	</section>
+
+	<section>
+		<h3 id="panels-section">Panels</h3>
+		<div class="info">
+			<p>Width and height properties must be defined locally.</p>
+		</div>
+		<div class="demo double">
+			<div class="panel">
 				<div class="title-bar">
-					<h2>Navigation</h2>
+					<button class="icon-buttons">
+						<img src="/images/ui-patterns/full-window-button.png" alt="Full Window" /></button>
+					<h3>Panel</h3>
+					<button class="icon-buttons">
+						<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
+				</div>
+				<div class="content">
+					<p>Content goes here; it can be a webview, group of buttons, forms...</p>
+				</div>
+			</div>
+
+			<div class="panel">
+				<div class="title-bar active">
+					<button class="icon-buttons">
+						<img src="/images/ui-patterns/full-window-button.png" alt="Full Window" /></button>
+					<h3>Active Panel</h3>
+					<button class="icon-buttons">
+						<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
+				</div>
+				<div class="content">
+					<p>Content goes here; it can be a webview, group of buttons, forms...</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h3 id="webview-section">WebView</h3>
+		<div class="info">
+			<p>Width and height properties must be defined locally.</p>
+		</div>
+		<div class="demo">
+			<div class="webview">
+				<div class="r2l-content">
+					<div class="l2r-content">
+						<p><a href="#">Omnia sol temperat</a>
+								Purus et subtilis<br />
+								Novo mundo reserat<br />
+								Faciem Aprilis<br />
+								Ad amorem properat<br />
+								Animus herilis<br />
+								Et iocundis imperat<br />
+								Deus puerilis<br />
+								Et iocundis imperat<br />
+								Deus puerilis</p>
+							<p>Ama me fideliter<br />
+								Fidem meam nota<br />
+								De corde totaliter<br />
+								Et Ex mente tota<br />
+								Ama me fideliter<br />
+								Fidem meam nota<br />
+								De corde totaliter<br />
+								Et Ex mente tota</p>
+
+							<p>Rerum tanta novitas<br />
+								In sollmenti vere<br />
+								Et veris auctoritas<br />
+								Iubet nos gaudere<br />
+								Vices prebet solitas<br />
+								Et in tuo vere<br />
+								Fides est et probitas<br />
+								Tuum retinere<br />
+								Fides est et probitas<br />
+								Tuum retinere</p>
+					</div>
+				</div>
+				<button class="grab-window">Grab the window</button>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h3 id="nav-section">Floating Menus</h3>
+		<div class="demo">
+			<div class="panel menu">
+				<div class="title-bar">
+					<h3>WorldWideWeb</h3>
+				</div>
+				<div class="content">
+					<nav class="floating-menu">
+						<ul>
+							<li><button class="next">Info</button></li>
+							<li><button class="next">Navigate</button></li>
+							<li><button>Print <span aria-label="Keyboard shortcut">p</span></button></li>
+							<li><button>Page layout...</button></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h3 id="general-section">General UI Elements</h3>
+		<h4>Divisions</h4>
+		<div class="demo staged">
+			<hr />
+		</div>
+	</section>
+
+	<section>
+		<h3 id="open-url-section">Open URL</h3>
+		<div class="demo">
+			<div id="open-url" class="panel">
+				<div class="title-bar">
+					<h3>Open using hypertext reference</h3>
 					<button class="icon-buttons">
 						<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
 				</div>
 				<div class="content">
 					<div class="first-block">
-						<ul class="buttons-bar limited">
-							<li><button>&lt; Back</button></li>
-							<li><button>Back up</button></li>
-							<li><button>Next &gt;</button></li>
-						</ul>
+						<p><label for="addr-reference">Reference:</label>
+							<input type="text" id="addr-reference" name="reference" /></p>
 					</div>
 					<div class="second-block">
-						<ul class="buttons-bar limited">
-							<li><button>Home</button></li>
-							<li><button>Help</button></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-</section>
-
-<section>
-		<h2 id="info-section">Info Dialog</h2>
-		<div class="demo">
-			<div id="browser-info" class="panel">
-				<div class="title-bar">
-					<h2>Info</h2>
-					<button class="icon-buttons">
-						<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
-				</div>
-				<div class="content">
-					<header>
-						<p><img src="/images/ui-patterns/wwwicon.png" alt="" /></p>
-						<div class="hgroup">
-							<h3>HyperMedia Browser/Editor</h3>
-							<p class="baseline">An excercise in global information availability</p>
-						</div>
-						<p class="release">Version 1.0<br />Alpha only</p>
-						<address>by Tim Berners-Lee</address>
-					</header>
-					<hr />
-					<div class="first-block">
-						<p class="copyright">Copyright 1990, 91
-								<span>Distribution restricted: ask for terms.</span>
-								<span>TEST VERSION ONLY</span></p>
-						<dl>
-							<div>
-								<dt>HyperText:</dt>
-								<dd>Text which is not constrained to be linear.</dd>
+						<fieldset>
+							<legend><span>Diagnostics only</span></legend>
+							<div class="content">
+								<ul class="buttons-bar vertical">
+									<li><button>Open showing source</button></li>
+								</ul>
 							</div>
-							<div>
-								<dt>HyperMedia:</dt>
-								<dd>Information which is not constrained linear... or to be text.</dd>
-							</div>
-						</dl>
-					</div>
-					<div class="second-block">
-						<div class="webview">
-							<div class="r2l-content">
-								<div class="l2r-content">
-								 <p>This is the first version of the NextStep WorldWideWeb application
-								 like the libWWW Library. Bug reports to www-bug@info.cern.ch.<br />
-								 Check the list of know bugs in the web too.</p>
-								</div>
-							</div>
-						</div>
+						</fieldset>
+						<button class="enter-button"><strong>Open</strong></button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-<section>
-	<h2 id="style-editor-section">Style Editor</h2>
-	<div class="demo">
-		<div id="style-editor" class="panel">
-			<div class="title-bar">
-				<h2>Style Editor</h2>
-				<button class="icon-buttons">
-					<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
+	<section>
+			<h3 id="navigation-section">Browser Navigation</h3>
+			<div class="demo">
+				<div id="browser-nav" class="panel">
+					<div class="title-bar">
+						<h3>Navigation</h3>
+						<button class="icon-buttons">
+							<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
+					</div>
+					<div class="content">
+						<div class="first-block">
+							<ul class="buttons-bar limited">
+								<li><button>&lt; Back</button></li>
+								<li><button>Back up</button></li>
+								<li><button>Next &gt;</button></li>
+							</ul>
+						</div>
+						<div class="second-block">
+							<ul class="buttons-bar limited">
+								<li><button>Home</button></li>
+								<li><button>Help</button></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="content">
-				<form method="post" action="#">
-					<div class="first-block">
-						<p><label>Style name: <input type="text" name="style-name" value="List" /></label></p>
-						<ul class="buttons-bar limited">
-							<li><button>&lt;&lt;</button></li>
-							<li><button style="padding: 0.3em 5px">style of selection</button></li>
-							<li><button>&gt;&gt;</button></li>
-						</ul>
+	</section>
+
+	<section>
+			<h3 id="info-section">Info Dialog</h3>
+			<div class="demo">
+				<div id="browser-info" class="panel">
+					<div class="title-bar">
+						<h3>Info</h3>
+						<button class="icon-buttons">
+							<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
 					</div>
-					<div class="second-block">
-						<ul class="buttons-bar vertical">
-							<li><button style="padding: 10px 0;"><strong>Apply to selection</strong></button></li>
-							<li><button>Apply style to all similar text</button></li>
-							<li><button>Find unstyled text</button></li>
-						</ul>
-						<fieldset>
-							<legend><span>Style sheet</span></legend>
-							<div class="content">
-								<ul class="buttons-bar vertical">
-									<li><button>Open</button></li>
-									<li><button>Save as...</button></li>
-								</ul>
+					<div class="content">
+						<header>
+							<p><img src="/images/ui-patterns/wwwicon.png" alt="" /></p>
+							<div class="hgroup">
+								<h4>HyperMedia Browser/Editor</h4>
+								<p class="baseline">An excercise in global information availability</p>
 							</div>
-						</fieldset>
-					</div>
-					<div class="third-block">
-						<fieldset>
-							<legend><span>Format</span></legend>
-							<div class="content">
-								<p class="tabbed"><label for="fline-indent">First line indent:</label>
-									<input type="text" id="fline-indent" name="fline-indent" value="100" /></p>
-								<p class="tabbed"><label for="successive-indent">Successive indent:</label>
-									<input type="text" id="successive-indent" name="successive-indent" value="130" /></p>
-								<p class="tabbed"><label for="tag-font">Font:</label>
-									<input type="text" id="tag-font" name="tag-font" value="Helvetica" /></p>
-								<p class="tabbed"><label for="tag-size">Font size:</label>
-									<input type="text" id="tag-size" name="tag-size" value="12" /></p>
-								<p class="tabbed" style="position: relative;"><label for="tag-sgml">SGML tag:</label>
-									<input type="text" id="tag-sgml" name="tag-sgml" value="<LI>" />
-									<button class="enter-button" disabled="disabled">Set</button></p>
-								<p><label for="tag-tabs">Tabs:</label>
-									<input type="text" id="tag-tabs" name="tag-tabs" /></p>
+							<p class="release">Version 1.0<br />Alpha only</p>
+							<address>by Tim Berners-Lee</address>
+						</header>
+						<hr />
+						<div class="first-block">
+							<p class="copyright">Copyright 1990, 91
+									<span>Distribution restricted: ask for terms.</span>
+									<span>TEST VERSION ONLY</span></p>
+							<dl>
+								<div>
+									<dt>HyperText:</dt>
+									<dd>Text which is not constrained to be linear.</dd>
+								</div>
+								<div>
+									<dt>HyperMedia:</dt>
+									<dd>Information which is not constrained linear... or to be text.</dd>
+								</div>
+							</dl>
+						</div>
+						<div class="second-block">
+							<div class="webview">
+								<div class="r2l-content">
+									<div class="l2r-content">
+									<p>This is the first version of the NextStep WorldWideWeb application
+									like the libWWW Library. Bug reports to www-bug@info.cern.ch.<br />
+									Check the list of know bugs in the web too.</p>
+									</div>
+								</div>
 							</div>
-						</fieldset>
+						</div>
 					</div>
-				</form>
+				</div>
+			</div>
+		</section>
+
+	<section>
+		<h3 id="style-editor-section">Style Editor</h3>
+		<div class="demo">
+			<div id="style-editor" class="panel">
+				<div class="title-bar">
+					<h3>Style Editor</h3>
+					<button class="icon-buttons">
+						<img src="/images/ui-patterns/close-window-button.png" alt="Close Window" /></button>
+				</div>
+				<div class="content">
+					<form method="post" action="#">
+						<div class="first-block">
+							<p><label>Style name: <input type="text" name="style-name" value="List" /></label></p>
+							<ul class="buttons-bar limited">
+								<li><button>&lt;&lt;</button></li>
+								<li><button style="padding: 0.3em 5px">style of selection</button></li>
+								<li><button>&gt;&gt;</button></li>
+							</ul>
+						</div>
+						<div class="second-block">
+							<ul class="buttons-bar vertical">
+								<li><button style="padding: 10px 0;"><strong>Apply to selection</strong></button></li>
+								<li><button>Apply style to all similar text</button></li>
+								<li><button>Find unstyled text</button></li>
+							</ul>
+							<fieldset>
+								<legend><span>Style sheet</span></legend>
+								<div class="content">
+									<ul class="buttons-bar vertical">
+										<li><button>Open</button></li>
+										<li><button>Save as...</button></li>
+									</ul>
+								</div>
+							</fieldset>
+						</div>
+						<div class="third-block">
+							<fieldset>
+								<legend><span>Format</span></legend>
+								<div class="content">
+									<p class="tabbed"><label for="fline-indent">First line indent:</label>
+										<input type="text" id="fline-indent" name="fline-indent" value="100" /></p>
+									<p class="tabbed"><label for="successive-indent">Successive indent:</label>
+										<input type="text" id="successive-indent" name="successive-indent" value="130" /></p>
+									<p class="tabbed"><label for="tag-font">Font:</label>
+										<input type="text" id="tag-font" name="tag-font" value="Helvetica" /></p>
+									<p class="tabbed"><label for="tag-size">Font size:</label>
+										<input type="text" id="tag-size" name="tag-size" value="12" /></p>
+									<p class="tabbed" style="position: relative;"><label for="tag-sgml">SGML tag:</label>
+										<input type="text" id="tag-sgml" name="tag-sgml" value="<LI>" />
+										<button class="enter-button" disabled="disabled">Set</button></p>
+									<p><label for="tag-tabs">Tabs:</label>
+										<input type="text" id="tag-tabs" name="tag-tabs" /></p>
+								</div>
+							</fieldset>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </section>
 
 <!--
