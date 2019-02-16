@@ -234,7 +234,8 @@ video { width: 100%; border: 3px solid #000; }
 		columns: 2;
 		column-gap: 5em;
 	}
-	.constrained p {
+	.constrained p,
+	.constrained ol {
 		break-inside: avoid;
 	}
 }
