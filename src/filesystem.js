@@ -13,12 +13,16 @@ export async function save(filename, content) {
 }
 
 // by default put the blank template in as blank.html
-save(
-  'blank.html',
-  `<title>(No title)</title>
-<h1>Heading</h1>
-Text<p>
-__________________________________________________________________
-<address>Author</address>
-`
-);
+load('blank.html').then(file => {
+  if (!file) {
+    save(
+      'blank.html',
+      `<title>(No title)</title>
+    <h1>Heading</h1>
+    Text<p>
+    __________________________________________________________________
+    <address>Author</address>
+    `
+    );
+  }
+});
