@@ -4,3 +4,4 @@ yarn-error.log
 app
 package-lock.json
 build
+src/assets/www

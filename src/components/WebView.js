@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 import Window from './Window';
-import { HOST, API } from '../env';
+import { API } from '../env';
 import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
 import './WebView.scss';
@@ -21,16 +21,33 @@ export default class WebView extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    const parent = this.ref.current;
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.body === this.state.body) {
+      return;
+    }
+
+    const parentNode = this.ref.current;
     // insert <br> elements in root level text nodes
-    if (parent) {
-      Array.from(parent.childNodes)
+    if (parentNode) {
+      const links = Array.from(parentNode.querySelectorAll('a'), link => {
+        return link.href;
+      }).filter(_ => {
+        return _.trim() && _.startsWith('http');
+      });
+
+      this.setState({ links });
+
+      if (this.props.url.includes('#')) {
+        const target = parentNode.querySelector(`a[name="${'Groff'}"]`);
+        target.scrollIntoView();
+      }
+
+      Array.from(parentNode.childNodes)
         .filter(_ => _.nodeName === '#text')
         .forEach(node => {
           const span = document.createElement('span');
           span.className = 'hash-text';
-          parent.replaceChild(span, node);
+          parentNode.replaceChild(span, node);
           span.innerHTML = node.nodeValue.replace(/\n\n/g, '<br><br>');
         });
     }
@@ -239,7 +256,8 @@ export default class WebView extends React.Component {
                   let navigateTo = link.href;
 
                   // if we're a relative url, then rebase since we're hosting the html
-                  if (link.origin === HOST) {
+                  // console.log(link, link.origin, HOST);
+                  if (!link.getAttribute('href').startsWith('http')) {
                     navigateTo = new URL(
                       link.getAttribute('href'),
                       url
