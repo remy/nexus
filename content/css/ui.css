@@ -342,8 +342,7 @@ div.panel {background-color: #AAA; border: 1px solid #000;}
 /* ------------------------ SPECIFICS -------------------------- */
 
 
-section { max-width: 620px; }
-section:first-of-type { max-width: inherit; }
+.components { max-width: 620px; }
 
 section + section {
   margin-top: 2rem;
