@@ -1,11 +1,12 @@
 import React, { createRef } from 'react';
 import Window from './Window';
+import ErrorBoundary from './ErrorBoundary';
 import { API } from '../env';
 import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
 import './WebView.scss';
 
-export default class WebView extends React.Component {
+class WebView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,6 +19,8 @@ export default class WebView extends React.Component {
       links: [],
       dirty: false,
       nextId: 0,
+      hasError: false,
+      error: null,
     };
   }
 
@@ -245,6 +248,10 @@ export default class WebView extends React.Component {
       return <Window title={title} {...props} />;
     }
 
+    if (this.state.hasError) {
+      return <p>It went wrong {this.state.error}</p>;
+    }
+
     return (
       <Window title={title} onFocus={onFocus} dirty={dirty} {...props}>
         <div className="webview">
@@ -269,3 +276,9 @@ export default class WebView extends React.Component {
     );
   }
 }
+
+export default React.forwardRef((props, ref) => (
+  <ErrorBoundary {...props}>
+    <WebView {...props} ref={ref} />
+  </ErrorBoundary>
+));
