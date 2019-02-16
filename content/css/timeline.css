@@ -206,7 +206,7 @@
     position: absolute;
     width: 4vw;
     top: calc(50% - 2em);
-    left: calc(50% - 5vw);
+    left: calc(50% - 3em);
   }
   .future {
     width: 47.5vw;
