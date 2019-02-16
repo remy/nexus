@@ -31,11 +31,13 @@ Click here to jump in (and remember you need to double-click on links):
 ### Contents
 
 - [History](/history/) — a brief history of the application which was built in 1989 as a progenitor to what we know as "the web" today.
-- [Timeline](/timeline/) — a timeline of the thirty years of influences leading up to (and the thirty years of influence leading out from) the publication of the memo that lead to the development of the first web browser. 
-- [Production Process](/production/) — a behind the scenes look at how the WorldWideWeb browser was rebuilt for today.
+- [Timeline](/timeline/) — a timeline of the thirty years of influences leading up to (and the thirty years of influence leading out from) the publication of the memo that lead to the development of the first web browser.
+- [The Browser](/worldwideweb/) — instructions for using the recreated WorldWideWeb browser, and a collection of its interface patterns.
+- [Typography](/typography/) — details of the NeXT computer's fonts used by the WorldWideWeb browser.
 - [Inside the Code](/code/) — a look at some of the original code of WorldWideWeb.
+- [Production Process](/production/) — a behind the scenes look at how the WorldWideWeb browser was rebuilt for today.
 - [Related Links](/related/) — links to additional historical and technical resources around the production of WorldWideWeb.
-- [Colophon](/colophon) — a bit of info about the folks behind the project.
+- [Colophon](/colophon/) — a bit of info about the folks behind the project.
 
 </section>
 
