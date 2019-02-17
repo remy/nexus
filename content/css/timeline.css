@@ -158,7 +158,7 @@
       right: calc((2019 - 1990) * (100%/30) - 4.25em);
     }
     .y1991 {
-      right: calc((2019 - 1991) * (100%/30) - 5em);
+      right: calc((2019 - 1991) * (100%/30) - 4em);
     }
     .y1992 {
       right: calc((2019 - 1992) * (100%/30) - 4.5em);
@@ -175,17 +175,26 @@
     .y1997 {
       right: calc((2019 - 1997) * (100%/30) - 9em);
     }
+    .y1998 {
+      right: calc((2019 - 1998) * (100%/30) - 7.75em);
+    }
     .y1999 {
       right: calc((2019 - 1999) * (100%/30) - 9em);
     }
+    .y2001 {
+      right: calc((2019 - 2002) * (100%/30) - 8em);
+    }
     .y2002 {
-      right: calc((2019 - 2002) * (100%/30) - 5em);
+      right: calc((2019 - 2002) * (100%/30) - 8em);
     }
     .y2003 {
-      right: calc((2019 - 2003) * (100%/30) - 6.5em);
+      right: calc((2019 - 2003) * (100%/30) - 9.5em);
+    }
+    .y2005 {
+      right: calc((2019 - 2008) * (100%/30) - 7em);
     }
     .y2008 {
-      right: calc((2019 - 2008) * (100%/30) - 5em);
+      right: calc((2019 - 2008) * (100%/30) - 8.5em);
     }
     .y2014 {
       right: calc((2019 - 2014) * (100%/30) - 5em);
@@ -202,7 +211,9 @@
     .browsers .y1994 .p-name,
     .servers .y1994 .p-name,
     .servers .y1997 .p-name,
-    .formats .y1997 .p-name {
+    .formats .y1997 .p-name,
+    .websites .y1999 .p-name,
+    .websites .y2003 .p-name {
       margin-top: -4em;
     }
   }
@@ -271,7 +282,7 @@
     }
     .past .computing .timeline__heading {
       transform-origin: left center;
-      transform: rotate(90deg);
+      transform: rotate(90deg) translateY(0.5em);
     }
     .present .p-name {
       position: relative;
@@ -287,17 +298,23 @@
       transform: rotate(-35deg);
     }
     .future .servers {
-      transform: rotate(25deg);
+      transform: rotate(15deg);
     }
     .future .servers .timeline__heading {
-      transform-origin: right center;
-      transform: rotate(-90deg) translateY(0.5em) translateX(-25%);
+      transform: rotate(90deg) translateY(-3em) translateX(75%);
     }
     .future .formats {
-      transform: rotate(-15deg);
+      transform: rotate(-10deg);
     }
     .future .formats .timeline__heading {
       transform: rotate(90deg) translateY(-3em) translateX(70%);
+    }
+    .future .websites {
+      transform: rotate(30deg);
+    }
+    .future .websites .timeline__heading {
+      transform-origin: right center;
+      transform: rotate(-90deg) translateY(0.75em) translateX(-15%);
     }
 
     /* Tweaks for legibility */
