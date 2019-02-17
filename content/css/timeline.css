@@ -272,7 +272,7 @@ section {
   .present {
     position: absolute;
     width: 4vw;
-    top: calc(50% - 2em);
+    top: calc(50% - 5em);
     left: calc(50% - 3em);
   }
   .future {
