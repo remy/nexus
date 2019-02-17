@@ -2,10 +2,10 @@
 
 (minimal for the moment)
 
-Install [node](https://nodejs.com) (and npm comes with node)
+Install [node](https://nodejs.com) (and npm comes with node) and [yarn](https://yarnpkg.com/en/) to install.
 
 ```
-npm install
+yarn install
 npm run build
 npm start
 ```
@@ -46,6 +46,8 @@ The client is built using [parceljs](https://parceljs.org) and is generated into
 - `HOST` - the origin (proto + hostname) of the URL hosting the client code - this is important as it is used during the build to point to the correct origin during API requests
 
 Optionally `API` can be included if developing against a different local endpoint (typically `localhost:3000`).
+
+Run using `npm run client`
 
 ## Client side supplemental content
 

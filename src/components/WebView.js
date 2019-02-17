@@ -214,8 +214,8 @@ class WebView extends React.Component {
       const text = anchorNode.nodeValue;
       const linkText = selection.toString();
 
-      const left = document.createTextNode(text.substr(0, anchorOffset));
-      const right = document.createTextNode(text.substr(focusOffset));
+      const left = document.createTextNode(text.substr(0, focusOffset));
+      const right = document.createTextNode(text.substr(anchorOffset));
       const middle = document.createElement('a');
       middle.setAttribute('NAME', nextId);
       middle.innerHTML = linkText;
