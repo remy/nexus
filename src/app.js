@@ -35,11 +35,11 @@ const App = () => {
     { type: 'url', id: `${PATH}/default.html`, ref: createRef() },
     // { type: 'url', id: `file://WWW/cern.html`, ref: createRef() },
     // { type: 'panel', id: `style-editor`, Component: panels.StyleEditor },
-    {
-      type: 'panel',
-      id: 'browser-nav',
-      Component: panels.BrowserNav,
-    },
+    // {
+    //   type: 'panel',
+    //   id: 'browser-nav',
+    //   Component: panels.BrowserNav,
+    // },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
