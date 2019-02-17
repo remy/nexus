@@ -96,7 +96,9 @@ section {
 @media all and (min-width: 30em) {
   .canvas {
     margin-top: 6em;
-    margin-bottom: 3em;
+    padding-bottom: 6em;
+    margin-bottom: 2em;
+    border-bottom: 1px solid #ddd;
     display: flex;
     flex-direction: column;
   }

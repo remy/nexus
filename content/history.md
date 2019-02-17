@@ -7,40 +7,65 @@ gridclass: three
 
 <section>
 
+![scan of the original proposal](/images/history/original-1989-proposal.gif)
+
 ### 1989
 
-In March 1989, Tim Berners-Lee, along with Robert Cailliau, at CERN, the European Organization for Nuclear Research, circulated "Information Management: A Proposal".
+In March 1989, [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee), along with [Robert Cailliau](https://en.wikipedia.org/wiki/Robert_Cailliau), at CERN, the European Organization for Nuclear Research, circulated "Information Management: A Proposal."
 
 It imagined a simple client-server architecture, and links, and a 6 month time frame.
 
-His boss at CERN at the time, Mark Sendall found it "Vague, but exciting".
+His boss at CERN at the time — Mark Sendall — labeled it the now classic understatement of the century: *"Vague, but exciting."*
 
-![scan of the original proposal](/images/history/original-1989-proposal.gif)
+
 
 
 ### 1990
 In November 1990, [the proposal was re-formulated](https://www.w3.org/History/19921103-hypertext/hypertext/WWW/Proposal.html).  
 
 
-At the same time, Tim Berners-Lee completed the earliest version of an application he called WorldWideWeb. It was developed on a NeXT machine at The European Organization for Nuclear Research (known as CERN) just outside of Geneva. This program is the antecedent of most of what we consider or know of as "the web" today. 
+At the same time, Tim Berners-Lee, working on a NeXT computer, completed the earliest version of an application he called WorldWideWeb. This program is the antecedent of most of what we consider or know of as "the web" today. 
 
 The WorldWideWeb application was considered a prototype or test of a networked "HyperMedia Browser/Editor." WorldWideWeb was the user-facing layer. This browser/editor application worked on a local machine on local files. However, in conjunction with this application, Tim also developed the first hypertext server software known as "httpd" which ran in the background and was the server to which the browser would connect to serve up, what we know today, as "web pages." 
 
-WorldWideWeb, later renamed Nexus to avoid confusion wih the World Wide Web project, (internal debates at CERN as to the name of the project included "The MESH", The Information Mine, and simply "the Web") was originally developed in Objective C, using Interface Builder for a NeXT computer. NeXT computer was founded by Apple founder Steve Jobs after his ouster from Apple, but only sold a few tens of thousands of devices.
+The naming of the project was fairly contentious, and many debates took place with "The MESH", The Information Mine, and simply "the Web" as major contenders. WorldWideWeb was later renamed Nexus to avoid confusion with the World Wide Web project. It was originally developed in Objective C, using Interface Builder on a NeXT computer. NeXT computer was founded by Apple founder Steve Jobs after his ouster from Apple, but only sold a few tens-of-thousands of devices.
 
-To make the Web more widely accessible, a second browser project at CERN, the [Line Mode browser](http://line-mode.cern.ch), began in late 1990, to bring the Web to commonly used much lower powered devices, such as the "line mode" terminals that were used to access mini computers, still common at the time.
+----
 
-### Philosophy of the Web  
+To make the Web more widely accessible (because almost nobody had a NeXT machine), a second browser project was developed at CERN: the [Line Mode browser](http://line-mode.cern.ch). The Line Mode browser was first released in 1991 and was compatible with most unix / linux systems. Thereby instantly bring the Web to commonly used, much lower powered devices, such as the "line mode" terminals that were used to access mini computers, still common at the time.
 
-While the Web is largely thought of as a medium for consuming information, the WorldWideWeb browser also allowed the user to edit and create web pages. This reflects the philosophy of the Web as both  read and write medium, well captured in this observation by Tim Berners-Lee ["If you think surfing hypertext is cool, that's because you haven't tried writing it"](https://www.w3.org/DesignIssues/Editor.html).
 
 ### 2019 
 
 In February 2019, in celebration of the thirtieth anniversary of the development of WorldWideWeb, a group of developers and designers convened at CERN to rebuild the original browser *within* a contemporary browser, allowing users around the world to experience the origins of this transformative technology. 
 
+
+
 </section>
 
 <section>
+
+### Philosophy of the Web  
+
+While the Web is largely thought of as a medium for consuming information, the WorldWideWeb browser also allowed the user to edit and create web pages. This reflects the philosophy of the Web as both  read and write medium, well captured in this observation by Tim Berners-Lee ["If you think surfing hypertext is cool, that's because you haven't tried writing it"](https://www.w3.org/DesignIssues/Editor.html).
+
+### Key phrases: 
+
+- HyperText: Text which is not constrained to be linear.
+- HyperMedia: Information which is not constrained linear … or to be text.
+
+### www-talk, the World Wide Web Mailing list
+
+On the 28th October 1991. Tim Berners-Lee started the [World Wide Web mailing list](https://lists.w3.org/Archives/Public/www-talk/1991SepOct/0001.html), which has in one form or another run ever since, though it's rarely posted to today.  
+
+It documents many of the innovations of the Web over the last 28 years.
+
+Some notable, or interesting conversations include:
+
+* A conversation from 1991 which [prefigured the HTML5 document outline algorithm](https://lists.w3.org/Archives/Public/www-talk/1991SepOct/0003.html) many years in advance 
+* The first consideration of [what a programming language for the browser might look like](https://lists.w3.org/Archives/Public/www-talk/1992MayJun/0006.html). 
+* Early discussions on what [forms and tables in the browser might look like](http://1997.webhistory.org/www.lists/www-talk.1993q2/0015.html). Forms are not much more advanced in many ways today than in the initial suggestion. 
+* Netscape founder [Marc Andreesen proposed the IMG tag](http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html), for embedding images into HTML document, something [Tim Berners-Lee wasn't particularly supportive of](http://1997.webhistory.org/www.lists/www-talk.1993q1/0186.html) in the format proposed.   
 
 ### Abbreviated lineage of web servers and browsers, post-1990
 
@@ -110,31 +135,6 @@ Three main technologies were developed essentially in tandem around 1990: the Wo
 		</ol>
 	</li>
 </ul>
-
-
-
-### Key phrases: 
-
-- HyperText: Text which is not constrained to be linear.
-- HyperMedia: Information which is not constrained linear … or to be text.
-
-### www-talk, the World Wide Web Mailing list
-
-On the 28th October 1991. Tim Berners-Lee started the [World Wide Web mailing list](https://lists.w3.org/Archives/Public/www-talk/1991SepOct/0001.html), which has in one form or another run ever since, though it's rarely posted to today.  
-
-It documents many of the innovations of the Web in the last 28 years, 
-
-
-
-
-
-Some notable, or interesting conversations over the years include
-
-
-* A conversation from 1991 which [prefigured the HTML5 document outline algorithm](https://lists.w3.org/Archives/Public/www-talk/1991SepOct/0003.html) many years in advance 
-* The first consideration of [what a programming language for the browser might look like](https://lists.w3.org/Archives/Public/www-talk/1992MayJun/0006.html). 
-* Early discussions on what [forms and tables in the browser might look like](http://1997.webhistory.org/www.lists/www-talk.1993q2/0015.html). Forms are not much more advanced in many ways today than in the initial suggestion. 
-* Netscape founder [Marc Andreesen proposed the IMG tag](http://1997.webhistory.org/www.lists/www-talk.1993q1/0182.html), for embedding images into HTML document, something [Tim Berners-Lee wasn't particularly supportive of](http://1997.webhistory.org/www.lists/www-talk.1993q1/0186.html) in the format proposed.   
 
 </section>
 
