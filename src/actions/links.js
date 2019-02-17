@@ -25,7 +25,7 @@ export const followLink = ({ active, add }) => {
   );
 
   if (link && link.href) {
-    add({ type: 'url', id: link.href });
+    add({ type: 'url', id: link.href, referrer: active.ref });
   }
 };
 

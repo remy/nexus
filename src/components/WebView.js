@@ -45,13 +45,13 @@ class WebView extends React.Component {
     const parentNode = this.ref.current;
     // insert <br> elements in root level text nodes
     if (parentNode) {
-      const links = Array.from(parentNode.querySelectorAll('a'), link => {
-        return link.href;
-      }).filter(_ => {
-        return _.trim() && _.startsWith('http');
-      });
+      // const links = Array.from(parentNode.querySelectorAll('a'), link => {
+      //   return link.href;
+      // }).filter(_ => {
+      //   return _.trim() && _.startsWith('http');
+      // });
 
-      this.setState({ links });
+      // this.setState({ links });
 
       if (this.props.url.includes('#')) {
         const hash = this.props.url.replace(/^.*?#(.*$)/, '$1');
@@ -102,6 +102,10 @@ class WebView extends React.Component {
 
   getRef() {
     return this.ref;
+  }
+
+  getReferrer() {
+    return this.props.referrer;
   }
 
   unlink() {
@@ -249,6 +253,37 @@ class WebView extends React.Component {
         navigateTo = new URL(link.getAttribute('href'), url).toString();
       }
       onNavigate(navigateTo);
+    }
+  };
+
+  next = url => {
+    const { links } = this.state;
+    if (url) {
+      let index = links.indexOf(url);
+      if (!links[index + 1]) index--;
+      return links[index + 1];
+    }
+
+    // if no url, call to the parent
+    const { referrer } = this.props;
+
+    if (referrer && referrer.current) {
+      return referrer.current.next(this.props.url);
+    }
+  };
+
+  previous = url => {
+    if (url) {
+      let index = this.state.links.indexOf(url);
+      if (index === 0) index = 1;
+      return this.state.links[index - 1];
+    }
+
+    // if no url, call to the parent
+    const { referrer } = this.props;
+
+    if (referrer && referrer.current) {
+      return referrer.current.previous(this.props.url);
     }
   };
 

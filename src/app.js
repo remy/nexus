@@ -7,25 +7,7 @@ import keyMap from './keyMap';
 import * as panels from './panels';
 import * as actions from './actions';
 import { PATH } from './env';
-import { camelCase, titleCase, isUpper } from './utils';
-
-function addKeyMap(menu) {
-  Object.entries(menu).map(([, { menu, accelerator, id: menuId }]) => {
-    if (accelerator) {
-      if (isUpper(accelerator)) {
-        keyMap[menuId] = `ctrl+alt+shift+${accelerator.toLowerCase()}`;
-      } else {
-        keyMap[menuId] = `ctrl+alt+${accelerator}`;
-      }
-    }
-
-    if (menu) {
-      addKeyMap(menu);
-    }
-  });
-}
-
-addKeyMap(allMenus);
+import { camelCase, titleCase } from './utils';
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -53,7 +35,11 @@ const App = () => {
     { type: 'url', id: `${PATH}/default.html`, ref: createRef() },
     // { type: 'url', id: `file://WWW/cern.html`, ref: createRef() },
     // { type: 'panel', id: `style-editor`, Component: panels.StyleEditor },
-    // { type: 'panel', id: 'open-url', props: { Component: panels.OpenUrl } },
+    {
+      type: 'panel',
+      id: 'browser-nav',
+      Component: panels.BrowserNav,
+    },
   ]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
@@ -83,12 +69,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    setActive(windows[windows.length - 1]);
+    const active = windows[windows.length - 1];
+    setActive(active);
   }, [windows]);
 
   useEffect(() => {
     if (active.type === 'url') {
       setActiveWindow(active);
+      window.history.replaceState(null, '', '#' + active.id);
     }
   }, [active]);
 
@@ -106,8 +94,6 @@ const App = () => {
       console.log('ne');
       return;
     }
-
-    console.log(info);
 
     const { action, props = {} } = info;
     const idTitleCase = titleCase(id);
@@ -181,13 +167,14 @@ const App = () => {
         })}
       {windows
         .filter(({ type }) => type === 'url')
-        .map(({ id, ref }, i) => {
+        .map(({ id, ref, referrer }, i) => {
           return (
             <WebView
+              referrer={referrer}
               ref={ref}
               onFocus={() => setActive({ type: 'url', id, ref })}
               onClose={close('url')}
-              onNavigate={id => add({ type: 'url', id })}
+              onNavigate={id => add({ type: 'url', id, referrer: ref })}
               active={id === active.id}
               url={id}
               key={`url:${id}`}
@@ -205,6 +192,7 @@ const App = () => {
               id={id}
               index={index}
               add={add}
+              actionHandler={actionHandler}
               close={close('panel')}
               {...props}
               active={active.id == id}

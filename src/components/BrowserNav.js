@@ -2,7 +2,7 @@ import React from 'react';
 import Window from './Window';
 import { LinkHelp } from '../panels';
 
-const BrowserNav = ({ add, ...props }) => {
+const BrowserNav = ({ actionHandler, add, ...props }) => {
   return (
     <Window {...props} title="Navigation" dialogue>
       <div id="browser-nav">
@@ -10,13 +10,15 @@ const BrowserNav = ({ add, ...props }) => {
           <div className="first-block">
             <ul className="buttons-bar limited">
               <li>
-                <button>&lt; Back</button>
+                <button onClick={() => actionHandler('previous')}>
+                  &lt; Back
+                </button>
               </li>
               <li>
-                <button>Back up</button>
+                <button onClick={() => actionHandler('back')}>Back up</button>
               </li>
               <li>
-                <button>Next &gt;</button>
+                <button onClick={() => actionHandler('next')}>Next &gt;</button>
               </li>
             </ul>
           </div>

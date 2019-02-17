@@ -28,8 +28,8 @@ const Window = ({
   const y = menu ? 0 : 16 * (index + 1);
 
   const style = {
-    left: x + 'px',
-    top: y + 'px',
+    // left: x + 'px',
+    // top: y + 'px',
     position: 'absolute',
     zIndex: active ? 100 : 1,
   };
@@ -49,7 +49,11 @@ const Window = ({
   const titleActive = webView ? active : true;
 
   return (
-    <Draggable handle=".title-bar">
+    <Draggable
+      bounds={webView ? null : 'parent'}
+      defaultPosition={{ x, y }}
+      handle=".title-bar"
+    >
       <div className={classnames(['panel', { menu }])} style={style}>
         <div
           onMouseDown={onFocus}
