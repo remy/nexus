@@ -115,20 +115,35 @@
     .y1964 {
       left: calc((1964 - 1959) * (100%/30) - 5em);
     }
+    .y1967 {
+      left: calc((1967 - 1959) * (100%/30) - 5em);
+    }
     .y1968 {
       left: calc((1968 - 1959) * (100%/30) - 5em);
     }
     .y1969 {
       left: calc((1969 - 1959) * (100%/30) - 5em);
     }
-    .y1972 {
-      left: calc((1972 - 1959) * (100%/30) - 5em);
+    .y1971 {
+      left: calc((1971 - 1959) * (100%/30) - 5em);
+    }
+    .y1973 {
+      left: calc((1973 - 1959) * (100%/30) - 5em);
     }
     .y1974 {
       left: calc((1974 - 1959) * (100%/30) - 5em);
     }
     .y1980 {
-      left: calc((1980 - 1959) * (100%/30) - 5em);
+      left: calc((1980 - 1959) * (100%/30) - 6em);
+    }
+    .y1981 {
+      left: calc((1981 - 1959) * (100%/30) - 5em);
+    }
+    .y1982 {
+      left: calc((1982 - 1959) * (100%/30) - 5em);
+    }
+    .y1984 {
+      left: calc((1984 - 1959) * (100%/30) - 6em);
     }
     .y1986 {
       left: calc((1986 - 1959) * (100%/30) - 6em);
@@ -137,7 +152,7 @@
       left: calc((1987 - 1959) * (100%/30) - 6em);
     }
     .y1988 {
-      left: calc((1988 - 1959) * (100%/30) - 7.5em);
+      left: calc((1988 - 1959) * (100%/30) - 7em);
     }
     .y1990 {
       right: calc((2019 - 1990) * (100%/30) - 4.25em);
@@ -178,8 +193,9 @@
     .y2015 {
       right: calc((2019 - 2015) * (100%/30) - 5em);
     }
-    .networks .y1969 .p-name,
     .hypertext .y1980 .p-name,
+    .networks .y1969 .p-name,
+    .formats .y1981 .p-name,
     .formats .y1986 .p-name,
     .browsers .y2002 .p-name,
     .browsers .y1992 .p-name,
@@ -280,14 +296,13 @@
     .future .formats {
       transform: rotate(-15deg);
     }
-    /* adjustment */
     .future .formats .timeline__heading {
       transform: rotate(90deg) translateY(-3em) translateX(70%);
     }
 
     /* Tweaks for legibility */
     .hypertext .y1987 .p-name {
-      transform: translateX(-2.75em) translateY(-1.25em);
+      transform: translateX(-0.5em) translateY(-0.125em);
     }
     .browsers .y1990 .p-name {
       margin-top: -4em;
