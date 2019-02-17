@@ -27,6 +27,4 @@ function addKeyMap(menu) {
 
 addKeyMap(allMenus);
 
-console.log(keyMap);
-
 export default keyMap;
