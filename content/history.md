@@ -249,6 +249,8 @@ Three main technologies were developed essentially in tandem around 1990: the Wo
 
 <section>
 
+View the above vector image on [Figma](https://www.figma.com/file/mpqkHVwGZIN315fA4V0zNE/Browser-Server-history-%E2%80%94-CERN-2019?node-id=0%3A1).
+
 You can find a full, fully-comprehensive, slightly mind-blowing map of web browsers here: [https://en.wikipedia.org/wiki/Timeline_of_web_browsers](https://en.wikipedia.org/wiki/Timeline_of_web_browsers)
 
 </section>
