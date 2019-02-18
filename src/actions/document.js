@@ -9,7 +9,6 @@ export const save = async ({ active }) => {
 };
 
 export const saveOffline = async ({ active }) => {
-  console.log(active);
   const current = active.ref.current;
   const ref = current.getRef().current;
   const html = ref.innerHTML;

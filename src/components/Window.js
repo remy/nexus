@@ -12,6 +12,8 @@ const CloseButton = ({ onClick, dirty }) => (
   </button>
 );
 
+let globalZIndex = 1;
+
 const Window = ({
   id,
   index,
@@ -19,29 +21,42 @@ const Window = ({
   active,
   onClose,
   onFocus,
+  zIndex,
+  onDrag = () => {},
   menu = undefined,
   dialogue = false,
   dirty = false,
+  showClose = null,
   children,
 }) => {
-  const x = menu ? 130 * index : index * 64 + 255;
-  const y = menu ? 0 : 16 * (index + 1);
+  let x = index * 64 + 255;
 
-  const style = {
-    // left: x + 'px',
-    // top: y + 'px',
-    position: 'absolute',
-    zIndex: active ? 100 : 1,
-  };
-
-  let showClose = false;
-
-  if (!menu && onClose) {
-    showClose = true;
+  if (menu) {
+    // menus when being opened are only in two positions
+    x = index === 0 ? 0 : 130;
   }
 
-  if (menu && id !== 'top') {
-    showClose = true;
+  const y = menu ? 0 : 16 * (index + 1);
+
+  if (zIndex > globalZIndex) {
+    globalZIndex = zIndex;
+  }
+
+  const style = {
+    position: 'absolute',
+    zIndex: active ? globalZIndex + 100 : zIndex,
+  };
+
+  if (showClose === null) {
+    showClose = false;
+
+    if (!menu && onClose) {
+      showClose = true;
+    }
+
+    if (menu && id !== 'top') {
+      showClose = true;
+    }
   }
 
   const webView = !menu && !dialogue;
@@ -53,6 +68,7 @@ const Window = ({
       bounds={webView ? null : 'parent'}
       defaultPosition={{ x, y }}
       handle=".title-bar"
+      onDrag={onDrag}
     >
       <div className={classnames(['panel', { menu }])} style={style}>
         <div

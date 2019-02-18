@@ -43,21 +43,13 @@ class WebView extends React.Component {
     }
 
     const parentNode = this.ref.current;
-    // insert <br> elements in root level text nodes
     if (parentNode) {
-      // const links = Array.from(parentNode.querySelectorAll('a'), link => {
-      //   return link.href;
-      // }).filter(_ => {
-      //   return _.trim() && _.startsWith('http');
-      // });
-
-      // this.setState({ links });
-
       if (this.props.url.includes('#')) {
         const hash = this.props.url.replace(/^.*?#(.*$)/, '$1');
         this.scrollTo(hash);
       }
 
+      // insert <br> elements in root level text nodes
       Array.from(parentNode.childNodes)
         .filter(_ => _.nodeName === '#text')
         .forEach(node => {
@@ -179,7 +171,7 @@ class WebView extends React.Component {
     const { local } = this.state;
     // only local files can be modified for marking
     if (!local) {
-      return;
+      // return;
     }
     const selection = window.getSelection();
 
@@ -189,6 +181,8 @@ class WebView extends React.Component {
 
       const html = anchorNode.innerHTML;
       const node = document.createAttribute(style.tag.replace(/<(.*)>/, '$1'));
+
+      console.log(focusNode);
 
       this.ref.current.replaceChild(node, focusNode);
       node.innerHTML = html;

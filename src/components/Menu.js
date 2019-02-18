@@ -1,11 +1,26 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import cs from 'classnames';
 import Window from './Window';
 import * as allMenus from '../menus';
 
-const Menu = ({ menu = [], onOpen, ...props }) => {
+const Menu = ({ menu = [], attached, onOpen, onDrag, ...props }) => {
+  const [showClose, setShowClose] = useState(false);
+
+  const x = 130 * (attached - 1);
+
   return (
-    <Window active={true} menu={true} {...props}>
+    <Window
+      showClose={showClose}
+      onDrag={() => {
+        if (!showClose && props.id !== 'top') {
+          setShowClose(true);
+          onDrag();
+        }
+      }}
+      active={true}
+      menu={true}
+      {...props}
+    >
       <nav className="floating-menu">
         <ul>
           {menu.map(menu => {
@@ -19,7 +34,10 @@ const Menu = ({ menu = [], onOpen, ...props }) => {
                   {menu.accelerator && (
                     <Fragment>
                       {' '}
-                      <span aria-label="Keyboard shortcut">
+                      <span
+                        title={`ctrl+alt+${menu.accelerator}`}
+                        aria-label="Keyboard shortcut"
+                      >
                         {menu.accelerator}
                       </span>
                     </Fragment>

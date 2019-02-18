@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useReducer, createRef } from 'react';
 import { HotKeys } from 'react-hotkeys';
-import WebView from './components/WebView';
-import Menu from './components/Menu';
+import Menus from './components/Menus';
+import WebViews from './components/WebViews';
+import Panels from './components/Panels';
 import * as allMenus from './menus';
 import keyMap from './keyMap';
 import * as panels from './panels';
 import * as actions from './actions';
 import { PATH } from './env';
 import { camelCase, titleCase } from './utils';
+
+let nextZ = 1;
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -21,26 +24,19 @@ function reducer(state, action) {
         return true;
       });
     case 'add':
-      return [...state, data];
+      return [...state, { ...data, zIndex: nextZ++ }];
     default:
       throw new Error('unknown action');
   }
 }
 
 const App = () => {
-  const [active, setActive] = useState({});
-  const [activeWindow, setActiveWindow] = useState({});
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'top' },
-    { type: 'url', id: `${PATH}/default.html`, ref: createRef() },
-    // { type: 'url', id: `file://WWW/cern.html`, ref: createRef() },
-    // { type: 'panel', id: `style-editor`, Component: panels.StyleEditor },
-    // {
-    //   type: 'panel',
-    //   id: 'browser-nav',
-    //   Component: panels.BrowserNav,
-    // },
+    { type: 'menu', id: 'top', zIndex: 1 },
+    { type: 'url', id: `${PATH}/default.html`, zIndex: 2, ref: createRef() },
   ]);
+  const [active, setActive] = useState(windows[1]);
+  const [activeWindow, setActiveWindow] = useState(windows[1]);
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
@@ -71,14 +67,12 @@ const App = () => {
   useEffect(() => {
     const active = windows[windows.length - 1];
     setActive(active);
-  }, [windows]);
-
-  useEffect(() => {
-    if (active.type === 'url') {
+    active.zIndex++;
+    if (active.type === 'url' && active.id !== activeWindow.id) {
       setActiveWindow(active);
       window.history.replaceState(null, '', '#' + active.id);
     }
-  }, [active]);
+  }, [windows]);
 
   const actionHandler = id => {
     const info = Object.keys(allMenus).reduce((acc, curr) => {
@@ -141,67 +135,21 @@ const App = () => {
     {}
   );
 
+  const getProps = elementType => ({
+    windows: windows.filter(({ type }) => type === elementType),
+    add,
+    close: close(elementType),
+    setActive,
+    active,
+    activeWindow,
+    actionHandler,
+  });
+
   return (
     <HotKeys keyMap={keyMap} handlers={handlers}>
-      {windows
-        .filter(({ type }) => type === 'menu')
-        .map(({ id }, i) => {
-          const menu = allMenus[id];
-          return (
-            <Menu
-              index={i}
-              key={`menu:${id}`}
-              active={id === active.id}
-              onFocus={() => setActive({ type: 'menu', id })}
-              {...menu}
-              onClose={close('menu')}
-              onOpen={id => {
-                if (allMenus[id]) {
-                  add({ type: 'menu', id });
-                } else {
-                  actionHandler(id);
-                }
-              }}
-            />
-          );
-        })}
-      {windows
-        .filter(({ type }) => type === 'url')
-        .map(({ id, ref, referrer }, i) => {
-          return (
-            <WebView
-              referrer={referrer}
-              ref={ref}
-              onFocus={() => setActive({ type: 'url', id, ref })}
-              onClose={close('url')}
-              onNavigate={id => add({ type: 'url', id, referrer: ref })}
-              active={id === activeWindow.id}
-              url={id}
-              key={`url:${id}`}
-              id={id}
-              index={i}
-            />
-          );
-        })}
-      {windows
-        .filter(({ type }) => type === 'panel')
-        .map(({ Component, id, ...props }, index) => {
-          return (
-            <Component
-              key={`panel:${id}`}
-              id={id}
-              index={index}
-              add={add}
-              actionHandler={actionHandler}
-              close={close('panel')}
-              {...props}
-              active={active.id == id}
-              onAction={url => add({ type: 'url', id: url })}
-              onFocus={() => setActive({ type: 'panel', id })}
-              onClose={close('panel')}
-            />
-          );
-        })}
+      <Menus {...getProps('menu')} />
+      <WebViews {...getProps('url')} />
+      <Panels {...getProps('panel')} />
     </HotKeys>
   );
 };
