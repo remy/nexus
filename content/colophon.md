@@ -46,6 +46,8 @@ The design is inspired by the pallet and simplicity of the original NeXT OS. We 
 
 But for our main header, we employ a special, retro-designed edition of Helvetica, as pulled from screenshots of the NeXT box. 
 
+The browser / server / libwww [history chart](/history) was made using [Figma](https://figma.com).
+
 ### The WorldWideWeb simulator
 
 The [simulator](/browser/) was built using React and Javascript.
