@@ -254,6 +254,7 @@ class WebView extends React.Component {
     const { links } = this.state;
     if (url) {
       let index = links.indexOf(url);
+
       if (!links[index + 1]) index--;
       return links[index + 1];
     }
@@ -300,6 +301,9 @@ class WebView extends React.Component {
         <div className="webview">
           <div className="r2l-content">
             <div
+              onKeyDown={event => {
+                if (event.altKey && event.ctrlKey) event.preventDefault();
+              }}
               onInput={() => {
                 !dirty && this.setState({ dirty: true });
               }}
