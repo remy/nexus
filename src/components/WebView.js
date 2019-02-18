@@ -267,10 +267,11 @@ class WebView extends React.Component {
   };
 
   previous = url => {
+    const { links } = this.state;
     if (url) {
-      let index = this.state.links.indexOf(url);
+      let index = links.indexOf(url);
       if (index === 0) index = 1;
-      return this.state.links[index - 1];
+      return links[index - 1];
     }
 
     // if no url, call to the parent

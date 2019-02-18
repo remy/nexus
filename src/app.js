@@ -35,8 +35,17 @@ const App = () => {
     { type: 'menu', id: 'top', zIndex: 1 },
     { type: 'url', id: `${PATH}/default.html`, zIndex: 2, ref: createRef() },
   ]);
-  const [active, setActive] = useState(windows[1]);
+  const [active, setActiveElement] = useState(windows[1]);
   const [activeWindow, setActiveWindow] = useState(windows[1]);
+
+  const setActive = active => {
+    setActiveElement(active);
+    active.zIndex++;
+    if (active.type === 'url' && active.id !== activeWindow.id) {
+      setActiveWindow(active);
+      window.history.replaceState(null, '', '#' + active.id);
+    }
+  };
 
   const close = type => id => dispatch({ type: 'remove', data: { type, id } });
 
@@ -67,11 +76,6 @@ const App = () => {
   useEffect(() => {
     const active = windows[windows.length - 1];
     setActive(active);
-    active.zIndex++;
-    if (active.type === 'url' && active.id !== activeWindow.id) {
-      setActiveWindow(active);
-      window.history.replaceState(null, '', '#' + active.id);
-    }
   }, [windows]);
 
   const actionHandler = id => {
