@@ -194,10 +194,10 @@ section {
       left: calc((1988 - 1959) * (100%/30) - 5.75em);
     }
     .y1990 {
-      right: calc((2019 - 1990) * (100%/30) - 4.25em);
+      right: calc((2019 - 1990) * (100%/30) - 4em);
     }
     .y1991 {
-      right: calc((2019 - 1991) * (100%/30) - 4em);
+      right: calc((2019 - 1991) * (100%/30) - 5em);
     }
     .y1992 {
       right: calc((2019 - 1992) * (100%/30) - 4.5em);
@@ -358,8 +358,8 @@ section {
     }
 
     /* Tweaks for legibility */
-    .hypertext .y1987 .p-name {
-      transform: translateX(-0.5em) translateY(-0.125em);
+    .formats .y1991 .p-name {
+      transform: translateX(3em) translateY(-1.125em);
     }
     .browsers .y1990 .p-name {
       margin-top: -4em;
