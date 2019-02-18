@@ -294,6 +294,7 @@ ul.history  {
 	max-width: 100%;
 	height: auto;
 }
+.fullbleed img { width: 100%; }
 
 /* 	colophon circles
 		------------------ */
