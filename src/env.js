@@ -2,13 +2,13 @@ let HOST = process.env.HOST || window.location.origin;
 // strip a trailing slash
 if (HOST.endsWith('/')) HOST = HOST.slice(0, -1);
 
-let API = 'https://nexus-api.now.sh/api'; //process.env.API || HOST + '/api';
+let API = process.env.API || HOST + '/api';
 if (API.endsWith('/')) API = API.slice(0, -1);
 
 const PATH = HOST + '/browser';
 
 const SHA = process.env.npm_package_gitHead;
-console.groupCollapsed('version', SHA.substr(0, 8));
+console.groupCollapsed('version', (SHA || 'unknown').substr(0, 8));
 console.log('SHA %s', SHA);
 console.log('HOST %s', HOST);
 console.log('API %s', API);
