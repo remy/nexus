@@ -720,6 +720,40 @@ ul.buttons-bar.limited button {
   height: 3em;
 }
 
+/* SEARCH - RS, sorry, hacky */
+#open-url.search {
+  width: 500px;
+}
+
+#open-url.search .first-block p {
+  display: flex;
+  padding: 17px 20px;
+  align-items: center;
+}
+
+#open-url.search .first-block p input {
+  flex: 1;
+  margin-left: 10px;
+}
+
+/* #open-url .first-block p { */
+
+#open-url.search input {
+  width: 400px;
+}
+
+#open-url.search .second-block {
+  justify-content: flex-end;
+}
+
+#open-url.search .second-block button.enter-button {
+  font: 14px 'NeXT Bold_14', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+}
+#open-url.search button.enter-button {
+  background-image: none;
+}
+
+
 /* OPEN URL */
 #open-url {
   width: 600px;

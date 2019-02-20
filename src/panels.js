@@ -42,3 +42,8 @@ export const OpenFile = Loadable({
   loader: () => import('./components/OpenFile'),
   loading,
 });
+
+export const Search = Loadable({
+  loader: () => import('./components/Search'),
+  loading,
+});
