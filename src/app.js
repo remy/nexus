@@ -24,7 +24,10 @@ function reducer(state, action) {
         return true;
       });
     case 'add':
-      return [...state, { ...data, zIndex: nextZ++ }];
+      return [
+        ...state,
+        { ...data, zIndex: data.type === 'menu' ? 1000 + nextZ : nextZ++ },
+      ];
     default:
       throw new Error('unknown action');
   }
@@ -32,7 +35,7 @@ function reducer(state, action) {
 
 const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'top', zIndex: 1 },
+    { type: 'menu', id: 'top', zIndex: 1000 },
     { type: 'url', id: `${PATH}/default.html`, zIndex: 2, ref: createRef() },
   ]);
   const [active, setActiveElement] = useState(windows[1]);

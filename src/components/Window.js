@@ -12,7 +12,8 @@ const CloseButton = ({ onClick, dirty }) => (
   </button>
 );
 
-let globalZIndex = 1;
+let windowZIndex = 1;
+let menuZIndex = 1;
 
 const Window = ({
   id,
@@ -38,13 +39,17 @@ const Window = ({
 
   const y = menu ? 0 : 16 * (index + 1);
 
-  if (zIndex > globalZIndex) {
-    globalZIndex = zIndex;
+  if (menu && zIndex > menuZIndex) {
+    menuZIndex = zIndex;
+  } else if (!menu && zIndex > menuZIndex) {
+    windowZIndex = zIndex;
   }
+
+  const activeZIndex = menu ? menuZIndex : windowZIndex;
 
   const style = {
     position: 'absolute',
-    zIndex: active ? globalZIndex + 100 : zIndex,
+    zIndex: active ? activeZIndex + 100 : zIndex,
   };
 
   if (showClose === null) {
