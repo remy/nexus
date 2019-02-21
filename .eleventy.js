@@ -1,8 +1,11 @@
 module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy(__dirname + '/content/images');
-  eleventyConfig.addPassthroughCopy(__dirname + '/content/robots.txt');
-  eleventyConfig.addPassthroughCopy(__dirname + '/content/css');
-  eleventyConfig.addPassthroughCopy(__dirname + '/src/assets/fonts');
+  const copy = [
+    '/content/robots.txt',
+    '/content/humans.txt',
+    '/content/css',
+  ].map(filename => {
+    eleventyConfig.addPassthroughCopy(__dirname + filename);
+  });
 
   return {
     passthroughFileCopy: true,

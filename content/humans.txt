@@ -1,0 +1,19 @@
+/* TEAM */
+
+John Allsop / @johnallsopp / Australia (research)
+Kimberly Blessing / @obiwankimberly / USA (digital archaeologist)
+Mark Boulton / @markboulton / U.K. (typography, font creation)
+Martin Chiteri / @chiteri / Canada / Kenya (research, stories)
+Jeremy Keith / @adactio / U.K. / Ireland (collision history)
+Craig Mod / @craigmod / Japan / USA (content, research stories)
+Angela Ricci / @gericci / France / Brazil (HTML, CSS and UI patterns)
+Remy Sharp / @rem / U.K (JavaScript and /browser)
+Brian Suda / @gericci / Iceland / USA (typography, font creation)
+
+/* SITE */
+
+This site is a static site, compiled using Eleventy hosted by CERN.
+
+The simulator was built using React and JavaScript.
+
+See how it's all put together: https://gitlab.cern.ch/nexus-project/nexus-browser
