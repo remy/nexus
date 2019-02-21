@@ -12,7 +12,7 @@ export const top = {
     // { title: 'Find', id: 'find' },
     { title: 'Links', id: 'links' },
     { title: 'Style', id: 'style' },
-    { title: 'Print', accelerator: 'P', id: 'print' },
+    { title: 'Print', accelerator: 'p', id: 'print' },
     { title: 'Page Layout', id: 'page-layout' },
     { title: 'Windows', id: 'windows' },
     { title: 'Services', id: 'services' },
@@ -29,11 +29,8 @@ export const edit = {
     { title: 'Copy', id: 'copy', accelerator: 'c' },
     { title: 'Paste', id: 'paste', accelerator: 'v' },
     // These features weren't functional in 0.13
-    //    { title: 'Paste As', id: 'paste-as', accelerator: 'x' },
-    { title: 'Delete', id: 'delete', accelerator: 'X' },
-    //    { title: 'Undo', id: 'undo', accelerator: 'z' },
-    //    { title: 'Find', id: 'find', accelerator: 'x' },
-    { title: 'Spelling...', id: 'spelling', accelerator: 'x' },
+    { title: 'Delete', id: 'delete' },
+    { title: 'Spelling...', id: 'spelling' },
     { title: 'Check Spelling', id: 'check-spelling', accelerator: ';' },
     { title: 'Select All', id: 'select-all', accelerator: 'a' },
   ],
@@ -78,7 +75,7 @@ export const document = {
       id: 'save-all-edited-windows',
     },
     { title: 'Save a copy offline', id: 'save-offline', action: 'method' },
-    { title: 'Document details…', id: 'document.details' },
+    // { title: 'Document details…', id: 'document-details' },
     // { title: 'Inspect…', accelerator: '3', id: 'inspect' },
     { title: '(Diagnostics)', id: 'diagnostics' },
     { title: 'Miniaturize', id: 'miniaturize' },
@@ -111,8 +108,8 @@ export const diagnostics = {
       accelerator: '?',
       id: 'dump-stdout',
     }, //does nothing
-    { title: 'Turn console trace on', accelerator: '+', id: 'console-on' }, //does nothing
-    { title: 'Turn console trace off', accelerator: '-', id: 'console-off' }, //does nothing
+    // { title: 'Turn console trace on', accelerator: '+', id: 'console-on' }, //does nothing
+    // { title: 'Turn console trace off', accelerator: '-', id: 'console-off' }, //does nothing
     { title: 'Item', id: 'info-panel', action: 'panel' }, //opens info panel
   ],
 };
