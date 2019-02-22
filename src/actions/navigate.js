@@ -1,3 +1,5 @@
+import { PATH } from '../env';
+
 export function next({ active, add }) {
   if (!active.ref) return;
   const link = active.ref.current.next();
@@ -6,6 +8,10 @@ export function next({ active, add }) {
   } else {
     // put the current first in focus
   }
+}
+
+export function home({ add }) {
+  add({ type: 'url', id: `${PATH}/default.html`, zIndex: 2 });
 }
 
 export function previous({ active, add }) {

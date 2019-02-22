@@ -139,7 +139,7 @@ export const navigate = {
       id: 'previous',
       action: 'method',
     },
-    { title: 'Home', accelerator: 'H', id: 'home' },
+    { title: 'Home', accelerator: 'H', id: 'home', action: 'method' },
     // { title: 'Inspect…', accelerator: '3', id: 'inspect' },
     { title: 'Panel', id: 'browser-nav', action: 'panel' },
   ],
