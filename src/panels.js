@@ -42,3 +42,8 @@ export const OpenFile = Loadable({
   loader: () => import('./components/OpenFile'),
   loading,
 });
+
+export const PromptClose = Loadable({
+  loader: () => import('./components/PromptClose'),
+  loading,
+});

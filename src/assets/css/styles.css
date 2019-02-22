@@ -338,6 +338,7 @@ div.title-bar::before {
   background-color: #000;
 }
 div.title-bar h2 {
+  min-height: 16px;
   flex: 1;
   font: 13px 'NeXT_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
   text-align: center;
@@ -782,4 +783,53 @@ input[name='style-name'] {
 #addr-reference {
   width: 486px;
   height: 3em;
+}
+
+/* prompts */
+
+.prompt {
+  padding: 0;
+}
+
+.prompt h3 {
+  font: 20px "NeXT Big_Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: url(../img/browser-logo.png) 0 0 no-repeat;
+  padding: 20px 0 20px 70px;
+  margin: 0;
+  text-align: left;
+}
+
+.prompt .second-block {
+  padding: 10px;
+  display: block;
+  min-width: 300px;
+}
+
+.prompt .buttons-bar {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.prompt .buttons-bar li {
+  min-width: 75px;
+  margin-left: 10px;
+  flex: 0;
+}
+
+.prompt button.enter-button {
+  padding: 5px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.prompt .text {
+  margin: 0 0 14px 0;
+  font: 15px 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* revert an earlier, stronger, selector */
+.prompt .second-block > ul.buttons-bar:first-of-type {
+  width: auto;
 }

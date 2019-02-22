@@ -1,10 +1,11 @@
-import React, { createRef } from 'react';
+import React, { Fragment, createRef } from 'react';
 import Window from './Window';
 import ErrorBoundary from './ErrorBoundary';
 import { API } from '../env';
 import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
 import './WebView.scss';
+import { PromptClose } from '../panels';
 
 class WebView extends React.Component {
   constructor(props) {
@@ -283,10 +284,32 @@ class WebView extends React.Component {
     }
   };
 
+  handleClose = () => {
+    if (this.state.dirty) {
+      this.setState({ showPrompt: true });
+      return;
+    }
+    this.props.onClose(this.props.id);
+  };
+
+  handlePromptSubmit = ({ value }) => {
+    this.setState({ showPrompt: false });
+    if (value === null) {
+      return; // do nothing
+    }
+
+    if (value === false) {
+      this.props.onClose(this.props.id);
+      return;
+    }
+
+    alert('TODO: save file');
+  };
+
   render() {
     const { onFocus, ...props } = this.props;
 
-    const { title, body, dirty } = this.state;
+    const { title, body, dirty, showPrompt } = this.state;
 
     if (!body) {
       return <Window title={title} {...props} />;
@@ -297,29 +320,44 @@ class WebView extends React.Component {
     }
 
     return (
-      <Window title={title} onFocus={onFocus} dirty={dirty} {...props}>
-        <div className="webview">
-          <div className="r2l-content">
-            <div
-              onKeyDown={event => {
-                if (event.altKey && event.ctrlKey) event.preventDefault();
-              }}
-              onInput={() => {
-                !dirty && this.setState({ dirty: true });
-              }}
-              ref={this.ref}
-              className="l2r-content content"
-              contentEditable={true}
-              dangerouslySetInnerHTML={{ __html: body }}
-              spellCheck={false}
-              onMouseDown={() => onFocus()}
-              onClick={e => e.preventDefault()}
-              onDoubleClick={this.visitUrl}
-            />
+      <Fragment>
+        {showPrompt && (
+          <PromptClose
+            onSubmit={this.handlePromptSubmit}
+            add={this.props.add}
+            close={this.props.close}
+          />
+        )}
+        <Window
+          title={title}
+          onFocus={onFocus}
+          dirty={dirty}
+          {...props}
+          onClose={this.handleClose}
+        >
+          <div className="webview">
+            <div className="r2l-content">
+              <div
+                onKeyDown={event => {
+                  if (event.altKey && event.ctrlKey) event.preventDefault();
+                }}
+                onInput={() => {
+                  !dirty && this.setState({ dirty: true });
+                }}
+                ref={this.ref}
+                className="l2r-content content"
+                contentEditable={true}
+                dangerouslySetInnerHTML={{ __html: body }}
+                spellCheck={false}
+                onMouseDown={() => onFocus()}
+                onClick={e => e.preventDefault()}
+                onDoubleClick={this.visitUrl}
+              />
+            </div>
+            <button className="grab-window">Grab the window</button>
           </div>
-          <button className="grab-window">Grab the window</button>
-        </div>
-      </Window>
+        </Window>
+      </Fragment>
     );
   }
 }

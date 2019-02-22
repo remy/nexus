@@ -10,7 +10,7 @@ const OpenURL = ({ onAction, onClose, ...props }) => {
   };
   return (
     <Window {...props} title="Open using hypertext reference" onClose={onClose}>
-      <div id="open-url">
+      <form onSubmit={handleClick} id="open-url">
         <div className="first-block">
           <p>
             <label htmlFor="addr-reference">Reference:</label>
@@ -35,11 +35,9 @@ const OpenURL = ({ onAction, onClose, ...props }) => {
               </ul>
             </div>
           </fieldset>
-          <button onClick={handleClick} className="enter-button">
-            Open
-          </button>
+          <button className="enter-button">Open</button>
         </div>
-      </div>
+      </form>
     </Window>
   );
 };
