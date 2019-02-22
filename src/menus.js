@@ -4,7 +4,6 @@ export const top = {
   id: 'top',
   title: 'WorldWideWeb',
   menu: [
-    { title: 'TEST ME', id: 'prompt-close', action: 'panel' },
     { title: 'Info', id: 'info' },
     { title: 'Navigate', id: 'navigate' },
     { title: 'Document', id: 'document' },

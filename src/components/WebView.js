@@ -326,6 +326,7 @@ class WebView extends React.Component {
             onSubmit={this.handlePromptSubmit}
             add={this.props.add}
             close={this.props.close}
+            text={`Save changes to '${title}'?`}
           />
         )}
         <Window
