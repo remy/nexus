@@ -47,7 +47,11 @@ class WebView extends React.Component {
     if (parentNode) {
       if (this.props.url.includes('#')) {
         const hash = this.props.url.replace(/^.*?#(.*$)/, '$1');
-        this.scrollTo(hash);
+        try {
+          this.scrollTo(hash);
+        } catch (E) {
+          // ignore
+        }
       }
 
       // insert <br> elements in root level text nodes
