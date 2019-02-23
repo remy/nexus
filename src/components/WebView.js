@@ -197,11 +197,6 @@ class WebView extends React.Component {
   }
 
   onMark() {
-    const { local } = this.state;
-    // only local files can be modified for marking
-    if (!local) {
-      return;
-    }
     const selection = window.getSelection();
 
     // we assume this is nearly always… I think
@@ -213,8 +208,12 @@ class WebView extends React.Component {
       const text = anchorNode.nodeValue;
       const linkText = selection.toString();
 
-      const left = document.createTextNode(text.substr(0, focusOffset));
-      const right = document.createTextNode(text.substr(anchorOffset));
+      const left = document.createTextNode(
+        text.substr(0, focusOffset - linkText.length)
+      );
+      const right = document.createTextNode(
+        text.substr(anchorOffset + linkText.length)
+      );
       const middle = document.createElement('a');
       middle.setAttribute('NAME', nextId);
       middle.innerHTML = linkText;
@@ -231,6 +230,10 @@ class WebView extends React.Component {
 
       const nextIdElement = this.ref.current.querySelector('nextid');
       if (nextIdElement) {
+        try {
+          nextIdElement.removeAttribute(nextId);
+        } catch (e) {}
+        nextIdElement.setAttribute('n', nextId + 1);
         // TODO workout how to set a numeric attrib…apparently it won't fly
       }
 
