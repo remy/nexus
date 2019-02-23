@@ -25,14 +25,19 @@ export const edit = {
   id: 'edit',
   title: 'Edit',
   menu: [
-    { title: 'Cut', id: 'cut', accelerator: 'x' },
-    { title: 'Copy', id: 'copy', accelerator: 'c' },
-    { title: 'Paste', id: 'paste', accelerator: 'v' },
+    { title: 'Cut', id: 'cut', accelerator: 'x', action: 'method' },
+    { title: 'Copy', id: 'copy', accelerator: 'c', action: 'method' },
+    { title: 'Paste', id: 'paste', accelerator: 'v', action: 'method' },
     // These features weren't functional in 0.13
-    { title: 'Delete', id: 'delete' },
-    { title: 'Spelling...', id: 'spelling' },
-    { title: 'Check Spelling', id: 'check-spelling', accelerator: ';' },
-    { title: 'Select All', id: 'select-all', accelerator: 'a' },
+    { title: 'Delete', id: 'deleteText', action: 'method' },
+    // { title: 'Spelling...', id: 'spelling' },
+    // { title: 'Check Spelling', id: 'check-spelling', accelerator: ';' },
+    {
+      title: 'Select All',
+      id: 'select-all',
+      accelerator: 'a',
+      action: 'method',
+    },
   ],
 };
 
