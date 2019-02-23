@@ -3,3 +3,4 @@ export * from './document';
 export * from './styles';
 export * from './navigate';
 export * from './prompts';
+export * from './edit';
