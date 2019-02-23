@@ -10,7 +10,12 @@ import * as actions from './actions';
 import { PATH } from './env';
 import { camelCase, titleCase } from './utils';
 
-let nextZ = 1;
+const layerOrder = new Map([['menu', 10000], ['url', 1], ['panel', 1000]]);
+
+function nextLayerOrder(type) {
+  const value = layerOrder.get(type);
+  return layerOrder.set(type, value + 1).get(type);
+}
 
 function reducer(state, action) {
   const { data, type } = action;
@@ -24,10 +29,7 @@ function reducer(state, action) {
         return true;
       });
     case 'add':
-      return [
-        ...state,
-        { ...data, zIndex: data.type === 'menu' ? 1000 + nextZ : nextZ++ },
-      ];
+      return [...state, { ...data, zIndex: nextLayerOrder(data.type) }];
     default:
       throw new Error('unknown action');
   }
@@ -35,15 +37,24 @@ function reducer(state, action) {
 
 const App = () => {
   const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'top', zIndex: 1000 },
-    { type: 'url', id: `${PATH}/default.html`, zIndex: 2, ref: createRef() },
+    { type: 'menu', id: 'top', zIndex: nextLayerOrder('menu') },
+    {
+      type: 'url',
+      id: `${PATH}/default.html`,
+      zIndex: nextLayerOrder('url'),
+      ref: createRef(),
+    },
   ]);
   const [active, setActiveElement] = useState(windows[1]);
   const [activeWindow, setActiveWindow] = useState(windows[1]);
 
   const setActive = active => {
     setActiveElement(active);
-    active.zIndex++;
+    windows.forEach(window => {
+      if (active.type === window.type && active.id === window.id) {
+        window.zIndex = nextLayerOrder(active.type);
+      }
+    });
     if (active.type === 'url' && active.id !== activeWindow.id) {
       setActiveWindow(active);
       window.history.replaceState(null, '', '#' + active.id);
