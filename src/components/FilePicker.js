@@ -6,11 +6,14 @@ export default ({ onSubmit, onCancel, title }) => {
   const [selected, setSelected] = useState('');
 
   useEffect(() => {
-    list().then(files => setFiles(files));
+    list().then(files => {
+      setFiles(files);
+      setSelected(files[0]);
+    });
   }, []);
 
   return (
-    <div id="save-file">
+    <form id="save-file">
       <div className="content">
         <div className="first-block">
           <h3>{title}</h3>
@@ -22,6 +25,7 @@ export default ({ onSubmit, onCancel, title }) => {
                 <div className="l2r-content">
                   <select
                     defaultValue={selected}
+                    onDoubleClick={() => onSubmit(selected)}
                     onChange={e => {
                       setSelected(e.target.value);
                     }}
@@ -76,6 +80,6 @@ export default ({ onSubmit, onCancel, title }) => {
         </div>
       </div>
       <button className="grab-window">Grab the window</button>
-    </div>
+    </form>
   );
 };
