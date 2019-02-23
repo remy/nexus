@@ -111,10 +111,12 @@ const App = () => {
     const idTitleCase = titleCase(id);
     const idCamelCase = camelCase(id);
 
+    let res = null;
+
     switch (action) {
       case 'panel':
         if (panels[idTitleCase]) {
-          add({
+          res = add({
             type: 'panel',
             id,
             Component: panels[idTitleCase],
@@ -125,11 +127,11 @@ const App = () => {
         break;
       case 'method':
         if (actions[idCamelCase]) {
-          actions[idCamelCase]({ active: activeWindow, add });
+          res = actions[idCamelCase]({ active: activeWindow, add });
         }
         break;
       case 'url':
-        add({ type: 'url', id: props.url });
+        res = add({ type: 'url', id: props.url });
         break;
       case 'close':
         if (props.all) {
@@ -140,9 +142,11 @@ const App = () => {
           break;
         }
 
-        close('url')(activeWindow.id);
+        res = close('url')(activeWindow.id);
         break;
     }
+
+    return res;
   };
 
   const handlers = Object.keys(keyMap).reduce(

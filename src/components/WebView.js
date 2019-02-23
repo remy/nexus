@@ -292,7 +292,7 @@ class WebView extends React.Component {
     this.props.onClose(this.props.id);
   };
 
-  handlePromptSubmit = ({ value }) => {
+  handlePromptSubmit = async ({ value }) => {
     this.setState({ showPrompt: false });
     if (value === null) {
       return; // do nothing
@@ -303,7 +303,8 @@ class WebView extends React.Component {
       return;
     }
 
-    alert('TODO: save file');
+    await this.props.actionHandler('save');
+    this.props.close(this.props.id);
   };
 
   render() {

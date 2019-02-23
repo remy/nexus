@@ -1,11 +1,12 @@
 import React from 'react';
 import WebView from './WebView';
 
-const WebViews = ({ windows, add, close, setActive, activeWindow, active }) =>
+const WebViews = ({ windows, actionHandler, add, close, setActive, active }) =>
   windows.map(({ id, ref, referrer, zIndex }, index) => {
     return (
       <WebView
         {...{
+          actionHandler,
           referrer,
           zIndex,
           ref,
