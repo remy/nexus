@@ -4,8 +4,8 @@ import ErrorBoundary from './ErrorBoundary';
 import { API } from '../env';
 import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
-import TextView from './TextView';
 import { PromptClose } from '../panels';
+import './WebView.scss';
 
 class WebView extends React.Component {
   constructor(props) {
@@ -95,7 +95,7 @@ class WebView extends React.Component {
     }
     const res = await fetch(`${API}?url=${encodeURIComponent(url)}`);
     const json = await res.json();
-    if (json.title) {
+    if (json.body) {
       this.setState(json);
     } else {
       // it went wrong…
@@ -200,87 +200,111 @@ class WebView extends React.Component {
     }
   }
 
-  onBlur = () => {
-    return;
-    console.log('onSelect');
+  onFocus = () => {
+    const { mark } = this.state;
 
-    const selection = window.getSelection();
-    const { anchorOffset, focusOffset, anchorNode } = selection;
+    if (mark) {
+      const { start, end, element, focusNode, anchorNode } = mark;
+      const text = document.createTextNode(element.innerHTML);
+      const parent = element.parentNode;
+      console.log(element, parent);
 
-    console.log(anchorNode, selection.rangeCount);
+      // const start = element.previousSibling.nodeValue.length;
+      // const end = element.innerHTML.length;
+      console.log(anchorNode, focusNode, start, end);
+      parent.replaceChild(text, element);
+      this.setState({ mark: null });
+      const selection = window.getSelection();
+      const range = document.createRange();
 
-    if (!selection.rangeCount) {
-      // TODO remove mark
-      const { mark } = this.state;
-      console.log('replacing mark', mark);
-      if (mark) {
-        const text = document.createTextNode(mark.innerText);
-        const parent = mark.parentNode;
-        parent.replaceChild(text, mark);
+      console.dir(anchorNode);
+
+      console.dir(focusNode);
+
+      const all = element.dataset.all;
+      selection.removeAllRanges();
+
+      if (all) {
+        selection.selectAllChildren(parent);
+      } else {
+        range.setStart(anchorNode, start);
+        range.setEnd(focusNode, end);
+        selection.addRange(range);
         parent.normalize();
-        this.setState({ mark: null });
-        console.log('mark removed');
       }
-      return;
     }
+  };
 
-    const parent = anchorNode.parentNode;
-    const text = anchorNode.nodeValue;
-    const markText = selection.toString();
-    console.log('> marking', selection.toString());
+  onBlur = () => {
+    const selection = window.getSelection();
 
-    const left = document.createTextNode(
-      text.substr(0, focusOffset - markText.length)
-    );
-    const right = document.createTextNode(
-      text.substr(anchorOffset + markText.length)
-    );
-    const middle = document.createElement('mark');
-    middle.innerHTML = markText;
+    let { focusNode, focusOffset, anchorOffset, anchorNode } = selection;
 
-    this.setState({ mark: middle });
+    if (selection.rangeCount > 0 && selection.isCollapsed === false) {
+      const linkText = selection.toString();
+      const mark = document.createElement('mark');
+      mark.innerHTML = linkText;
 
-    parent.replaceChild(right, anchorNode);
-    parent.insertBefore(middle, right);
-    parent.insertBefore(left, middle);
+      this.setState({
+        mark: {
+          element: mark,
+          anchorNode,
+          focusNode,
+          start: anchorOffset,
+          end: focusOffset,
+        },
+      });
 
-    // reselect the highlighted block
-    let range = document.createRange();
-    selection.removeAllRanges();
-    range.selectNode(middle);
-    selection.addRange(range);
+      const offset = Math.max(focusOffset, anchorOffset);
+
+      if (focusOffset === 0) {
+        // then we're onto another element, let's just pretend it's not
+        focusNode = anchorNode;
+        focusOffset = linkText.length;
+      }
+
+      if (
+        anchorNode === focusNode &&
+        anchorOffset === 0 &&
+        focusOffset === linkText.length
+      ) {
+        // all the text is selected, so wrap instead of split
+        mark.dataset.all = true;
+        anchorNode.parentNode.replaceChild(mark, anchorNode);
+        return;
+      }
+
+      mark.dataset.all = false;
+
+      const middle = anchorNode.splitText(offset - linkText.length);
+      middle.splitText(linkText.length);
+      middle.parentNode.replaceChild(mark, middle);
+    } else {
+      this.setState({ mark: null });
+    }
   };
 
   onMark() {
-    const selection = window.getSelection();
+    const { mark } = this.state;
 
-    // we assume this is nearly always… I think
-    if (selection.anchorNode.nodeName === '#text') {
+    if (mark) {
+      const { element } = mark;
+
       const nextId = this.state.nextId;
       this.setState({ nextId: nextId + 1 });
-      const { anchorOffset, focusOffset, anchorNode } = selection;
-      const parent = anchorNode.parentNode;
-      const text = anchorNode.nodeValue;
-      const linkText = selection.toString();
 
-      const left = document.createTextNode(
-        text.substr(0, focusOffset - linkText.length)
-      );
-      const right = document.createTextNode(
-        text.substr(anchorOffset + linkText.length)
-      );
-      const middle = document.createElement('a');
-      middle.setAttribute('NAME', nextId);
-      middle.innerHTML = linkText;
+      const anchor = document.createElement('a');
+      anchor.setAttribute('NAME', nextId);
+      anchor.innerHTML = element.innerHTML;
 
-      parent.replaceChild(right, anchorNode);
-      parent.insertBefore(middle, right);
-      parent.insertBefore(left, middle);
+      element.parentNode.replaceChild(anchor, element);
+      this.setState({ mark: null });
+      const selection = window.getSelection();
+      const range = document.createRange();
 
-      // reselect the highlighted block
-      let range = document.createRange();
+      range.setStart(anchor, 0);
+      range.setEnd(anchor, anchor.innerHTML.length);
       selection.removeAllRanges();
-      range.selectNode(middle);
       selection.addRange(range);
 
       const nextIdElement = this.ref.current.querySelector('nextid');
@@ -373,10 +397,18 @@ class WebView extends React.Component {
   render() {
     const { onFocus, ...props } = this.props;
 
-    const { title, body, dirty, showPrompt, height = '90vh' } = this.state;
+    const { title, body, dirty, showPrompt } = this.state;
 
     if (!body) {
-      return <Window title={title} {...props} />;
+      return (
+        <Window title="Connecting..." {...props}>
+          <div className="webview">
+            <div className="r2l-content">
+              <div style={{ height: '400px' }}>&nbsp;</div>
+            </div>
+          </div>
+        </Window>
+      );
     }
 
     if (this.state.hasError) {
@@ -397,25 +429,32 @@ class WebView extends React.Component {
           onStop={() => {
             this.ref.current.focus();
           }}
-          title={title}
+          title={title || this.state.base}
           onFocus={onFocus}
           dirty={dirty}
           {...props}
           onClose={this.handleClose}
         >
           <div className="webview">
-            <div className="r2l-content" style={{ height }}>
-              <div className="l2r-content">
-                <TextView
-                  onHeight={height => {
-                    this.setState({ height: height + 'px' });
-                  }}
-                  url={this.props.url}
-                  body={body}
-                  ref={this.ref}
-                  navigate={this.props.onNavigate}
-                />
-              </div>
+            <div className="r2l-content">
+              <div
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                onKeyDown={event => {
+                  if (event.altKey && event.ctrlKey) event.preventDefault();
+                }}
+                onInput={() => {
+                  !dirty && this.setState({ dirty: true });
+                }}
+                ref={this.ref}
+                className="l2r-content content"
+                contentEditable={true}
+                dangerouslySetInnerHTML={{ __html: body }}
+                spellCheck={false}
+                onMouseDown={() => onFocus()}
+                onClick={e => e.preventDefault()}
+                onDoubleClick={this.visitUrl}
+              />
             </div>
             <button className="grab-window">Grab the window</button>
           </div>

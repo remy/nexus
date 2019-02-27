@@ -162,9 +162,11 @@ a {
   color: #000;
 }
 
-::selection {
-  color: #000;
-  background-color: #aaa;
+::selection, mark {
+  color: #000 !important;
+  background-color: #aaa !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
 }
 
 /* --------------- FORMS -------------------- */
@@ -840,11 +842,6 @@ input[name='style-name'] {
 .prompt .second-block > ul.buttons-bar:first-of-type {
   width: auto;
 }
-
-.content:not(:focus) mark {
-  background: red;
-}
-
 
 .textview {
   font-size: 13px;
