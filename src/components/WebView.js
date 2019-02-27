@@ -4,7 +4,7 @@ import ErrorBoundary from './ErrorBoundary';
 import { API } from '../env';
 import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
-import './WebView.scss';
+import TextView from './TextView';
 import { PromptClose } from '../panels';
 
 class WebView extends React.Component {
@@ -12,6 +12,7 @@ class WebView extends React.Component {
     super(props);
 
     this.ref = createRef();
+    this.editorRef = createRef();
 
     this.state = {
       title: '',
@@ -38,32 +39,37 @@ class WebView extends React.Component {
     }
   };
 
+  componentWillUnmount() {
+    // this.ref.current.parent.removeEventListener('selectstart', this.onSelect);
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.body === this.state.body) {
       return;
     }
 
-    const parentNode = this.ref.current;
-    if (parentNode) {
-      if (this.props.url.includes('#')) {
-        const hash = this.props.url.replace(/^.*?#(.*$)/, '$1');
-        try {
-          this.scrollTo(hash);
-        } catch (E) {
-          // ignore
-        }
-      }
+    // const parentNode = this.ref.current;
 
-      // insert <br> elements in root level text nodes
-      Array.from(parentNode.childNodes)
-        .filter(_ => _.nodeName === '#text')
-        .forEach(node => {
-          const span = document.createElement('span');
-          span.className = 'hash-text';
-          parentNode.replaceChild(span, node);
-          span.innerHTML = node.nodeValue.replace(/\n\n/g, '<br><br>');
-        });
-    }
+    // if (parentNode) {
+    //   if (this.props.url.includes('#')) {
+    //     const hash = this.props.url.replace(/^.*?#(.*$)/, '$1');
+    //     try {
+    //       this.scrollTo(hash);
+    //     } catch (E) {
+    //       // ignore
+    //     }
+    //   }
+
+    //   // insert <br> elements in root level text nodes
+    //   Array.from(parentNode.childNodes)
+    //     .filter(_ => _.nodeName === '#text')
+    //     .forEach(node => {
+    //       const span = document.createElement('span');
+    //       span.className = 'hash-text';
+    //       parentNode.replaceChild(span, node);
+    //       span.innerHTML = node.nodeValue.replace(/\n\n/g, '<br><br>');
+    //     });
+    // }
   }
 
   componentDidMount() {
@@ -187,14 +193,63 @@ class WebView extends React.Component {
       const html = anchorNode.innerHTML;
       const node = document.createAttribute(style.tag.replace(/<(.*)>/, '$1'));
 
-      console.log(focusNode);
-
       this.ref.current.replaceChild(node, focusNode);
       node.innerHTML = html;
 
       this.setState({ dirty: true });
     }
   }
+
+  onBlur = () => {
+    return;
+    console.log('onSelect');
+
+    const selection = window.getSelection();
+    const { anchorOffset, focusOffset, anchorNode } = selection;
+
+    console.log(anchorNode, selection.rangeCount);
+
+    if (!selection.rangeCount) {
+      // TODO remove mark
+      const { mark } = this.state;
+      console.log('replacing mark', mark);
+      if (mark) {
+        const text = document.createTextNode(mark.innerText);
+        const parent = mark.parentNode;
+        parent.replaceChild(text, mark);
+        parent.normalize();
+        this.setState({ mark: null });
+        console.log('mark removed');
+      }
+      return;
+    }
+
+    const parent = anchorNode.parentNode;
+    const text = anchorNode.nodeValue;
+    const markText = selection.toString();
+    console.log('> marking', selection.toString());
+
+    const left = document.createTextNode(
+      text.substr(0, focusOffset - markText.length)
+    );
+    const right = document.createTextNode(
+      text.substr(anchorOffset + markText.length)
+    );
+    const middle = document.createElement('mark');
+    middle.innerHTML = markText;
+
+    this.setState({ mark: middle });
+
+    parent.replaceChild(right, anchorNode);
+    parent.insertBefore(middle, right);
+    parent.insertBefore(left, middle);
+
+    // reselect the highlighted block
+    let range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNode(middle);
+    selection.addRange(range);
+  };
 
   onMark() {
     const selection = window.getSelection();
@@ -232,9 +287,10 @@ class WebView extends React.Component {
       if (nextIdElement) {
         try {
           nextIdElement.removeAttribute(nextId);
-        } catch (e) {}
+        } catch (e) {
+          // noop
+        }
         nextIdElement.setAttribute('n', nextId + 1);
-        // TODO workout how to set a numeric attrib…apparently it won't fly
       }
 
       this.setState({ dirty: true });
@@ -317,7 +373,7 @@ class WebView extends React.Component {
   render() {
     const { onFocus, ...props } = this.props;
 
-    const { title, body, dirty, showPrompt } = this.state;
+    const { title, body, dirty, showPrompt, height = '90vh' } = this.state;
 
     if (!body) {
       return <Window title={title} {...props} />;
@@ -338,6 +394,9 @@ class WebView extends React.Component {
           />
         )}
         <Window
+          onStop={() => {
+            this.ref.current.focus();
+          }}
           title={title}
           onFocus={onFocus}
           dirty={dirty}
@@ -345,23 +404,18 @@ class WebView extends React.Component {
           onClose={this.handleClose}
         >
           <div className="webview">
-            <div className="r2l-content">
-              <div
-                onKeyDown={event => {
-                  if (event.altKey && event.ctrlKey) event.preventDefault();
-                }}
-                onInput={() => {
-                  !dirty && this.setState({ dirty: true });
-                }}
-                ref={this.ref}
-                className="l2r-content content"
-                contentEditable={true}
-                dangerouslySetInnerHTML={{ __html: body }}
-                spellCheck={false}
-                onMouseDown={() => onFocus()}
-                onClick={e => e.preventDefault()}
-                onDoubleClick={this.visitUrl}
-              />
+            <div className="r2l-content" style={{ height }}>
+              <div className="l2r-content">
+                <TextView
+                  onHeight={height => {
+                    this.setState({ height: height + 'px' });
+                  }}
+                  url={this.props.url}
+                  body={body}
+                  ref={this.ref}
+                  navigate={this.props.onNavigate}
+                />
+              </div>
             </div>
             <button className="grab-window">Grab the window</button>
           </div>

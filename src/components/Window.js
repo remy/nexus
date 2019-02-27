@@ -21,6 +21,7 @@ const Window = ({
   onFocus,
   zIndex,
   onDrag = () => {},
+  onStop = () => {},
   menu = undefined,
   dialogue = false,
   dirty = false,
@@ -63,6 +64,7 @@ const Window = ({
       defaultPosition={{ x, y }}
       handle=".title-bar"
       onDrag={onDrag}
+      onStop={onStop}
     >
       <div className={classnames(['panel', { menu }])} style={style}>
         <div

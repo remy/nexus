@@ -1,19 +1,22 @@
-.webview {
-  font-size: 0.8em;
+// .webview {
+//   font-size: 0.8em;
 
-  [contenteditable] { outline: none; }
+//   .controls h2 {
+//     flex: 1;
+//   }
 
-  .controls h2 {
-    flex: 1;
-  }
+//   .r2l-content {
+//     overflow: auto;
+//     height: 60%;
+//     max-height: 90vh;
+//     width: 500px;
 
-  .r2l-content {
-    overflow: auto;
-    height: 60%;
-    max-height: 90vh;
-    width: 500px;
-  }
-}
+//     iframe {
+//       width: 100%;
+//       height: 100%;
+//     }
+//   }
+// }
 
 /* default.style
 12
@@ -52,7 +55,7 @@ Listing <LISTING> 0 Ohlfs 9.0		1
 	0 475.2
 */
 
-.webview .content {
+.textview {
   font-size: 13px; // needs to be 13px to display correctly
   line-height: 14px;
   -webkit-font-smoothing: none;
@@ -179,7 +182,7 @@ Listing <LISTING> 0 Ohlfs 9.0		1
     text-align: right;
   }
 
-  /* Even though the code for styling highlighted phrases isn't complete, 
+  /* Even though the code for styling highlighted phrases isn't complete,
      we're including those selectors here and treating them like WorldWideWeb did */
 
   hp1, i, em {

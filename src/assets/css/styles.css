@@ -346,13 +346,20 @@ div.title-bar h2 {
 
 /* --------------- WEBVIEW -------------------- */
 
-div.webview {
+.webview {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid #000;
+  border: 1px solid #000;
+  background: white;
 }
 
-  div.webview div.r2l-content {
+.textview body {
+  background: white;
+  overflow: visible;
+  padding: 0.3rem;
+}
+
+  .webview div.r2l-content {
     direction: rtl;
     overflow: auto;
 	  height: 60%;
@@ -360,7 +367,7 @@ div.webview {
 	  width: 600px;
     background-color: #FFF;
   }
-  div.webview div.l2r-content {
+  .webview .l2r-content.content {
     direction: ltr;
     background-color: #FFF;
     padding: 0.3rem;
@@ -832,4 +839,141 @@ input[name='style-name'] {
 /* revert an earlier, stronger, selector */
 .prompt .second-block > ul.buttons-bar:first-of-type {
   width: auto;
+}
+
+.content:not(:focus) mark {
+  background: red;
+}
+
+
+.textview {
+  font-size: 13px;
+  line-height: 14px;
+  -webkit-font-smoothing: none;
+  margin: 1.5em 0 0 90px;
+  /* Definition lists */
+  /* Even though the code for styling highlighted phrases isn't complete,
+     we're including those selectors here and treating them like WorldWideWeb did */ }
+  .textview * {
+    font-size: 13px;
+    line-height: 14px;
+    -webkit-font-smoothing: none; }
+  .textview nextid {
+    height: 1.2em; }
+  .textview h1 {
+    /* default: Helvetica-Bold 18pt, 0 indent, 18 line height,
+	3.0 descent line, center, 0 space before, 36 space after */
+    margin: 1.1em 0 2.8em -90px;
+    font-family: 'NeXT Big_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center; }
+  .textview h2 {
+    /* default: Helvetica-Bold 14pt, 0 indent, 14 line height,
+	3.0 descent line, 14 space before, 14 space after */
+    margin: 1.5em 0 1.5em -90px;
+    font-family: 'NeXT Bold_14', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: normal;
+    font-size: 14px; }
+  .textview h3 {
+    /* default: Helvetica-Oblique 14pt, 10 indent, 14 line height,
+	3.0 descent line, 14 space before, 14 space after */
+    font-family: 'NeXT Oblique_16', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    margin: 1em 0 1em -80px;
+    font-style: normal;
+    font-size: 14px; }
+  .textview h4 {
+    /* default: Helvetica-Bold 12pt, 20 indent, 14 line height,
+	3.0 descent line, 14 space before, 14 space after */
+    font-family: 'NeXT_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    margin: 1em 0 1em -70px;
+    font-weight: normal; }
+  .textview h5 {
+    /* default: Helvetica-Bold 12pt, 30 indent, 14 line height,
+	3.0 descent line, 14 space before, 14 space after */
+    font-family: 'NeXT_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    margin: 1em 0 1em -60px;
+    font-weight: normal; }
+  .textview h6 {
+    /* default: Helvetica-Bold 12pt, 40 indent, 14 line height,
+	3.0 descent line, 14 space before, 14 space after */
+    font-family: 'NeXT_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    margin: 1em 0 1em -50px;
+    font-weight: normal; }
+  .textview a[href] {
+    text-decoration: underline;
+    color: inherit; }
+  .textview a:active[href] {
+    background-color: #ccc; }
+  .textview p {
+    margin-top: 1.5em;
+    /* paragraph has one line after... but
+ was used more as a
+	   separator than a wrapper... so using margin-top instead    */ }
+  .textview li {
+    margin: 1em 0 1em 3.8em;
+    list-style-type: "-              "; }
+  .textview dl {
+    margin: 1em 0 1em -70px; }
+  .textview dl + h2 {
+    margin-top: 4em; }
+  .textview dt,
+  .textview dd {
+    display: inline-block;
+    vertical-align: top; }
+  .textview dt:not(:first-of-type),
+  .textview dd:not(:first-of-type) {
+    margin-top: 1.5em; }
+  .textview dt {
+    width: 25ch; }
+  .textview dd {
+    width: 27.5em;
+    width: 50ch; }
+  .textview xmp {
+    display: block;
+    white-space: pre; }
+  .textview address {
+    display: block;
+    font-style: italic;
+    text-align: right; }
+  .textview hp1, .textview i, .textview em {
+    font-style: normal; }
+  .textview hp2, .textview b, .textview strong {
+    font-weight: normal; }
+  .textview hp3 {
+    font-style: normal;
+    font-weight: normal; }
+
+.textview .project {
+  font-size: 18px;
+  line-height: 18px;
+  margin: 1.5em 0 0 30px; }
+  .textview .project h1 {
+    margin: 1.1em 0 2.8em -30px;
+    font-size: 36px; }
+  .textview .project h2 {
+    margin: 1.5em 0 1.5em -30px;
+    font-size: 24px; }
+  .textview .project h3 {
+    margin: 1em 0 1em -20px;
+    font-size: 18px; }
+
+@media print {
+  .textview {
+    font-family: Times, "Times New Roman", serif;
+    font-size: 10pt;
+    line-height: 12pt;
+    -webkit-font-smoothing: normal;
+    margin: 1.5em 0 0 90px; }
+    .textview h1, .textview h2, .textview h3, .textview h4, .textview h5, .textview h6 {
+      font-family: Helvetica, "Arial Narrow", sans-serif; }
+    .textview dl {
+      margin: 1em 0 1em -40px; }
+    .textview xmp {
+      font-family: Courier, "Courier New", monospace;
+      white-space: pre; } }
+
+.react-draggable-transparent-selection iframe {
+  pointer-events: none;
 }
