@@ -3,6 +3,7 @@ module.exports = function(eleventyConfig) {
     '/content/robots.txt',
     '/content/humans.txt',
     '/content/css',
+    '/content/images',
   ].map(filename => {
     eleventyConfig.addPassthroughCopy(__dirname + filename);
   });
