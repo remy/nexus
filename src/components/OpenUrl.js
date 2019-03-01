@@ -3,10 +3,10 @@ import Window from './Window';
 
 const OpenURL = ({ onAction, onClose, ...props }) => {
   const inputRef = createRef();
-  const handleClick = () => {
+  const handleClick = e => {
+    e.preventDefault();
     onAction(inputRef.current.value);
     onClose(props.id);
-    // onClose(props.id);
   };
   return (
     <Window {...props} title="Open using hypertext reference" onClose={onClose}>

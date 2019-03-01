@@ -47,3 +47,8 @@ export const PromptClose = Loadable({
   loader: () => import('./components/PromptClose'),
   loading,
 });
+
+export const Search = Loadable({
+  loader: () => import('./components/Search'),
+  loading,
+});

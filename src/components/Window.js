@@ -27,8 +27,9 @@ const Window = ({
   dirty = false,
   showClose = null,
   children,
+  x = null,
 }) => {
-  let x = index * 64 + 255;
+  if (x === null) x = index * 64 + 255;
 
   if (menu) {
     // menus when being opened are only in two positions

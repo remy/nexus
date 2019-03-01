@@ -6,6 +6,7 @@ import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
 import { PromptClose } from '../panels';
 import './WebView.scss';
+import { Search } from '../panels';
 
 class WebView extends React.Component {
   constructor(props) {
@@ -97,6 +98,14 @@ class WebView extends React.Component {
     const json = await res.json();
     if (json.body) {
       this.setState(json);
+      if (json.isindex) {
+        this.props.add({
+          type: 'panel',
+          id: 'search',
+          Component: Search,
+          isindex: json.isindex,
+        });
+      }
     } else {
       // it went wrong…
       this.setState({ title: '500 error… 🔥' });

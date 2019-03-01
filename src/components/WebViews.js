@@ -18,6 +18,7 @@ const WebViews = ({ windows, actionHandler, add, close, setActive, active }) =>
         onFocus={() => {
           if (active.id !== id) setActive({ type: 'url', id, ref });
         }}
+        add={add}
         onClose={close}
         onNavigate={id => add({ type: 'url', id, referrer: ref })}
         active={id === active.id}
