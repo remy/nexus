@@ -204,34 +204,14 @@ class WebView extends React.Component {
     const { mark } = this.state;
 
     if (mark) {
-      const { start, end, element, focusNode, anchorNode } = mark;
-      const text = document.createTextNode(element.innerHTML);
-      const parent = element.parentNode;
-      console.log(element, parent);
-
-      // const start = element.previousSibling.nodeValue.length;
-      // const end = element.innerHTML.length;
-      console.log(anchorNode, focusNode, start, end);
-      parent.replaceChild(text, element);
-      this.setState({ mark: null });
+      const { start, end, focusNode, anchorNode } = mark;
       const selection = window.getSelection();
       const range = document.createRange();
-
-      console.dir(anchorNode);
-
-      console.dir(focusNode);
-
-      const all = element.dataset.all;
       selection.removeAllRanges();
-
-      if (all) {
-        selection.selectAllChildren(parent);
-      } else {
-        range.setStart(anchorNode, start);
-        range.setEnd(focusNode, end);
-        selection.addRange(range);
-        parent.normalize();
-      }
+      range.setStart(anchorNode, start);
+      range.setEnd(focusNode, end);
+      selection.addRange(range);
+      this.setState({ mark: null });
     }
   };
 
@@ -241,44 +221,14 @@ class WebView extends React.Component {
     let { focusNode, focusOffset, anchorOffset, anchorNode } = selection;
 
     if (selection.rangeCount > 0 && selection.isCollapsed === false) {
-      const linkText = selection.toString();
-      const mark = document.createElement('mark');
-      mark.innerHTML = linkText;
-
       this.setState({
         mark: {
-          element: mark,
           anchorNode,
           focusNode,
           start: anchorOffset,
           end: focusOffset,
         },
       });
-
-      const offset = Math.max(focusOffset, anchorOffset);
-
-      if (focusOffset === 0) {
-        // then we're onto another element, let's just pretend it's not
-        focusNode = anchorNode;
-        focusOffset = linkText.length;
-      }
-
-      if (
-        anchorNode === focusNode &&
-        anchorOffset === 0 &&
-        focusOffset === linkText.length
-      ) {
-        // all the text is selected, so wrap instead of split
-        mark.dataset.all = true;
-        anchorNode.parentNode.replaceChild(mark, anchorNode);
-        return;
-      }
-
-      mark.dataset.all = false;
-
-      const middle = anchorNode.splitText(offset - linkText.length);
-      middle.splitText(linkText.length);
-      middle.parentNode.replaceChild(mark, middle);
     } else {
       this.setState({ mark: null });
     }
@@ -288,16 +238,14 @@ class WebView extends React.Component {
     const { mark } = this.state;
 
     if (mark) {
-      const { element } = mark;
-
       const nextId = this.state.nextId;
       this.setState({ nextId: nextId + 1 });
 
       const anchor = document.createElement('a');
       anchor.setAttribute('NAME', nextId);
-      anchor.innerHTML = element.innerHTML;
+      // anchor.innerHTML = element.innerHTML;
 
-      element.parentNode.replaceChild(anchor, element);
+      // element.parentNode.replaceChild(anchor, element);
       this.setState({ mark: null });
       const selection = window.getSelection();
       const range = document.createRange();
@@ -427,6 +375,7 @@ class WebView extends React.Component {
         )}
         <Window
           onStop={() => {
+            // stops being dragged
             this.ref.current.focus();
           }}
           title={title || this.state.base}
