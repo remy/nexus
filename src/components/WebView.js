@@ -251,25 +251,48 @@ class WebView extends React.Component {
   };
 
   onMark() {
-    const { mark } = this.state;
+    const selection = window.getSelection();
+    let { focusNode, focusOffset, anchorOffset, anchorNode } = selection;
 
-    if (mark) {
-      const nextId = this.state.nextId;
-      this.setState({ nextId: nextId + 1 });
+    if (selection.rangeCount > 0 && selection.isCollapsed === false) {
+      const { nextId } = this.state;
+
+      // TODO check if anchorNode is inside of a <A NAME> if so, return that instead
+      const insideAnchor = getLink(anchorNode, this.ref.current, 'name');
+
+      if (insideAnchor) {
+        return { url: this.props.url + '#' + insideAnchor.hash };
+      }
 
       const anchor = document.createElement('a');
       anchor.setAttribute('NAME', nextId);
-      // anchor.innerHTML = element.innerHTML;
+      const anchorLength = anchorNode.nodeValue.length;
+      let text = anchorNode.nodeValue;
 
-      // element.parentNode.replaceChild(anchor, element);
-      this.setState({ mark: null });
-      const selection = window.getSelection();
-      const range = document.createRange();
+      if (
+        anchorNode.parentNode.nextSibling === focusNode &&
+        focusOffset === 0
+      ) {
+        anchorNode.parentNode.replaceChild(anchor, anchorNode);
+      } else if (anchorNode === focusNode) {
+        // within a single text node
+        const [min, max] = [anchorOffset, focusOffset].sort();
+        if (min === 0 && max === text.length) {
+          anchorNode.parentNode.replaceChild(anchor, anchorNode);
+        } else {
+          text = text.substring(min, max);
 
-      range.setStart(anchor, 0);
-      range.setEnd(anchor, anchor.innerHTML.length);
-      selection.removeAllRanges();
-      selection.addRange(range);
+          const middle = anchorNode.splitText(min);
+          if (max < anchorLength) {
+            middle.splitText(max - min);
+          }
+          middle.parentNode.replaceChild(anchor, middle);
+        }
+      } else {
+        anchorNode.parentNode.replaceChild(anchor, anchorNode);
+      }
+
+      anchor.innerHTML = text;
 
       const nextIdElement = this.ref.current.querySelector('nextid');
       if (nextIdElement) {
@@ -281,7 +304,7 @@ class WebView extends React.Component {
         nextIdElement.setAttribute('n', nextId + 1);
       }
 
-      this.setState({ dirty: true });
+      this.setState({ mark: null, dirty: true, nextId: nextId + 1 });
 
       return { url: this.props.url + '#' + nextId };
     }

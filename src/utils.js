@@ -13,19 +13,19 @@ export function titleCase(s = '') {
   });
 }
 
-export function getLink(element, root) {
+export function getLink(element, root, prop = 'href') {
   if (element === root) {
     return false;
   }
 
   if (element.nodeName === 'A') {
-    if (element.href) {
+    if (element[prop]) {
       return element;
     }
     return false;
   }
 
-  return getLink(element.parentNode, root);
+  return getLink(element.parentNode, root, prop);
 }
 
 export function isUpper(letter) {
