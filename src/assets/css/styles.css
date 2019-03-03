@@ -279,6 +279,11 @@ button.icon-buttons::after {
   content: none;
 }
 
+.title-bar button.icon-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 button.enter-button {
   background: #aaa url(../img/enter-button.png) right no-repeat;
   padding: 10px;
@@ -308,7 +313,7 @@ div.title-bar {
   align-items: center;
   color: #000;
   background-color: #aaa;
-  padding: 0.2rem 0.2rem 0.1rem;
+  padding: 1px 1px 2px;
   border-top: 1px solid #fff;
   border-left: 1px solid #fff;
   border-bottom: 1px solid #000;
@@ -340,9 +345,10 @@ div.title-bar::before {
   background-color: #000;
 }
 div.title-bar h2 {
-  min-height: 16px;
-  flex: 1;
   font: 13px 'NeXT_Bold', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  flex: 1;
+  min-height: 16px;
+  line-height: 17px;
   text-align: center;
 }
 
