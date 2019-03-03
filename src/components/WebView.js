@@ -149,9 +149,7 @@ class WebView extends React.Component {
 
   linkToMarked(url) {
     const selection = window.getSelection();
-    const { anchorOffset, focusOffset, anchorNode } = selection;
-
-    console.log('linkToMarked', anchorNode);
+    const { anchorNode } = selection;
 
     const insideAnchor = getLink(anchorNode, this.ref.current, 'name');
 

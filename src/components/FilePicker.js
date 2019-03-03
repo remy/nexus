@@ -12,14 +12,11 @@ export default ({ onSubmit, onCancel, title }) => {
     });
   }, []);
 
-  console.log('picker');
-
   return (
     <form
       id="save-file"
       onReset={onCancel}
       onSubmit={event => {
-        console.log('submit, ', selected);
         event.preventDefault();
         onSubmit(selected);
       }}
@@ -79,7 +76,6 @@ export default ({ onSubmit, onCancel, title }) => {
               <span
                 className="button"
                 onClick={() => {
-                  console.log('cancel');
                   onCancel();
                 }}
               >
