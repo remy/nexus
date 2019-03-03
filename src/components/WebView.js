@@ -108,7 +108,14 @@ class WebView extends React.Component {
       }
     } else {
       // it went wrong…
-      this.setState({ title: '500 error… 🔥' });
+      this.setState({
+        title: '500 error… 🔥',
+        body: `<p><strong>Uh oh.</strong></p>\n\n<p>${JSON.stringify(
+          json,
+          0,
+          2
+        )}</p>`,
+      });
     }
   }
 
@@ -347,8 +354,18 @@ class WebView extends React.Component {
       return;
     }
 
-    await this.props.actionHandler('save');
+    await this.save();
     this.props.close(this.props.id);
+  };
+
+  save = async () => {
+    if (this.state.dirty) {
+      await filesystem.save(
+        localToFilename(this.props.id),
+        this.ref.current.innerHTML
+      );
+      this.setClean();
+    }
   };
 
   render() {

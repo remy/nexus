@@ -77,7 +77,8 @@ export const document = {
     {
       title: 'Save all edited windows',
       accelerator: 'S',
-      id: 'save-all-edited-windows',
+      id: 'save-all',
+      action: 'method',
     },
     { title: 'Save a copy offline', id: 'save-offline', action: 'method' },
     // { title: 'Document details…', id: 'document-details' },
