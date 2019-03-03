@@ -19,13 +19,20 @@ export const linkToMarked = ({ active }) => {
 
 export const followLink = ({ active, add }) => {
   const selection = window.getSelection();
+
   const link = getLink(
-    selection.focusNode,
+    selection.anchorNode,
     active.ref.current.getRef().current
   );
 
   if (link && link.href) {
-    add({ type: 'url', id: link.href, referrer: active.ref });
+    let url = link.href;
+
+    if (!link.getAttribute('href').startsWith('http')) {
+      url = new URL(link.getAttribute('href'), active.id).toString();
+    }
+
+    add({ type: 'url', id: url, referrer: active.ref });
   }
 };
 
