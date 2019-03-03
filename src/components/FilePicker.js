@@ -12,8 +12,18 @@ export default ({ onSubmit, onCancel, title }) => {
     });
   }, []);
 
+  console.log('picker');
+
   return (
-    <form id="save-file">
+    <form
+      id="save-file"
+      onReset={onCancel}
+      onSubmit={event => {
+        console.log('submit, ', selected);
+        event.preventDefault();
+        onSubmit(selected);
+      }}
+    >
       <div className="content">
         <div className="first-block">
           <h3>{title}</h3>
@@ -66,15 +76,18 @@ export default ({ onSubmit, onCancel, title }) => {
               />
             </li>
             <li>
-              <button onClick={onCancel}>Cancel</button>
+              <span
+                className="button"
+                onClick={() => {
+                  console.log('cancel');
+                  onCancel();
+                }}
+              >
+                <input className="reset" type="reset" value="Cancel" />
+              </span>
             </li>
             <li>
-              <button
-                onClick={() => onSubmit(selected)}
-                className="enter-button"
-              >
-                OK
-              </button>
+              <button className="button enter-button">OK</button>
             </li>
           </ul>
         </div>

@@ -34,15 +34,15 @@ const InfoAbout = ({ add, ...props }) => {
             <div>
               <dt>HyperText:</dt>
               <dd>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text which is not constrained to
-                be linear.
+                &nbsp;&nbsp;&nbsp;&nbsp;Text which is not constrained to be
+                linear.
               </dd>
             </div>
             <div>
               <dt>HyperMedia:</dt>
               <dd>
-                &nbsp;&nbsp;Information which is not constrained linear... or to
-                be text.
+                &nbsp;Information which is not constrained linear... or to be
+                text.
               </dd>
             </div>
           </dl>
@@ -141,7 +141,10 @@ const InfoAbout = ({ add, ...props }) => {
                     (Iceland / USA)
                   </li>
                 </ul>
-                <p />
+                <p>
+                  But also cheers to Tim, you know, for the whole "web" thing
+                  :-)
+                </p>
               </div>
             </div>
           </div>

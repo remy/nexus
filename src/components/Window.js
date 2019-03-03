@@ -41,7 +41,7 @@ const Window = ({
 
   const style = {
     position: 'absolute',
-    zIndex, //: active ? activeZIndex + 100 : zIndex,
+    zIndex,
   };
 
   if (showClose === null) {

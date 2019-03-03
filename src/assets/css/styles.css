@@ -37,6 +37,13 @@ body {
   overflow: hidden; /* hide OS scrollbars */
 }
 
+input.reset {
+  border: 0;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
 #root, #root > div {
   min-height: 100%;
   display: flex;
@@ -171,7 +178,8 @@ a {
 
 /* --------------- FORMS -------------------- */
 
-input {
+input[type=text],
+.text-block {
   font: 13px/1 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
   padding: 2px 1px;
   border-top: 2px solid #555;
@@ -228,9 +236,15 @@ legend span {
   padding: 0 0.5em;
 }
 
+input {
+  font: 13px/1 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+}
+
 /* --------------- BUTTONS -------------------- */
 
-button {
+button, .button {
+  text-align: center;
+  display: inline-block;
   position: relative;
   width: 100%;
   font: 13px/1 'NeXT_Roman', Helvetica, 'Helvetica Neue', Arial, sans-serif;
@@ -248,19 +262,23 @@ button:active {
 }
 
 button::after,
-button::before {
+button::before,
+.button::after,
+.button::before {
   display: block;
   position: absolute;
   content: '';
   background-color: #555;
 }
-button::after {
+button::after,
+.button::after {
   width: 1px;
   height: 100%;
   top: 0;
   right: 0;
 }
-button::before {
+
+.button::before,button::before {
   width: 100%;
   height: 1px;
   bottom: 0;
@@ -279,17 +297,25 @@ button.icon-buttons::after {
   content: none;
 }
 
+span.button {
+  padding: 6px 0;
+}
+
+.button.enter-button input {
+  margin-left: -10px;
+}
+
 .title-bar button.icon-buttons {
   display: flex;
   justify-content: center;
 }
 
-button.enter-button {
+.enter-button {
   background: #aaa url(../img/enter-button.png) right no-repeat;
   padding: 10px;
 }
-button.enter-button.active,
-button.enter-button:active {
+.enter-button.active,
+.enter-button:active {
   background-color: #fff;
 }
 
@@ -546,8 +572,13 @@ ul.buttons-bar.limited button {
 		}
 		#save-file ul.buttons-bar button.enter-button {
 			padding: 6px 15px 6px 0;
-		}
-	#save-file .second-block input {
+    }
+		#save-file ul.buttons-bar .enter-button {
+			padding: 6px 0 6px 0;
+    }
+
+
+	#save-file .second-block input[type=text] {
 		width: 230px;
 		padding: 3px;
 	}
@@ -602,7 +633,7 @@ ul.buttons-bar.limited button {
 			overflow: hidden;
       font-family: "NeXT_Bold", Helvetica, "Helvetica Neue", Arial, sans-serif;
 		}
-		div.file-lists input {
+		div.file-lists input[type=radio] {
       position: absolute;
       left: -50em;
     }
@@ -735,7 +766,7 @@ ul.buttons-bar.limited button {
   margin: 15px 0 10px;
 }
 
-#style-editor button.enter-button {
+#style-editor .enter-button {
   position: absolute;
   width: 7em;
   right: 0;
@@ -774,10 +805,10 @@ ul.buttons-bar.limited button {
   justify-content: flex-end;
 }
 
-#open-url.search .second-block button.enter-button {
+#open-url.search .second-block .enter-button {
   font: 14px 'NeXT Bold_14', Helvetica, 'Helvetica Neue', Arial, sans-serif;
 }
-#open-url.search button.enter-button {
+#open-url.search .enter-button {
   background-image: none;
 }
 
@@ -801,12 +832,12 @@ ul.buttons-bar.limited button {
   margin-top: 10px;
 }
 
-#open-url .second-block button.enter-button {
+#open-url .second-block .enter-button {
   font: 18px 'NeXT Bold_14', Helvetica, 'Helvetica Neue', Arial, sans-serif;
   width: 100px;
   margin-right: 15px;
 }
-#open-url .second-block button.enter-button strong {
+#open-url .second-block .enter-button strong {
   display: inline-block;
   padding: 0 25px 0 15px;
 }
@@ -879,7 +910,7 @@ input[name='style-name'] {
   flex: 0;
 }
 
-.prompt button.enter-button {
+.prompt .enter-button {
   padding: 5px;
   text-align: left;
   padding-left: 10px;
