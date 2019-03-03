@@ -10,9 +10,10 @@ import * as actions from './actions';
 import { PATH } from './env';
 import { camelCase, titleCase } from './utils';
 
-const layerOrder = new Map([['menu', 10000], ['url', 1], ['panel', 1000]]);
+const layerOrder = new Map([['menu', 10000], ['default', 1]]);
 
 function nextLayerOrder(type) {
+  type = type === 'menu' ? 'menu' : 'default';
   const value = layerOrder.get(type);
   return layerOrder.set(type, value + 1).get(type);
 }
@@ -29,7 +30,13 @@ function reducer(state, action) {
         return true;
       });
     case 'add':
-      return [...state, { ...data, zIndex: nextLayerOrder(data.type) }];
+      return [
+        ...state,
+        {
+          ...data,
+          zIndex: nextLayerOrder(data.type),
+        },
+      ];
     default:
       throw new Error('unknown action');
   }
@@ -127,7 +134,7 @@ const App = () => {
         break;
       case 'method':
         if (actions[idCamelCase]) {
-          res = actions[idCamelCase]({ active: activeWindow, add });
+          res = actions[idCamelCase]({ active: activeWindow, add, windows });
         }
         break;
       case 'url':
