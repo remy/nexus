@@ -367,12 +367,16 @@ div.title-bar h2 {
   padding: 0.3rem;
 }
 
+.window-webview {
+  width: 600px;
+}
+
   .webview div.r2l-content {
     direction: rtl;
     overflow: auto;
 	  height: 60%;
 	  max-height: 90vh;
-	  width: 600px;
+	  width: 100%;
     background-color: #FFF;
   }
   .webview .l2r-content.content {
@@ -624,6 +628,14 @@ ul.buttons-bar.limited button {
 
 /* BROWSER INFO */
 
+#browser-info {
+  width: 525px;
+}
+
+#browser-info .r2l-content {
+  max-height: 200px;
+}
+
 #browser-info header {
   display: flex;
   flex-wrap: wrap;
@@ -668,6 +680,11 @@ ul.buttons-bar.limited button {
 #browser-info .first-block {
   padding: 0 10px 20px;
 }
+
+#browser-info .second-block {
+    padding: 0 30px;
+}
+
 #browser-info dl div {
   display: flex;
 }
@@ -701,11 +718,6 @@ ul.buttons-bar.limited button {
 #browser-nav .second-block {
   padding: 7px;
   margin: 0;
-}
-
-/* BROWSER INFO */
-#browser-info {
-  width: 620px;
 }
 
 /* STYLE EDITOR */
@@ -1013,4 +1025,8 @@ input[name='style-name'] {
 
 .react-draggable-transparent-selection iframe {
   pointer-events: none;
+}
+
+.webview .l2r-content.content.compact {
+  margin: 0;
 }

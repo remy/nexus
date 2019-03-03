@@ -12,6 +12,16 @@ import { camelCase, titleCase } from './utils';
 
 const layerOrder = new Map([['menu', 10000], ['default', 1]]);
 
+const initialState = [
+  { type: 'menu', id: 'top', zIndex: nextLayerOrder('menu') },
+  {
+    type: 'url',
+    id: `${PATH}/default.html`,
+    zIndex: nextLayerOrder('url'),
+    ref: createRef(),
+  },
+];
+
 function nextLayerOrder(type) {
   type = type === 'menu' ? 'menu' : 'default';
   const value = layerOrder.get(type);
@@ -43,15 +53,7 @@ function reducer(state, action) {
 }
 
 const App = () => {
-  const [windows, dispatch] = useReducer(reducer, [
-    { type: 'menu', id: 'top', zIndex: nextLayerOrder('menu') },
-    {
-      type: 'url',
-      id: `${PATH}/default.html`,
-      zIndex: nextLayerOrder('url'),
-      ref: createRef(),
-    },
-  ]);
+  const [windows, dispatch] = useReducer(reducer, initialState);
   const [active, setActiveElement] = useState(windows[1]);
   const [activeWindow, setActiveWindow] = useState(windows[1]);
 

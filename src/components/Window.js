@@ -26,6 +26,7 @@ const Window = ({
   dialogue = false,
   dirty = false,
   showClose = null,
+  className,
   children,
   x = null,
 }) => {
@@ -67,7 +68,7 @@ const Window = ({
       onDrag={onDrag}
       onStop={onStop}
     >
-      <div className={classnames(['panel', { menu }])} style={style}>
+      <div className={classnames(['panel', className, { menu }])} style={style}>
         <div
           onMouseDown={onFocus}
           className={classnames(['title-bar', { active: titleActive }])}

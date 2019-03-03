@@ -375,7 +375,7 @@ class WebView extends React.Component {
 
     if (!body) {
       return (
-        <Window title="Connecting..." {...props}>
+        <Window className="window-webview" title="Connecting..." {...props}>
           <div className="webview">
             <div className="r2l-content">
               <div style={{ height: '400px' }}>&nbsp;</div>
@@ -404,6 +404,7 @@ class WebView extends React.Component {
             // stops being dragged
             this.ref.current.focus();
           }}
+          className="window-webview"
           title={title || this.state.base}
           onFocus={onFocus}
           dirty={dirty}
