@@ -38,6 +38,11 @@ export const SaveFile = Loadable({
   loading,
 });
 
+export const NewFile = Loadable({
+  loader: () => import('./components/NewFile'),
+  loading,
+});
+
 export const OpenFile = Loadable({
   loader: () => import('./components/OpenFile'),
   loading,

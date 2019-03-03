@@ -6,7 +6,7 @@ import { getLink, localToFilename } from '../utils';
 import * as filesystem from '../filesystem';
 import { PromptClose } from '../panels';
 import './WebView.scss';
-import { Search } from '../panels';
+import { Search, SaveFile } from '../panels';
 
 class WebView extends React.Component {
   constructor(props) {
@@ -148,50 +148,41 @@ class WebView extends React.Component {
   }
 
   linkToMarked(url) {
-    const { local } = this.state;
-    // only local files can be modified for marking
-    if (!local) {
+    const selection = window.getSelection();
+    const { anchorOffset, focusOffset, anchorNode } = selection;
+
+    console.log('linkToMarked', anchorNode);
+
+    const insideAnchor = getLink(anchorNode, this.ref.current, 'name');
+
+    // if we're in a link, then just change the link url
+    if (insideAnchor) {
+      insideAnchor.href = url;
       return;
     }
-    const selection = window.getSelection();
 
-    // we assume this is nearly always… I think
-    if (selection.anchorNode.nodeName === '#text') {
-      const nextId = this.state.nextId;
-      this.setState({ nextId: nextId + 1 });
-      const { anchorOffset, focusOffset, anchorNode } = selection;
-      const [start, end] = [focusOffset, anchorOffset].sort();
-
-      const parent = anchorNode.parentNode;
-      const text = anchorNode.nodeValue;
-      const linkText = selection.toString();
-
-      const left = document.createTextNode(text.substr(0, start));
-      const right = document.createTextNode(text.substr(end));
-      const middle = document.createElement('a');
-      middle.setAttribute('NAME', nextId);
-      middle.setAttribute('href', url);
-      middle.innerHTML = linkText;
-
-      parent.replaceChild(right, anchorNode);
-      parent.insertBefore(middle, right);
-      parent.insertBefore(left, middle);
-
-      // reselect the highlighted block
-      let range = document.createRange();
+    if (selection.isCollapsed === true) {
+      // then select the current node and wrap the whole thing
+      const range = document.createRange();
       selection.removeAllRanges();
-      range.selectNode(middle);
+
+      range.setStart(anchorNode, 0);
+      range.setEnd(anchorNode, anchorNode.nodeValue.length);
       selection.addRange(range);
-
-      const nextIdElement = this.ref.current.querySelector('nextid');
-      if (nextIdElement) {
-        // TODO workout how to set a numeric attrib…apparently it won't fly
-      }
-
-      this.setState({ dirty: true });
-
-      return { url: this.props.url + '#' + nextId };
     }
+
+    const anchor = document.createElement('a');
+    anchor.setAttribute('href', url);
+    anchor.innerHTML = this.replaceSelectionWith(anchor);
+
+    // reselect the text
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNode(anchor.firstChild);
+
+    selection.addRange(range);
+
+    this.setState({ dirty: true });
   }
 
   applyStyle(style) {
@@ -250,9 +241,53 @@ class WebView extends React.Component {
     }
   };
 
-  onMark() {
+  replaceSelectionWith(node) {
     const selection = window.getSelection();
     let { focusNode, focusOffset, anchorOffset, anchorNode } = selection;
+
+    let text = '';
+    let isText = false;
+
+    if (anchorNode.nodeName !== '#text') {
+      text = anchorNode.innerText;
+    } else {
+      text = anchorNode.nodeValue;
+      isText = true;
+    }
+
+    let length = text.length;
+
+    if (anchorNode.parentNode.nextSibling === focusNode && focusOffset === 0) {
+      anchorNode.parentNode.replaceChild(node, anchorNode);
+    } else if (anchorNode === focusNode) {
+      // within a single text node
+      const [min, max] = [anchorOffset, focusOffset].sort((a, b) => a - b);
+      if (min === 0 && max === text.length) {
+        anchorNode.parentNode.replaceChild(node, anchorNode);
+      } else {
+        text = text.substring(min, max);
+        let middle;
+
+        if (isText) {
+          middle = anchorNode.splitText(min);
+          if (max < length) {
+            middle.splitText(max - min);
+          }
+        } else {
+          middle = anchorNode.firstChild;
+        }
+        middle.parentNode.replaceChild(node, middle);
+      }
+    } else {
+      anchorNode.parentNode.replaceChild(node, anchorNode);
+    }
+
+    return text;
+  }
+
+  onMark() {
+    const selection = window.getSelection();
+    let { anchorNode } = selection;
 
     if (selection.rangeCount > 0 && selection.isCollapsed === false) {
       const { nextId } = this.state;
@@ -266,33 +301,7 @@ class WebView extends React.Component {
 
       const anchor = document.createElement('a');
       anchor.setAttribute('NAME', nextId);
-      const anchorLength = anchorNode.nodeValue.length;
-      let text = anchorNode.nodeValue;
-
-      if (
-        anchorNode.parentNode.nextSibling === focusNode &&
-        focusOffset === 0
-      ) {
-        anchorNode.parentNode.replaceChild(anchor, anchorNode);
-      } else if (anchorNode === focusNode) {
-        // within a single text node
-        const [min, max] = [anchorOffset, focusOffset].sort();
-        if (min === 0 && max === text.length) {
-          anchorNode.parentNode.replaceChild(anchor, anchorNode);
-        } else {
-          text = text.substring(min, max);
-
-          const middle = anchorNode.splitText(min);
-          if (max < anchorLength) {
-            middle.splitText(max - min);
-          }
-          middle.parentNode.replaceChild(anchor, middle);
-        }
-      } else {
-        anchorNode.parentNode.replaceChild(anchor, anchorNode);
-      }
-
-      anchor.innerHTML = text;
+      anchor.innerHTML = this.replaceSelectionWith(anchor);
 
       const nextIdElement = this.ref.current.querySelector('nextid');
       if (nextIdElement) {
@@ -381,14 +390,28 @@ class WebView extends React.Component {
     this.props.close(this.props.id);
   };
 
-  save = async () => {
-    if (this.state.dirty) {
-      await filesystem.save(
-        localToFilename(this.props.id),
-        this.ref.current.innerHTML
-      );
-      this.setClean();
+  setFilename = filename => {
+    this.filename = filename;
+  };
+
+  getFilename = () => {
+    return localToFilename(this.filename || this.props.id);
+  };
+
+  save = async force => {
+    if (!force && !this.state.local) {
+      this.props.add({
+        type: 'panel',
+        id: 'save-file',
+        Component: SaveFile,
+        body: this.ref.current.innerHTML,
+        ref: { current: this },
+      });
+      return;
     }
+
+    await filesystem.save(this.getFilename(), this.ref.current.innerHTML);
+    this.setClean();
   };
 
   render() {

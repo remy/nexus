@@ -1,14 +1,16 @@
 import React from 'react';
 import Window from './Window';
-import { save } from '../filesystem';
+import { save, load } from '../filesystem';
 import FilePicker from './FilePicker';
 
-const SaveFile = ({ close, id, body, ref, ...props }) => {
+const NewFile = ({ close, add, id, ...props }) => {
   const saveAndLoad = async selected => {
-    save(selected, body);
-    if (ref) {
-      ref.current.setFilename('file://WWW/' + selected);
-    }
+    const template = await load('blank.html');
+    save(selected, template);
+    add({
+      id: 'file://WWW/' + selected,
+      type: 'url',
+    });
     close(id);
   };
 
@@ -23,4 +25,4 @@ const SaveFile = ({ close, id, body, ref, ...props }) => {
   );
 };
 
-export default SaveFile;
+export default NewFile;

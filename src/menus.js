@@ -69,7 +69,7 @@ export const document = {
     {
       title: 'New file…',
       accelerator: 'n',
-      id: 'save-file', // note that we save a file first, then launch it
+      id: 'new-file', // note that we save a file first, then launch it
       action: 'panel',
       props: { url: PATH + '/blank.html' },
     },
