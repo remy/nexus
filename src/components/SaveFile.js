@@ -5,9 +5,10 @@ import FilePicker from './FilePicker';
 
 const SaveFile = ({ close, id, body, ref, ...props }) => {
   const saveAndLoad = async selected => {
-    save(selected, body);
+    const filename = selected.includes('.') ? selected : selected + '.html';
+    save(filename, body);
     if (ref) {
-      ref.current.setFilename('file://WWW/' + selected);
+      ref.current.setFilename('file://WWW/' + filename);
     }
     close(id);
   };
