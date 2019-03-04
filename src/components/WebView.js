@@ -128,21 +128,14 @@ class WebView extends React.Component {
   }
 
   unlink() {
-    const { local } = this.state;
-    // only local files can be modified for marking
-    if (!local) {
-      return;
-    }
     const selection = window.getSelection();
+    const { anchorNode } = selection;
 
-    // BUG only supports unlinking a single link - come on, we had 5 days!
-    if (selection.anchorNode.nodeName === '#text') {
-      const { anchorNode } = selection;
+    const anchor = getLink(anchorNode, this.ref.current);
 
-      const parent = getLink(anchorNode);
-      const node = document.createTextNode(anchorNode.nodeValue);
-
-      parent.parentNode.replaceChild(node, parent);
+    if (anchor) {
+      const node = document.createTextNode(anchor.innerText);
+      anchor.parentNode.replaceChild(node, anchor);
       this.setState({ dirty: true });
     }
   }
@@ -177,7 +170,6 @@ class WebView extends React.Component {
     const range = document.createRange();
     selection.removeAllRanges();
     range.selectNode(anchor.firstChild);
-
     selection.addRange(range);
 
     this.setState({ dirty: true });
@@ -205,17 +197,22 @@ class WebView extends React.Component {
     }
   }
 
+  select = options => {
+    const { anchorNode, focusNode, anchorOffset, focusOffset } = options;
+    const [start, end] = [anchorOffset, focusOffset].sort((a, b) => a - b);
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.setStart(anchorNode, start);
+    range.setEnd(focusNode, end);
+    selection.addRange(range);
+  };
+
   onFocus = () => {
     const { mark } = this.state;
 
     if (mark) {
-      const { start, end, focusNode, anchorNode } = mark;
-      const selection = window.getSelection();
-      const range = document.createRange();
-      selection.removeAllRanges();
-      range.setStart(anchorNode, start);
-      range.setEnd(focusNode, end);
-      selection.addRange(range);
+      this.select(mark);
       this.setState({ mark: null });
     }
   };
@@ -230,8 +227,8 @@ class WebView extends React.Component {
         mark: {
           anchorNode,
           focusNode,
-          start: anchorOffset,
-          end: focusOffset,
+          anchorOffset,
+          focusOffset,
         },
       });
     } else {
