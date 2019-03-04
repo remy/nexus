@@ -37,29 +37,60 @@ function reducer(state, action) {
 
   switch (type) {
     case 'remove':
-      return state.filter(_ => {
-        if (_.id === data.id && _.type === data.type) {
-          return false;
-        }
-        return true;
-      });
-    case 'add':
-      return [
+      return {
         ...state,
-        {
-          ...data,
-          zIndex: nextLayerOrder(data.type),
-        },
-      ];
+        windows: state.windows.filter(_ => {
+          if (_.id === data.id && _.type === data.type) {
+            return false;
+          }
+          return true;
+        }),
+      };
+    case 'add':
+      return {
+        ...state,
+        windows: [
+          ...state.windows,
+          {
+            ...data,
+            zIndex: nextLayerOrder(data.type),
+          },
+        ],
+      };
+    case 'setActive': {
+      return { ...state, active: data };
+    }
+    case 'setActiveWindow': {
+      return { ...state, activeWindow: data };
+    }
     default:
       throw new Error('unknown action');
   }
 }
 
 const App = () => {
-  const [windows, dispatch] = useReducer(reducer, initialState);
-  const [active, setActiveElement] = useState(windows[1]);
-  const [activeWindow, setActiveWindow] = useState(windows[1]);
+  // note: I think, these three hooks are causing me 3 renders per change
+  // which is partly my fault as a change to the window state always has a
+  // change to the active element
+  const [state, dispatch] = useReducer(reducer, {
+    windows: initialState,
+    active: initialState[1],
+    activeWindow: initialState[1],
+  });
+
+  const { windows, active, activeWindow } = state;
+
+  // const [windows, dispatch] = useReducer(reducer, initialState);
+  // const [active, setActiveElement] = useState(windows[1]);
+  // const [activeWindow, setActiveWindow] = useState(windows[1]);
+
+  const setActiveElement = data => {
+    dispatch({ type: 'setActive', data });
+  };
+
+  const setActiveWindow = data => {
+    dispatch({ type: 'setActiveWindow', data });
+  };
 
   const setActive = active => {
     setActiveElement(active);
@@ -147,6 +178,7 @@ const App = () => {
           res = actions[idCamelCase]({
             active: activeWindow,
             add,
+            close,
             windows,
             options: info.options,
           });
@@ -184,7 +216,7 @@ const App = () => {
     add,
     close: close(elementType),
     setActive,
-    active,
+    active, // this property is costing me additional render calls :-\
     activeWindow,
     actionHandler,
   });
