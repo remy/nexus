@@ -24,6 +24,7 @@ Useful resources as related to the WorldWideWeb project and history.
 - [Web of Genesis: How Tim Berners-Lee’s intelligent design gave birth to the modern Web](https://skillcrush.com/2013/09/12/web-of-genesis-how-tim-berners-lees-intelligent-design-gave-birth-to-the-modern-web/)
 - [The History of the Internet Part Two: World Wide Web Early Years](https://simpleprogrammer.com/world-wide-web-early-years/)
 - [On Hacking, from Richard Stallman's personal site](https://stallman.org/articles/on-hacking.html)
+- [The word "Hacker", from Paul Graham's essays](http://www.paulgraham.com/gba.html)
 - [Good old Bitnet, and the rise of the World Wide Web, Richard Jacobsson](https://home.cern/news/opinion/computing/good-old-bitnet-and-rise-world-wide-web)
 - [Minimising the muddle, Peggie Rimmer](https://home.cern/news/opinion/computing/minimising-muddle)
 - [Web Growth Summary, Matthew Gray - MIT](http://www.mit.edu/people/mkgray/net/web-growth-summary.html)
