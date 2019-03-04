@@ -19,8 +19,8 @@ load('blank.html').then(file => {
       'blank.html',
       `<title>(No title)</title>
     <h1>Heading</h1>
-    Text<p>
-    __________________________________________________________________
+    <p>Text</p>
+    <p>__________________________________________________________________</p>
     <address>Author</address>
     `
     );
