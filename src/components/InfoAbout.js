@@ -48,7 +48,7 @@ const InfoAbout = ({ add, ...props }) => {
           </dl>
         </div>
         <div className="second-block">
-          <div className="webview">
+          <div className="webview text-block">
             <div className="r2l-content">
               <div className="l2r-content content compact">
                 <p>

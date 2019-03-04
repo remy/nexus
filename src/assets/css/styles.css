@@ -1061,3 +1061,21 @@ input[name='style-name'] {
 .webview .l2r-content.content.compact {
   margin: 0;
 }
+
+.webview.text-block {
+  border-top: 1px solid #555;
+  border-left: 1px solid black;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  box-shadow: -1px 0px 0px 0px #555;
+  background: #aaa;
+  padding: 0px 1px 1px 1px;
+}
+
+.webview.text-block::-webkit-scrollbar {
+/*   border: 1px solid #000; */
+}
+
+.webview.text-block > * {
+  border-top: 1px solid #000;
+}
