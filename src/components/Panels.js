@@ -17,6 +17,7 @@ const Panels = ({ windows, add, close, setActive, active, actionHandler }) =>
         onFocus={() => {
           if (active.id !== id) setActive({ type: 'panel', id });
         }}
+        key={`panel:${id}`}
         onClose={close}
       />
     );

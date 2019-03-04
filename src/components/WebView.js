@@ -15,6 +15,8 @@ class WebView extends React.Component {
     this.ref = createRef();
     this.editorRef = createRef();
 
+    this.mark = null;
+
     this.state = {
       title: '',
       body: '',
@@ -176,25 +178,55 @@ class WebView extends React.Component {
   }
 
   applyStyle(style) {
-    const { local } = this.state;
-    // only local files can be modified for marking
-    if (!local) {
-      // return;
-    }
     const selection = window.getSelection();
+    let { anchorNode, anchorOffset } = selection;
 
-    // we assume this is nearly always… I think
-    if (selection.anchorNode.nodeName === '#text') {
-      const { anchorNode, focusNode } = selection;
-
-      const html = anchorNode.innerHTML;
-      const node = document.createAttribute(style.tag.replace(/<(.*)>/, '$1'));
-
-      this.ref.current.replaceChild(node, focusNode);
-      node.innerHTML = html;
-
-      this.setState({ dirty: true });
+    // if no anchor, we're not focused, so re-focus and re-call
+    if (!anchorNode) {
+      this.onFocus();
+      return this.applyStyle(style);
     }
+
+    const block = 'H1 H2 H3 H4 H5 H6 DIV P UL OL SECTION ARTICLE MAIN BODY'.split(
+      ' '
+    );
+
+    // if we're a text node, then cycle up until we hit a block node and swap it
+    if (anchorNode.nodeName === '#text') {
+      do {
+        anchorNode = anchorNode.parentNode;
+        if (block.includes(anchorNode.nodeName)) {
+          break;
+        }
+      } while (anchorNode !== this.ref.current);
+    }
+
+    const html = anchorNode.innerHTML;
+    const node = document.createElement(style.tag.replace(/<(.*)>/, '$1'));
+
+    node.innerHTML = html;
+    anchorNode.parentNode.replaceChild(node, anchorNode);
+
+    this.setState({ dirty: true });
+
+    selection.removeAllRanges();
+    const range = document.createRange();
+    range.selectNode(node.firstChild);
+
+    if (!this.mark) {
+      this.mark = {
+        anchorNode: node,
+        focusNode: node,
+        anchorOffset,
+        focusOffset: anchorOffset,
+      };
+    } else {
+      this.mark.anchorNode = node;
+      this.mark.focusNode = node;
+    }
+
+    // note: addRange comes last, because it triggers the focus event. Who knew?
+    selection.addRange(range);
   }
 
   select = options => {
@@ -206,14 +238,21 @@ class WebView extends React.Component {
     range.setStart(anchorNode, start);
     range.setEnd(focusNode, end);
     selection.addRange(range);
+    this.mark = {
+      ...options,
+      scrollTop: this.ref.current.parentNode.scrollTop,
+    };
   };
 
   onFocus = () => {
-    const { mark } = this.state;
+    const { mark } = this;
 
     if (mark) {
+      console.log('onFocus', mark);
+
       this.select(mark);
-      this.setState({ mark: null });
+      this.ref.current.parentNode.scrollTop = mark.scrollTop;
+      this.mark = null;
     }
   };
 
@@ -222,18 +261,13 @@ class WebView extends React.Component {
 
     let { focusNode, focusOffset, anchorOffset, anchorNode } = selection;
 
-    if (selection.rangeCount > 0 && selection.isCollapsed === false) {
-      this.setState({
-        mark: {
-          anchorNode,
-          focusNode,
-          anchorOffset,
-          focusOffset,
-        },
-      });
-    } else {
-      this.setState({ mark: null });
-    }
+    this.mark = {
+      scrollTop: this.ref.current.parentNode.scrollTop,
+      anchorNode,
+      focusNode,
+      anchorOffset,
+      focusOffset,
+    };
   };
 
   replaceSelectionWith(node) {
@@ -308,7 +342,8 @@ class WebView extends React.Component {
         nextIdElement.setAttribute('n', nextId + 1);
       }
 
-      this.setState({ mark: null, dirty: true, nextId: nextId + 1 });
+      this.setState({ dirty: true, nextId: nextId + 1 });
+      this.mark = null;
 
       return { url: this.props.url + '#' + nextId };
     }
