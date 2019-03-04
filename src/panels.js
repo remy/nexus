@@ -57,3 +57,8 @@ export const Search = Loadable({
   loader: () => import('./components/Search'),
   loading,
 });
+
+export const NavigateHelp = Loadable({
+  loader: () => import('./components/NavigateHelp'),
+  loading,
+});

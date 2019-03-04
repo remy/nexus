@@ -1,6 +1,6 @@
 import React from 'react';
 import Window from './Window';
-import { LinkHelp } from '../panels';
+import { NavigateHelp } from '../panels';
 
 const BrowserNav = ({ actionHandler, add, ...props }) => {
   return (
@@ -32,8 +32,8 @@ const BrowserNav = ({ actionHandler, add, ...props }) => {
                   onClick={() =>
                     add({
                       type: 'panel',
-                      id: 'link-help',
-                      Component: LinkHelp,
+                      id: 'navigate-help',
+                      Component: NavigateHelp,
                     })
                   }
                 >
