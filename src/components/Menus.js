@@ -8,6 +8,7 @@ const Menus = ({ windows, add, close, setActive, active, actionHandler }) => {
     const menu = allMenus[id];
     return (
       <Menu
+        attached={attached}
         zIndex={zIndex}
         index={i}
         key={`menu:${id}`}

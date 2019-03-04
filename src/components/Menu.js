@@ -6,8 +6,6 @@ import * as allMenus from '../menus';
 const Menu = ({ menu = [], attached, onOpen, onDrag, ...props }) => {
   const [showClose, setShowClose] = useState(false);
 
-  const x = 130 * (attached - 1);
-
   return (
     <Window
       showClose={showClose}
@@ -27,7 +25,10 @@ const Menu = ({ menu = [], attached, onOpen, onDrag, ...props }) => {
             return (
               <li key={menu.id}>
                 <button
-                  className={cs({ next: allMenus[menu.id] })}
+                  className={cs({
+                    next: allMenus[menu.id],
+                    active: attached.includes(menu.id),
+                  })}
                   onClick={() => onOpen(menu.id)}
                 >
                   {menu.title}
