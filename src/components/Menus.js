@@ -8,9 +8,11 @@ const Menus = ({ windows, add, close, setActive, active, actionHandler }) => {
     const menu = allMenus[id];
     return (
       <Menu
+        {...menu}
         attached={attached}
         zIndex={zIndex}
         index={i}
+        onClose={close}
         key={`menu:${id}`}
         active={id === active.id}
         onFocus={() => {
@@ -19,24 +21,21 @@ const Menus = ({ windows, add, close, setActive, active, actionHandler }) => {
         onDrag={() => {
           if (id !== 'top') setAttached(attached.filter(_ => _ !== id));
         }}
-        {...menu}
-        onClose={id => {
-          close(id);
-          setAttached(attached.filter(_ => _ !== id));
-        }}
         onOpen={id => {
           if (allMenus[id]) {
-            /*
-            logic via JFG
-            > Also a cosmetic issue: when a detachable menu is already open,
-            > clicking another one opens it further to the right; it should replace
-            > the previous one instead. Or if the first one has been detached, then
-            > the new one should open normally.
-            */
+            // then open (or close) the menu
+            console.log('in all menus');
+            // if the menu is already open, then close it
+            if (attached.includes(id)) {
+              close(id);
+              setAttached(['top']);
+              return;
+            }
             attached.filter(id => id !== 'top').map(close);
             add({ type: 'menu', id });
             setAttached(['top', id]);
           } else {
+            // run the menu action
             actionHandler(id);
           }
         }}
