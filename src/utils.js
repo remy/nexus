@@ -36,5 +36,6 @@ export function localToFilename(url) {
   return url
     .split('/')
     .pop()
-    .replace(/[?#].*/, '');
+    .replace(/[?#].*/, '')
+    .replace(/%20/g, ' ');
 }

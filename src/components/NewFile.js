@@ -4,13 +4,15 @@ import { save, load } from '../filesystem';
 import FilePicker from './FilePicker';
 
 const NewFile = ({ close, add, id, ...props }) => {
-  const saveAndLoad = async selected => {
-    const template = await load('blank.html');
-    save(selected, template);
-    add({
-      id: 'file://WWW/' + selected,
-      type: 'url',
-    });
+  const onSubmit = async (selected = '') => {
+    if (selected.trim()) {
+      const template = await load('blank.html');
+      save(selected, template);
+      add({
+        id: 'file://WWW/' + selected,
+        type: 'url',
+      });
+    }
     close(id);
   };
 
@@ -18,8 +20,8 @@ const NewFile = ({ close, add, id, ...props }) => {
     <Window {...props} id={id} title="" dialogue>
       <FilePicker
         title="Save"
-        onCancel={() => close(id)}
-        onSubmit={saveAndLoad}
+        onCancel={() => onSubmit('')}
+        onSubmit={onSubmit}
       />
     </Window>
   );

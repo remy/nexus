@@ -1,6 +1,23 @@
 import { getLink } from '../utils';
+import { OpenFile, NewFile } from '../panels';
 
 let currentLink = '';
+
+export const linkToNew = ({ active, add }) => {
+  const promise = new Promise(resolve => {
+    add({ type: 'panel', id: 'new-file', Component: NewFile, resolve });
+  });
+
+  active.ref.current.linkToFile(promise);
+};
+
+export const linkToFile = ({ active, add }) => {
+  const promise = new Promise(resolve => {
+    add({ type: 'panel', id: 'open-file', Component: OpenFile, resolve });
+  });
+
+  active.ref.current.linkToFile(promise);
+};
 
 export const markAll = ({ active }) => {
   currentLink = active.id;

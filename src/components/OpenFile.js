@@ -2,12 +2,17 @@ import React from 'react';
 import Window from './Window';
 import FilePicker from './FilePicker';
 
-const SaveFile = ({ close, add, id, ...props }) => {
-  const selectAndLoad = async selected => {
-    add({
-      id: 'file://WWW/' + selected,
-      type: 'url',
-    });
+const OpenFile = ({ close, add, id, resolve, ...props }) => {
+  const onSelect = async (selected = '') => {
+    if (selected.trim()) {
+      add({
+        id: 'file://WWW/' + selected,
+        type: 'url',
+      });
+    }
+    if (resolve) {
+      resolve(selected);
+    }
     close(id);
   };
 
@@ -15,11 +20,11 @@ const SaveFile = ({ close, add, id, ...props }) => {
     <Window {...props} id={id} title="" dialogue>
       <FilePicker
         title="Open"
-        onCancel={() => close(id)}
-        onSubmit={selectAndLoad}
+        onCancel={() => onSelect('')}
+        onSubmit={onSelect}
       />
     </Window>
   );
 };
 
-export default SaveFile;
+export default OpenFile;

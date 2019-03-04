@@ -24,7 +24,6 @@ const Menus = ({ windows, add, close, setActive, active, actionHandler }) => {
         onOpen={id => {
           if (allMenus[id]) {
             // then open (or close) the menu
-            console.log('in all menus');
             // if the menu is already open, then close it
             if (attached.includes(id)) {
               close(id);

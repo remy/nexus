@@ -168,8 +168,13 @@ export const links = {
       id: 'link-to-marked',
       action: 'method',
     },
-    { title: 'Link to file…', id: 'link-to-file' },
-    { title: 'Link to New', accelerator: 'N', id: 'link-to-new' },
+    { title: 'Link to file…', id: 'link-to-file', action: 'method' },
+    {
+      title: 'Link to New',
+      accelerator: 'N',
+      id: 'link-to-new',
+      action: 'method',
+    },
     {
       title: 'Follow link',
       id: 'follow-link',
@@ -235,6 +240,7 @@ export const style = {
     {
       title: 'Heading 1',
       accelerator: '!',
+      alias: '1',
       id: 'set-style:heading-1',
       action: 'method',
       options: 'Heading1',

@@ -76,6 +76,8 @@ class WebView extends React.Component {
   }
 
   componentDidMount() {
+    console.log('mounted with', this.props.url);
+
     this.load(this.props.url);
   }
 
@@ -142,9 +144,23 @@ class WebView extends React.Component {
     }
   }
 
-  linkToMarked(url) {
+  linkToFile = promise => {
+    promise.then(url => {
+      if (url) this.linkToMarked(url);
+    });
+  };
+
+  linkToMarked(url, bailIfNoAnchor) {
     const selection = window.getSelection();
     const { anchorNode } = selection;
+
+    if (!anchorNode) {
+      if (bailIfNoAnchor) {
+        return;
+      }
+      this.onFocus();
+      return this.linkToMarked(url, true);
+    }
 
     const insideAnchor = getLink(anchorNode, this.ref.current, 'name');
 
@@ -235,9 +251,13 @@ class WebView extends React.Component {
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
-    range.setStart(anchorNode, start);
-    range.setEnd(focusNode, end);
-    selection.addRange(range);
+    try {
+      range.setStart(anchorNode, start);
+      range.setEnd(focusNode, end);
+      selection.addRange(range);
+    } catch (e) {
+      console.warn('no fatal: failed to re-select');
+    }
     this.mark = {
       ...options,
       scrollTop: this.ref.current.parentNode.scrollTop,
@@ -248,8 +268,6 @@ class WebView extends React.Component {
     const { mark } = this;
 
     if (mark) {
-      console.log('onFocus', mark);
-
       this.select(mark);
       this.ref.current.parentNode.scrollTop = mark.scrollTop;
       this.mark = null;
