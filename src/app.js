@@ -22,6 +22,10 @@ const initialState = [
   },
 ];
 
+if (window.location.hash.includes('http')) {
+  initialState[initialState.length - 1].id = window.location.hash.substring(1);
+}
+
 function nextLayerOrder(type) {
   type = type === 'menu' ? 'menu' : 'default';
   const value = layerOrder.get(type);
@@ -118,7 +122,11 @@ const App = () => {
 
     const { action, props = {} } = info;
     const idTitleCase = titleCase(id);
-    const idCamelCase = camelCase(id);
+    let idCamelCase = camelCase(id);
+
+    if (idCamelCase.includes(':')) {
+      idCamelCase = idCamelCase.replace(/:.*$/, '');
+    }
 
     let res = null;
 
@@ -136,7 +144,12 @@ const App = () => {
         break;
       case 'method':
         if (actions[idCamelCase]) {
-          res = actions[idCamelCase]({ active: activeWindow, add, windows });
+          res = actions[idCamelCase]({
+            active: activeWindow,
+            add,
+            windows,
+            options: info.options,
+          });
         }
         break;
       case 'url':
