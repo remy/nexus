@@ -146,7 +146,7 @@ class WebView extends React.Component {
 
   linkToFile = promise => {
     promise.then(url => {
-      if (url) this.linkToMarked(url);
+      if (url && url !== 'file://WWW/') this.linkToMarked(url);
     });
   };
 
@@ -156,10 +156,12 @@ class WebView extends React.Component {
 
     if (!anchorNode) {
       if (bailIfNoAnchor) {
+        console.log('BAIL');
         return;
       }
-      this.onFocus();
-      return this.linkToMarked(url, true);
+      this.ref.current.focus();
+      this.linkToMarked(url, true);
+      return;
     }
 
     const insideAnchor = getLink(anchorNode, this.ref.current, 'name');

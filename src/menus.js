@@ -248,6 +248,7 @@ export const style = {
     {
       title: 'Heading 2',
       accelerator: '@',
+      alias: '2',
       id: 'set-style:heading-2',
       action: 'method',
       options: 'Heading2',
@@ -255,6 +256,7 @@ export const style = {
     {
       title: 'Heading 3',
       accelerator: '#',
+      alias: '3',
       id: 'set-style:heading-3',
       action: 'method',
       options: 'Heading3',
@@ -262,6 +264,7 @@ export const style = {
     {
       title: 'Heading 4',
       accelerator: '$',
+      alias: '4',
       id: 'set-style:heading-4',
       action: 'method',
       options: 'Heading4',

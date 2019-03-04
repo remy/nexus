@@ -11,7 +11,7 @@ const OpenFile = ({ close, add, id, resolve, ...props }) => {
       });
     }
     if (resolve) {
-      resolve(selected);
+      resolve('file://WWW/' + selected);
     }
     close(id);
   };

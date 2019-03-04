@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { list } from '../filesystem';
 
-export default ({ onSubmit, onCancel, title }) => {
+export default ({ onSubmit, onCancel, defaultValue, title }) => {
   const [files, setFiles] = useState([]);
   const [selected, setSelected] = useState('');
 
   useEffect(() => {
     list().then(files => {
       setFiles(files);
-      setSelected(files[0]);
+      setSelected(defaultValue === undefined ? files[0] : defaultValue);
     });
   }, []);
 
