@@ -32,7 +32,7 @@
     "idb-keyval": "^3.1.0",
     "ip-range-check": "0.0.2",
     "lru-cache": "^5.1.1",
-    "parcel-bundler": "^1.11.0",
+    "parcel-bundler": "1.11.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-draggable": "^3.1.1",

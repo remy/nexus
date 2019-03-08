@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, createRef } from 'react';
+import React, { useEffect, useReducer, createRef } from 'react';
 import { HotKeys } from 'react-hotkeys';
 import Menus from './components/Menus';
 import WebViews from './components/WebViews';
@@ -79,10 +79,6 @@ const App = () => {
   });
 
   const { windows, active, activeWindow } = state;
-
-  // const [windows, dispatch] = useReducer(reducer, initialState);
-  // const [active, setActiveElement] = useState(windows[1]);
-  // const [activeWindow, setActiveWindow] = useState(windows[1]);
 
   const setActiveElement = data => {
     dispatch({ type: 'setActive', data });
