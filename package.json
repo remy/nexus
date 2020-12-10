@@ -3,6 +3,10 @@
   "version": "1.0.2",
   "description": "",
   "main": "index.js",
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true
+  },
   "scripts": {
     "start": "node .",
     "client": "parcel --out-dir build/browser/ ./src/index.html",

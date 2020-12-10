@@ -58,10 +58,23 @@ Listing <LISTING> 0 Ohlfs 9.0		1
   -webkit-font-smoothing: none;
   margin: 1.5em 0 0 90px;
 
+  legend, fieldset {
+    padding: initial;
+    background: none;
+
+    &:before, &:after {
+      content: none;
+    }
+  }
+
   * {
 	  font-size: inherit;
 	  line-height: inherit;
-	  -webkit-font-smoothing: none;
+    -webkit-font-smoothing: none;
+    position: inherit;
+    text-align: inherit;
+    // background: inherit; // does weird things to the anchor 🤔
+    border: inherit;
   }
 
   nextid {
@@ -136,8 +149,15 @@ Listing <LISTING> 0 Ohlfs 9.0		1
   }
 
   li {
+    position: relative;
     margin: 1em 0 1em 3.8em;
-    list-style-type: "-              ";
+    list-style-type: none; //"-              ";
+
+    &:before {
+      content: '•'; //
+      position: absolute;
+      margin-left: -3.8em;
+    }
   }
 
   dl {
