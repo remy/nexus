@@ -16,6 +16,9 @@
     "build": "mkdir -p build; eleventy && npm run build:client"
   },
   "heroku-run-build-script": true,
+  "engines": {
+    "node": "18"
+  },
   "browserslist": [
     "last 2 Chrome versions"
   ],
