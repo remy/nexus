@@ -12,7 +12,7 @@
     "client": "parcel --out-dir build/browser/ ./src/index.html",
     "content": "eleventy --serve",
     "test": "node __tests__/*.test.js",
-    "build:client": "parcel build --public-url='/browser' --out-dir build/browser/ ./src/index.html",
+    "build:client": "parcel build --public-url='/browser' --out-dir build/www/browser/ ./src/index.html",
     "build": "mkdir -p build; eleventy && npm run build:client"
   },
   "heroku-run-build-script": true,
