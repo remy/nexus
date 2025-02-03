@@ -15,7 +15,7 @@ In March 1989, [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee),
 
 It imagined a simple client-server architecture, and links, and a 6 month time frame.
 
-His boss at CERN at the time — Mark Sendall — labeled it the now classic understatement of the century: *"Vague, but exciting."*
+His boss at CERN at the time — Mike Sendall — labeled it the now classic understatement of the century: *"Vague, but exciting."*
 
 
 
